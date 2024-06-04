@@ -1,0 +1,17 @@
+{
+    "folders": [
+        {
+            "path": ".."            
+        }
+    ],
+    "settings": {		
+		"files.exclude": {
+			"**/bin": true,
+			"*glfw3.dll*": true,
+			"*vendor*": true
+        },
+        "files.associations": {
+            "glfw3.h": "cpp"
+        }
+    }
+}
