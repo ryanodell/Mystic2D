@@ -1,56 +1,92 @@
-#experimenting still :(
-CC = g++
-CFLAGS = -Wall -std=c++11
-DEBUG_FLAGS = -g -DDEBUG
-RELEASE_FLAGS = -O2
+# Define directories
+INCLUDES = -Ivendor/GLFW/include -Ivendor/GLAD/include -Ivendor/GLM -Ivendor/STB_IMAGE
+LIB_DIRS = -Lvendor/GLFW/lib -LC:\MinGW\lib
+LIBS = -lglfw3 -lgdi32 -lopengl32
 
-SRC_FILES = src/main.cpp vendor/GLAD/include/glad.cpp
-# DEPS = src/pch.h $(wildcard src/*.h)
-DEPS = 
+# Define compiler and flags
+CXX = g++
+CXXFLAGS = -Wall -std=c++11 -g -DDEBUG -H
 
-INCLUDE_PATHS = -Ivendor/GLFW/include \
-                -Ivendor/GLAD/include \
-                -Ivendor/GLM \
-                -Ivendor/STB_IMAGE
+# Define source files and target executable
+SRC = src/main.cpp vendor/GLAD/include/glad.cpp
+TARGET = bin/main
 
-LIBRARY_PATHS = -Lvendor/GLFW/lib \
-                -LC:\MinGW\lib
+# Define precompiled header
+PCH_SRC = src/pch.h
+PCH = src/pch.h.gch
 
-LINKER_FLAGS = -lglfw3 -lgdi32 -lopengl32
+# Default target
+all: debug
 
-PCH_FILE = src/pch.h
-PCH_GCH = $(PCH_FILE).gch
+# Debug target
+debug: $(TARGET)
 
-OBJ_NAME = bin\main
+# Rule to create the precompiled header
+$(PCH): $(PCH_SRC)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $(PCH) -x c++-header $(PCH_SRC)
 
-.PHONY: all debug release clean pch #build_no_pch
+# Rule to compile the target executable
+$(TARGET): $(PCH) $(SRC)
+	$(CXX) $(CXXFLAGS) $(INCLUDES) $(SRC) -o $(TARGET) $(LIB_DIRS) $(LIBS) -include $(PCH_SRC)
 
-all: debug release
-
-debug: CFLAGS += $(DEBUG_FLAGS)
-debug: build
-
-release: CFLAGS += $(RELEASE_FLAGS)
-release: build
-
-pch: $(PCH_GCH)
-
-$(PCH_GCH): $(PCH_FILE)
-	$(CC) $(CFLAGS) $(INCLUDE_PATHS) -x c++-header $(PCH_FILE) -o $(PCH_GCH)
-
-# build: $(PCH_GCH) $(SRC_FILES)
-# 	$(CC) $(INCLUDE_PATHS) $(CFLAGS) $(SRC_FILES) $(PCH_GCH) -o $(OBJ_NAME) $(LIBRARY_PATHS) $(LINKER_FLAGS)
-build: $(SRC_FILES)
-	$(CC) $(INCLUDE_PATHS) $(CFLAGS) $(SRC_FILES) -o $(OBJ_NAME) $(LIBRARY_PATHS) $(LINKER_FLAGS)
-
-# build_no_pch: $(SRC_FILES)
-# 	$(CC) $(INCLUDE_PATHS) $(CFLAGS) $(SRC_FILES) -o $(OBJ_NAME) $(LIBRARY_PATHS) $(LINKER_FLAGS)
-
+# Clean rule to remove generated files
 clean:
-	rm -f $(PCH_GCH) bin\main.exe
+	rm -f $(TARGET) $(PCH)
 
-# Dependencies
-$(SRC_FILES): $(DEPS)
+#experimenting still :(
+# MAKEFLAGS += --warn-undefined-variables
+# CC = g++
+# CFLAGS = -Wall -std=c++11
+# DEBUG_FLAGS = -g -DDEBUG
+# RELEASE_FLAGS = -O2
+
+# SRC_FILES = src/main.cpp vendor/GLAD/include/glad.cpp
+# # DEPS = src/pch.h $(wildcard src/*.h)
+# DEPS = #src/pch.h
+
+# INCLUDE_PATHS = -Ivendor/GLFW/include \
+#                 -Ivendor/GLAD/include \
+#                 -Ivendor/GLM \
+#                 -Ivendor/STB_IMAGE
+
+# LIBRARY_PATHS = -Lvendor/GLFW/lib \
+#                 -LC:\MinGW\lib
+
+# LINKER_FLAGS = -lglfw3 -lgdi32 -lopengl32
+
+# PCH_FILE = src/pch.h
+# PCH_GCH = $(PCH_FILE).gch
+
+# OBJ_NAME = bin\main
+
+# .PHONY: all debug release clean pch #build_no_pch
+
+# all: debug release
+
+# debug: CFLAGS += $(DEBUG_FLAGS)
+# debug: build
+
+# release: CFLAGS += $(RELEASE_FLAGS)
+# release: build
+
+# pch: $(PCH_GCH)
+
+# $(PCH_GCH): $(PCH_FILE)
+# 	$(CC) $(CFLAGS) $(INCLUDE_PATHS) -x c++-header $(PCH_FILE) -o $(PCH_GCH)
+
+# # build: $(PCH_GCH) $(SRC_FILES)
+# # 	$(CC) $(INCLUDE_PATHS) $(CFLAGS) $(SRC_FILES) $(PCH_GCH) -o $(OBJ_NAME) $(LIBRARY_PATHS) $(LINKER_FLAGS)
+# build: $(SRC_FILES)
+# 	$(CC) $(INCLUDE_PATHS) $(CFLAGS) -include $(PCH_FILE) $(SRC_FILES) -o $(OBJ_NAME) $(LIBRARY_PATHS) $(LINKER_FLAGS)
+
+# # build_no_pch: $(SRC_FILES)
+# # 	$(CC) $(INCLUDE_PATHS) $(CFLAGS) $(SRC_FILES) -o $(OBJ_NAME) $(LIBRARY_PATHS) $(LINKER_FLAGS)
+
+# clean:
+# 	rm -f $(PCH_GCH) bin\main.exe
+
+# # Dependencies
+# $(SRC_FILES): $(DEPS)
 
 
 
