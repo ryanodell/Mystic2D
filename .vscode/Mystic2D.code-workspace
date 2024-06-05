@@ -8,7 +8,8 @@
 		"files.exclude": {
 			"**/bin": true,
 			"*glfw3.dll*": true,
-			"*vendor*": true
+			"*vendor*": true,
+            "**/*.gch": true
         },
         "files.associations": {
             "glfw3.h": "cpp"
