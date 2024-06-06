@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "core/game.h"
+// #define SPDLOG_HEADER_ONLY
+// #include "spdlog/spdlog.h"
 
 
 int main() {

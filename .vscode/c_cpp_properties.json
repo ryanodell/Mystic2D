@@ -7,7 +7,8 @@
                 "vendor/GLFW/include",
                 "vendor/GLAD/include",
                 "vendor/GLM",
-                "vendor/STB_IMAGE"
+                "vendor/STB_IMAGE",
+                "vendor/SPDLOG"
             ],
             "defines": [
                 "_DEBUG",
