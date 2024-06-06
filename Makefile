@@ -8,7 +8,7 @@ CXX = g++
 CXXFLAGS = -Wall -std=c++11 -g -DDEBUG
 
 # Define source files and target executable
-SRC = src/main.cpp vendor/GLAD/include/glad.cpp
+SRC = vendor/GLAD/include/glad.cpp src/core/game.cpp src/main.cpp
 TARGET = bin/main
 
 # Define precompiled header
