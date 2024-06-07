@@ -1,11 +1,9 @@
 #include "pch.h"
 #include "core/game.h"
-// #define SPDLOG_HEADER_ONLY
-// #include "spdlog/spdlog.h"
 
 
 int main() {
-
+    int s = 5;
     game mainGame;
     for(int i = 0; i < 5; i++) {
         mainGame.run();
@@ -13,6 +11,5 @@ int main() {
     }
     mainGame.shutdown();
     mainGame.print();
-    std::cin.get();
     return 0;
 }

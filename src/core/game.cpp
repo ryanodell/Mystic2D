@@ -1,12 +1,15 @@
 #include "game.h"
 
 void game::print() {
-    std::cout << "width: " << m_width << " " << "height: " << m_height << std::endl;
+    spdlog::info("Welcome to spdlog!");
+    spdlog::info("Welcome to spdlog2!");
+    spdlog::error("Did this work?");
 }
 
 void game::run()
 {
-    m_height++;
+
+    //m_height++;
     m_width++;
 }
 
