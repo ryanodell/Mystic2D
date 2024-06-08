@@ -3,8 +3,8 @@
 
 
 int main() {
-    int s = 5;
     game mainGame;
+    mainGame.print();
     for(int i = 0; i < 5; i++) {
         mainGame.run();
         mainGame.print();

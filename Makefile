@@ -1,6 +1,6 @@
 # Define directories
 INCLUDES = -Ivendor/GLFW/include -Ivendor/GLAD/include -Ivendor/GLM -Ivendor/STB_IMAGE -Ivendor/SPDLOG
-LIB_DIRS = -Lvendor/GLFW/lib -LC:\MinGW-64\lib
+LIB_DIRS = -Lvendor/GLFW/lib
 
 LIBS = -lglfw3 -lgdi32 -lopengl32
 
