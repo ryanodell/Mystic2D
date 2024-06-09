@@ -19,6 +19,7 @@ SRC = 	vendor/GLAD/include/glad.cpp \
 		src/core/logger.cpp \
 		src/core/render/buffer.cpp \
 		src/core/render/renderer.cpp \
+		src/core/gameWindow.cpp \
 		src/core/game.cpp \
 		src/main.cpp 
 
