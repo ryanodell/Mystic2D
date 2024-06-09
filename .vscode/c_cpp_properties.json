@@ -4,6 +4,7 @@
             "name": "Win32",
             "includePath": [
                 "${workspaceFolder}/**",
+                "C:/MinGW-64/include",
                 "vendor/GLFW/include",
                 "vendor/GLAD/include",
                 "vendor/GLM",

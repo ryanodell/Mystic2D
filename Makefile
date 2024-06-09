@@ -15,7 +15,13 @@ CXX = g++
 CXXFLAGS = -std=c++11 -g -DDEBUG $(DEFINES)
 
 # Define source files and target executable
-SRC = vendor/GLAD/include/glad.cpp src/core/game.cpp src/core/logger.cpp src/main.cpp
+SRC = 	vendor/GLAD/include/glad.cpp \
+		src/core/logger.cpp \
+		src/core/render/buffer.cpp \
+		src/core/render/renderer.cpp \
+		src/core/game.cpp \
+		src/main.cpp 
+
 OBJS = $(SRC:.cpp=.o)
 TARGET = bin/main
 
