@@ -3,6 +3,7 @@
 
 
 int main() {
+    mystic::logger::init();
     game mainGame;
     mainGame.print();
     for(int i = 0; i < 5; i++) {

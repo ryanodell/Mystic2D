@@ -1,5 +1,10 @@
 # Define directories
-INCLUDES = -Ivendor/GLFW/include -Ivendor/GLAD/include -Ivendor/GLM -Ivendor/STB_IMAGE -Ivendor/SPDLOG
+INCLUDES = 	-Ivendor/GLFW/include \
+			-Ivendor/GLAD/include \
+			-Ivendor/GLM \
+			-Ivendor/STB_IMAGE \
+			-Ivendor/SPDLOG
+
 LIB_DIRS = -Lvendor/GLFW/lib
 
 LIBS = -lglfw3 -lgdi32 -lopengl32
@@ -10,7 +15,7 @@ CXX = g++
 CXXFLAGS = -std=c++11 -g -DDEBUG $(DEFINES)
 
 # Define source files and target executable
-SRC = vendor/GLAD/include/glad.cpp src/core/game.cpp src/main.cpp
+SRC = vendor/GLAD/include/glad.cpp src/core/game.cpp src/core/logger.cpp src/main.cpp
 OBJS = $(SRC:.cpp=.o)
 TARGET = bin/main
 

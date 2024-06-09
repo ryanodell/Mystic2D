@@ -1,13 +1,18 @@
 #include "game.h"
 
 void game::print() {
-    spdlog::info("Welcome to spdlog!");
-    spdlog::info("Welcome to spdlog2!");
-    spdlog::error("Did this work?");
+    MYSTIC_INFO("Test");
+    // spdlog::info("Welcome to spdlog!");
+    // spdlog::info("Welcome to spdlog2!");
+    // spdlog::error("Did this work?");
 }
 
 void game::run()
 {
+    MYSTIC_TRACE("Trace");
+    MYSTIC_WARN("Warn");
+    MYSTIC_ERROR("Error");
+    MYSTIC_CRITICAL("crit");
 
     //m_height++;
     m_width++;
