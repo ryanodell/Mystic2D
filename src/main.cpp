@@ -1,3 +1,5 @@
+#include <glad.h>
+//#define GLFW_DLL
 #include "pch.h"
 #include "core/game.h"
 

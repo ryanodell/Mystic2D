@@ -12,7 +12,7 @@ LIBS = -lglfw3 -lgdi32 -lopengl32
 # Define compiler and flags
 DEFINES = 
 CXX = g++
-CXXFLAGS = -std=c++11 -g -DDEBUG $(DEFINES)
+CXXFLAGS = -std=c++11 -g -DDEBUG -m64 $(DEFINES) -v
 
 # Define source files and target executable
 SRC = 	vendor/GLAD/include/glad.cpp \
