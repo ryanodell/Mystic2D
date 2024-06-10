@@ -21,7 +21,11 @@ namespace mystic {
         });
         MYSTIC_INFO("Successfully created Glfw window");
     }
-    void gameWindow::frameBufferSizeCallback(GLFWwindow *window, int width, int height) {
+    bool gameWindow::windowShouldClose() {
+        return glfwWindowShouldClose(m_internalWindow);
+    }
+    void gameWindow::frameBufferSizeCallback(GLFWwindow *window, int width, int height)
+    {
         glViewport(0, 0, width, height);
         m_width = width;
         m_height = height;

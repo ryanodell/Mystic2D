@@ -4,8 +4,8 @@
 namespace mystic {
     class spriteBatch {
     public:
-        spriteBatch();
-        ~spriteBatch();
+        spriteBatch() { };
+        ~spriteBatch() { };
         void begin();
         void end();
     private:

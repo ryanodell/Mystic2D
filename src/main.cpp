@@ -2,11 +2,15 @@
 //#define GLFW_DLL
 #include "pch.h"
 #include "core/game.h"
+#include <iostream>
+
 
 
 int main() {
-    mystic::logger::init();
-    mystic::game mainGame;
-    mainGame.run();
+    std::cout << "test" << std::endl;
+    // MYSTIC_INFO("Boot.");
+    // mystic::game mainGame;
+    // mainGame.run();
+    // MYSTIC_INFO("Game closed.");
     return 0;
 }
