@@ -6,13 +6,7 @@
 
 int main() {
     mystic::logger::init();
-    game mainGame;
-    mainGame.print();
-    for(int i = 0; i < 5; i++) {
-        mainGame.run();
-        mainGame.print();
-    }
-    mainGame.shutdown();
-    mainGame.print();
+    mystic::game mainGame;
+    mainGame.run();
     return 0;
 }

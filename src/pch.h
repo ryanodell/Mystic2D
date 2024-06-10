@@ -7,5 +7,6 @@
 #include <vector>
 
 #include "core/logger.h"
+#include "core/gametime.h"
 
 #endif

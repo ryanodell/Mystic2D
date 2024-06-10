@@ -10,7 +10,8 @@
 			"*glfw3.dll*": true,
 			//"*vendor*": true,
             "**/*.gch": true,
-            "**/*.o": true
+            "**/*.o": true,
+            "**/*.o.tmp" : true
         },
         "files.associations": {
             "glfw3.h": "cpp",

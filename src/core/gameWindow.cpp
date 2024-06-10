@@ -12,8 +12,8 @@ namespace mystic {
             glfwTerminate();
         }
         glfwMakeContextCurrent(m_internalWindow);        
+        glfwSetWindowUserPointer(m_internalWindow, this);
         glfwSetFramebufferSizeCallback(m_internalWindow, [](GLFWwindow* window, int width, int height) {
-            glfwGetWindowUserPointer(window);
             gameWindow* gw = static_cast<gameWindow*>(glfwGetWindowUserPointer(window));
             if (gw != NULL) {
                 gw->frameBufferSizeCallback(window, width, height);
@@ -22,8 +22,8 @@ namespace mystic {
         MYSTIC_INFO("Successfully created Glfw window");
     }
     void gameWindow::frameBufferSizeCallback(GLFWwindow *window, int width, int height) {
+        glViewport(0, 0, width, height);
         m_width = width;
         m_height = height;
-        //TODO: Raise event
     }
 }

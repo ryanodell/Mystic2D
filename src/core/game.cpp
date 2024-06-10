@@ -1,24 +1,32 @@
 #include "game.h"
 
-void game::print() {
-    MYSTIC_INFO("Test");
-    // spdlog::info("Welcome to spdlog!");
-    // spdlog::info("Welcome to spdlog2!");
-    // spdlog::error("Did this work?");
-}
+namespace mystic {
+    game::game()
+    {
+    }
 
-void game::run()
-{
-    MYSTIC_TRACE("Trace");
-    MYSTIC_WARN("Warn");
-    MYSTIC_ERROR("Error");
-    MYSTIC_CRITICAL("crit");
+    game::~game()
+    {
+    }
 
-    //m_height++;
-    m_width++;
-}
-
-void game::shutdown() {
-    m_height = 0;
-    m_width = 0;
+    void game::run() {
+        game::init();
+    }
+    void game::loadContent()
+    {
+    }
+    void game::update(gameTime &gametime)
+    {
+    }
+    void game::draw(gameTime &gameTime, spriteBatch &spriteBatch)
+    {
+    }
+    void game::init()
+    {
+        if(m_initialized) {
+            MYSTIC_WARN("Game already initialized");
+            return;
+        }
+        m_initialized = true;
+    }
 }
