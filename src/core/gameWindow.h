@@ -8,15 +8,15 @@ namespace mystic {
     public:
         gameWindow(const std::string& windowName, int width, int height);
         ~gameWindow() {
-            if(m_internalWindow) {
+            if(m_internalWindow != NULL) {
                 glfwDestroyWindow(m_internalWindow);
             }
         }
-
     private:
         GLFWwindow* m_internalWindow;
         std::string m_windowName;
         int m_width, m_height;
+        void frameBufferSizeCallback(GLFWwindow* window, int width, int height);
     };
 
 }
