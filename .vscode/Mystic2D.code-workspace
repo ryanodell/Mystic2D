@@ -11,7 +11,8 @@
 			//"*vendor*": true,
             "**/*.gch": true,
             "**/*.o": true,
-            "**/*.o.tmp" : true
+            "**/*.o.tmp" : true,
+            "**/*.d": true
         },
         "files.associations": {
             "glfw3.h": "cpp",
