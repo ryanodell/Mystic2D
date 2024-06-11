@@ -8,7 +8,7 @@ namespace mystic {
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         m_internalWindow = glfwCreateWindow(width, height, windowName.c_str(), NULL, NULL);
         if(m_internalWindow == NULL) {
-            MYSTIC_CRITICAL("Failed to create Glfw window.");
+            //MYSTIC_CRITICAL("Failed to create Glfw window.");
             glfwTerminate();
         }
         glfwMakeContextCurrent(m_internalWindow);        
@@ -19,7 +19,7 @@ namespace mystic {
                 gw->frameBufferSizeCallback(window, width, height);
             }
         });
-        MYSTIC_INFO("Successfully created Glfw window");
+        //MYSTIC_INFO("Successfully created Glfw window");
     }
     bool gameWindow::windowShouldClose() {
         return glfwWindowShouldClose(m_internalWindow);
