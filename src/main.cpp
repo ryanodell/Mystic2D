@@ -7,7 +7,11 @@
 
 
 int main() {
+    //mystic::logger::init();
+    //MYSTIC_INFO("Boot.");
     std::cout << "test" << std::endl;
+    std::cout << "test2" << std::endl;
+    std::cout << "test3" << std::endl;
     // MYSTIC_INFO("Boot.");
     // mystic::game mainGame;
     // mainGame.run();
