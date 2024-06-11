@@ -35,7 +35,7 @@ namespace mystic {
             //MYSTIC_WARN("Game already initialized");
             return;
         }
-        m_gameWindow = new gameWindow("Name", 25, 25);
+        m_gameWindow = new gameWindow("Name", 800, 600);
         m_spriteBatch = new mystic::spriteBatch();
         m_initialized = true;
     }

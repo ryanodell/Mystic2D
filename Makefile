@@ -4,8 +4,7 @@ INCLUDES =  -Ivendor/GLFW/include \
             -Ivendor/GLM \
             -Ivendor/STB_IMAGE
 
-LIB_DIRS = 	-Lvendor/GLFW/lib \
-			-Lvendor/SPDLOG/lib
+LIB_DIRS = 	-Lvendor/GLFW/lib
 
 LIBS = -lglfw3 -lgdi32 -lopengl32
 
