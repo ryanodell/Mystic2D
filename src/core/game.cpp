@@ -22,20 +22,20 @@ namespace mystic {
         }
     }
     void game::loadContent() {
-        MYSTIC_TRACE("Load called");
+        //MYSTIC_TRACE("Load called");
     }
     void game::update(gameTime* gametime) {
-        MYSTIC_TRACE("Update called");
+        //MYSTIC_TRACE("Update called");
     }
     void game::draw(gameTime* gameTime, spriteBatch* spriteBatch) {
-        MYSTIC_TRACE("Draw called");
+        // MYSTIC_TRACE("Draw called");
     }
     void game::init() {
         if(m_initialized) {
-            MYSTIC_WARN("Game already initialized");
+            //MYSTIC_WARN("Game already initialized");
             return;
         }
-        m_gameWindow = new gameWindow("Name", 25, 25);
+        m_gameWindow = new gameWindow("Name", 800, 600);
         m_spriteBatch = new mystic::spriteBatch();
         m_initialized = true;
     }
