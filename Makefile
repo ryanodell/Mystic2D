@@ -1,63 +1,113 @@
+CC = g++
+CFLAGS = -Wall
+DEBUG_FLAGS = -g -DDEBUG
+RELEASE_FLAGS = -O2
+
+SRC_FILES =     vendor/GLAD/include/glad.cpp \
+		src/core/render/buffer.cpp \
+		src/core/render/renderer.cpp \
+		src/core/render/spriteBatch.cpp \
+		src/core/gameWindow.cpp \
+		src/core/game.cpp \
+		src/main.cpp 
+
+DEPS =          vendor/GLAD/include/glad.h \
+		src/core/render/buffer.h \
+		src/core/render/renderer.h \
+		src/core/render/spriteBatch.h \
+		src/core/gameWindow.h \
+		src/core/gametime.h \
+		src/core/game.h
+
+INCLUDE_PATHS = -Ivendor/GLFW/include \
+		-Ivendor/GLAD/include \
+		-Ivendor/GLMC/cglm \
+		-Ivendor/STB_IMAGE
+
+LIBRARY_PATHS = -Lvendor/GLFW/lib
+
+LINKER_FLAGS = -lglfw3 -lgdi32 -lopengl32
+
+all: debug release
+
+debug: CFLAGS += $(DEBUG_FLAGS)
+debug: build
+
+release: CFLAGS += $(RELEASE_FLAGS)
+release: build
+
+OBJ_NAME = bin\main
+
+build: $(SRC_FILES)
+	$(CC) $(INCLUDE_PATHS) $(CFLAGS) $^ -o $(OBJ_NAME) $(LIBRARY_PATHS) $(LINKER_FLAGS)
+
+clean: rm bin/main
+
+
+# Dependencies
+$(SRC_FILES): $(DEPS)
+
+
 # Define directories
-INCLUDES =  -Ivendor/GLFW/include \
-            -Ivendor/GLAD/include \
-            -Ivendor/GLM \
-            -Ivendor/STB_IMAGE
+# INCLUDES =  -Ivendor/GLFW/include \
+#             -Ivendor/GLAD/include \
+#             -Ivendor/GLM \
+#             -Ivendor/STB_IMAGE
 
-LIB_DIRS = 	-Lvendor/GLFW/lib
+# LIB_DIRS = 	-Lvendor/GLFW/lib
 
-LIBS = -lglfw3 -lgdi32 -lopengl32
+# LIBS = -lglfw3 -lgdi32 -lopengl32
 
-# Define compiler and flags
-DEFINES = 
-CXX = ccache g++
-CXXFLAGS = -std=c++11 -g -DDEBUG -m64 -mconsole $(DEFINES) -flto
-LDFLAGS = -mconsole -flto
+# # Define compiler and flags
+# DEFINES = 
+# CXX = g++
+# CXXFLAGS = -std=c++11 -g -mconsole -m64 $(DEFINES) -flto
+# LDFLAGS = -mconsole -flto
 
-# Define source files and target executable
-SRC =   vendor/GLAD/include/glad.cpp \
-        src/core/render/buffer.cpp \
-        src/core/render/renderer.cpp \
-        src/core/render/spriteBatch.cpp \
-        src/core/gameWindow.cpp \
-        src/core/game.cpp \
-        src/main.cpp 
+# # Define source files and target executable
+# SRC =   vendor/GLAD/include/glad.cpp \
+#         src/core/render/buffer.cpp \
+#         src/core/render/renderer.cpp \
+#         src/core/render/spriteBatch.cpp \
+#         src/core/gameWindow.cpp \
+#         src/core/game.cpp \
+#         src/main.cpp 
 
-OBJS = $(SRC:.cpp=.o)
-TARGET = bin/main
+# OBJS = $(SRC:.cpp=.o)
+# TARGET = bin/main
 
-# Define precompiled header
-PCH_SRC = src/pch.h
-PCH = src/pch.h.gch
+# # Define precompiled header
+# PCH_SRC = src/pch.h
+# PCH = src/pch.h.gch
 
-# Default target
-all: debug
+# # Default target
+# all: debug
 
-# Debug target
-debug: $(TARGET)
+# # Debug target
+# debug: $(TARGET)
 
-# Rule to create the precompiled header
-$(PCH): $(PCH_SRC)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -o $(PCH) -x c++-header $(PCH_SRC)
+# # Rule to create the precompiled header
+# $(PCH): $(PCH_SRC)
+# 	$(CXX) $(CXXFLAGS) $(INCLUDES) -o
 
-# Rule to compile the object files with the precompiled header
-%.o: %.cpp $(PCH)
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -include src/pch.h -c $< -o $@
+# # Rule to compile the object files with the precompiled header
+# %.o: %.cpp $(PCH)
+# 	$(CXX) $(CXXFLAGS) $(INCLUDES) -include src/pch.h -c $< -o $@
 
-# Rule to link the target executable
-$(TARGET): $(PCH) $(OBJS)
-	$(CXX) $(LDFLAGS) $(INCLUDES) $(OBJS) -o $(TARGET) $(LIB_DIRS) $(LIBS)
+# # Rule to link the target executable
+# $(TARGET): $(PCH) $(OBJS)
+# 	$(CXX) $(LDFLAGS) $(INCLUDES) $(OBJS) -o $(TARGET) $(LIB_DIRS) $(LIBS)
 
-# Clean rule to remove generated files
-clean:
-	rm -f $(TARGET) $(OBJS) $(PCH)
+# # Clean rule to remove generated files
+# clean:
+# 	rm -f $(TARGET) $(OBJS)
 
-# Include the .d files for dependency tracking
--include $(OBJS:.o=.d)
+# # Include the .d files for dependency tracking
+# -include $(OBJS:.o=.d)
 
-# Generate .d files for dependency tracking
-%.d: %.cpp
-	$(CXX) $(CXXFLAGS) $(INCLUDES) -M $< > $@
+# # Generate .d files for dependency tracking
+# %.d: %.cpp
+# 	$(CXX) $(CXXFLAGS) $(INCLUDES) -M $< > $@
 
 
 
