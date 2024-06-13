@@ -9,6 +9,7 @@ SRC_FILES = vendor/GLAD/include/glad.cpp \
             src/core/render/spriteBatch.cpp \
             src/core/gameWindow.cpp \
             src/core/game.cpp \
+            src/sandbox/testGame.cpp \
             src/main.cpp 
 
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
@@ -43,7 +44,11 @@ $(OBJ_NAME)_release: $(OBJ_FILES)
 	$(CC) $(INCLUDE_PATHS) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ_FILES) $(OBJ_NAME)_debug $(OBJ_NAME)_release
+	rm $(OBJ_FILES) $(OBJ_NAME)_debug $(OBJ_NAME)_release
+#rm -f $(OBJ_FILES) $(OBJ_NAME)_debug $(OBJ_NAME)_release
+
+details: 
+	$(info $(SHELL))
 
 # CC = g++
 # CFLAGS = -Wall
