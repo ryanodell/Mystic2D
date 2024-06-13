@@ -3,49 +3,96 @@ CFLAGS = -Wall
 DEBUG_FLAGS = -g -DDEBUG
 RELEASE_FLAGS = -O2
 
-SRC_FILES =     vendor/GLAD/include/glad.cpp \
-		src/core/render/buffer.cpp \
-		src/core/render/renderer.cpp \
-		src/core/render/spriteBatch.cpp \
-		src/core/gameWindow.cpp \
-		src/core/game.cpp \
-		src/main.cpp 
+SRC_FILES = vendor/GLAD/include/glad.cpp \
+            src/core/render/buffer.cpp \
+            src/core/render/renderer.cpp \
+            src/core/render/spriteBatch.cpp \
+            src/core/gameWindow.cpp \
+            src/core/game.cpp \
+            src/main.cpp 
 
-DEPS =          vendor/GLAD/include/glad.h \
-		src/core/render/buffer.h \
-		src/core/render/renderer.h \
-		src/core/render/spriteBatch.h \
-		src/core/gameWindow.h \
-		src/core/gametime.h \
-		src/core/game.h
+OBJ_FILES = $(SRC_FILES:.cpp=.o)
 
 INCLUDE_PATHS = -Ivendor/GLFW/include \
-		-Ivendor/GLAD/include \
-		-Ivendor/GLMC/cglm \
-		-Ivendor/STB_IMAGE
+                -Ivendor/GLAD/include \
+                -Ivendor/GLMC/cglm \
+                -Ivendor/STB_IMAGE
 
 LIBRARY_PATHS = -Lvendor/GLFW/lib
 
 LINKER_FLAGS = -lglfw3 -lgdi32 -lopengl32
 
+OBJ_NAME = bin/main
+
 all: debug release
 
 debug: CFLAGS += $(DEBUG_FLAGS)
-debug: build
+debug: $(OBJ_NAME)_debug
 
 release: CFLAGS += $(RELEASE_FLAGS)
-release: build
+release: $(OBJ_NAME)_release
 
-OBJ_NAME = bin\main
+$(OBJ_NAME)_debug: $(OBJ_FILES)
+	$(CC) $(INCLUDE_PATHS) $(CFLAGS) $^ -o $@ $(LIBRARY_PATHS) $(LINKER_FLAGS)
 
-build: $(SRC_FILES)
-	$(CC) $(INCLUDE_PATHS) $(CFLAGS) $^ -o $(OBJ_NAME) $(LIBRARY_PATHS) $(LINKER_FLAGS)
+$(OBJ_NAME)_release: $(OBJ_FILES)
+	$(CC) $(INCLUDE_PATHS) $(CFLAGS) $^ -o $@ $(LIBRARY_PATHS) $(LINKER_FLAGS)
 
-clean: rm bin/main
+# Pattern rule to compile .cpp files to .o files
+%.o: %.cpp
+	$(CC) $(INCLUDE_PATHS) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(OBJ_FILES) $(OBJ_NAME)_debug $(OBJ_NAME)_release
+
+# CC = g++
+# CFLAGS = -Wall
+# DEBUG_FLAGS = -g -DDEBUG
+# RELEASE_FLAGS = -O2
+
+# SRC_FILES =     vendor/GLAD/include/glad.cpp \
+# 		src/core/render/buffer.cpp \
+# 		src/core/render/renderer.cpp \
+# 		src/core/render/spriteBatch.cpp \
+# 		src/core/gameWindow.cpp \
+# 		src/core/game.cpp \
+# 		src/main.cpp 
+
+# DEPS =          vendor/GLAD/include/glad.h \
+# 		src/core/render/buffer.h \
+# 		src/core/render/renderer.h \
+# 		src/core/render/spriteBatch.h \
+# 		src/core/gameWindow.h \
+# 		src/core/gametime.h \
+# 		src/core/game.h
+
+# INCLUDE_PATHS = -Ivendor/GLFW/include \
+# 		-Ivendor/GLAD/include \
+# 		-Ivendor/GLMC/cglm \
+# 		-Ivendor/STB_IMAGE
+
+# LIBRARY_PATHS = -Lvendor/GLFW/lib
+
+# LINKER_FLAGS = -lglfw3 -lgdi32 -lopengl32
+
+# all: debug release
+
+# debug: CFLAGS += $(DEBUG_FLAGS)
+# debug: build
+
+# release: CFLAGS += $(RELEASE_FLAGS)
+# release: build
+
+# OBJ_NAME = bin\main
+
+# build: $(SRC_FILES)
+# 	$(CC) $(INCLUDE_PATHS) $(CFLAGS) $^ -o $(OBJ_NAME) $(LIBRARY_PATHS) $(LINKER_FLAGS)
+
+# clean: rm bin/main
 
 
-# Dependencies
-$(SRC_FILES): $(DEPS)
+# # Dependencies
+# $(SRC_FILES): $(DEPS)
 
 
 # Define directories
