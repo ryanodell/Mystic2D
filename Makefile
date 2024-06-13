@@ -16,7 +16,7 @@ OBJ_FILES = $(SRC_FILES:.cpp=.o)
 
 INCLUDE_PATHS = -Ivendor/GLFW/include \
                 -Ivendor/GLAD/include \
-                -Ivendor/GLMC/cglm \
+                -Ivendor/GLM \
                 -Ivendor/STB_IMAGE
 
 LIBRARY_PATHS = -Lvendor/GLFW/lib
