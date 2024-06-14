@@ -2,9 +2,9 @@
 #include <glad.h>
 #include <GLFW/glfw3.h>
 
-namespace mystic {
+namespace Mystic {
 
-    class renderer{
+    class Renderer{
     public:
         void draw();
 

@@ -2,12 +2,12 @@
 #define GAMETIME_H
 #include <chrono>
 
-namespace mystic {
-    struct gameTime {
+namespace Mystic {
+    struct GameTime {
         float totalGameTime = 0;
         float totalElapsedTime = 0;
         bool isRunningSlowly = false;
-        gameTime() {
+        GameTime() {
             m_start = std::chrono::high_resolution_clock::now();
         }
         void tick() {

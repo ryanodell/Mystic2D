@@ -1,5 +1,5 @@
 #include "renderer.h"
 
-void mystic::renderer::draw() {
+void Mystic::Renderer::draw() {
     
 }

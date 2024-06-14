@@ -1,10 +1,10 @@
 #include "spriteBatch.h"
 
-namespace mystic {
-    void spriteBatch::begin()
+namespace Mystic {
+    void SpriteBatch::begin()
     {
     }
-    void spriteBatch::end()
+    void SpriteBatch::end()
     {
     }
 }

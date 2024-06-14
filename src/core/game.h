@@ -6,19 +6,19 @@
 #include "gameWindow.h"
 #include "render/spriteBatch.h"
 
-namespace mystic {
-class game {
+namespace Mystic {
+class Game {
     public:
-        game();
-        virtual ~game();
+        Game();
+        virtual ~Game();
         void run();
         void shutDown();
         virtual void loadContent();
-        virtual void update(gameTime* gametime);
-        virtual void draw(gameTime* gameTime, spriteBatch* spriteBatch);
+        virtual void update(GameTime* gametime);
+        virtual void draw(GameTime* gameTime, SpriteBatch* spriteBatch);
     private:
-        gameWindow* m_gameWindow = nullptr;
-        spriteBatch* m_spriteBatch = nullptr;
+        GameWindow* m_gameWindow = nullptr;
+        SpriteBatch* m_spriteBatch = nullptr;
         int m_width, m_height;
         bool m_initialized = false;
         bool m_running = false;

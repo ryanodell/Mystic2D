@@ -1,8 +1,8 @@
 #include "buffer.h"
 
-void mystic::vertex_array::bind() {
+void Mystic::VertexArray::bind() {
 }
 
-void mystic::vertex_array::unbind() {
+void Mystic::VertexArray::unbind() {
     
 }

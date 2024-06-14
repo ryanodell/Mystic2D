@@ -1,21 +1,21 @@
 #include <vector>
 
-namespace mystic {
+namespace Mystic {
 
-struct buffer_element {
+struct BufferElement {
     int vertexAttribPointerType;
     int count;
     bool normalized;
 };
 
-class buffer_layout {
+class BufferLayout {
 public:
 
 private:
-    std::vector<buffer_element> m_elemetns;
+    std::vector<BufferElement> m_elemetns;
 };
 
-struct vertex_array {
+struct VertexArray {
 public:
     void bind();
     void unbind();
