@@ -14,14 +14,18 @@ namespace mystic {
         game::init();
         gameTime gt;
         game::loadContent();
-        while(m_running) {
+        while(!m_gameWindow->windowShouldClose()) {
             game::update(&gt);
             game::draw(&gt, m_spriteBatch);
             m_gameWindow->render();
             gt.tick();
         }
     }
-    void game::loadContent() {
+    void game::shutDown() {
+
+    }
+    void game::loadContent()
+    {
         //MYSTIC_TRACE("Load called");
     }
     void game::update(gameTime* gametime) {

@@ -1,6 +1,8 @@
 #ifndef GAMEWINDOW_H
 #define GAMEWINDOW_H
+#include <iostream>
 #include "../pch.h"
+#include <../../vendor/GLAD/include/glad.h>
 #include <GLFW/glfw3.h>
 
 namespace mystic {

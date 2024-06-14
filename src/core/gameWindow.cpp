@@ -13,6 +13,9 @@ namespace mystic {
         }
         glfwMakeContextCurrent(m_internalWindow);        
         glfwSetWindowUserPointer(m_internalWindow, this);
+        if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
+            std::cout << "Failed to load GLAD. Shut down" << std::endl;
+        }
         glfwSetFramebufferSizeCallback(m_internalWindow, [](GLFWwindow* window, int width, int height) {
             gameWindow* gw = static_cast<gameWindow*>(glfwGetWindowUserPointer(window));
             if (gw != NULL) {
@@ -22,7 +25,9 @@ namespace mystic {
         //MYSTIC_INFO("Successfully created Glfw window");
     }
     bool gameWindow::windowShouldClose() {
-        return glfwWindowShouldClose(m_internalWindow);
+        bool shouldClose = glfwWindowShouldClose(m_internalWindow);
+        return shouldClose;
+        //return glfwWindowShouldClose(m_internalWindow);
     }
     void gameWindow::frameBufferSizeCallback(GLFWwindow *window, int width, int height)
     {

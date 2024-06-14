@@ -1,5 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
+#include "../../vendor/GLAD/include/glad.h"
 #include <chrono>
 #include "../pch.h"
 #include "gameWindow.h"
@@ -11,6 +12,7 @@ class game {
         game();
         virtual ~game();
         void run();
+        void shutDown();
         virtual void loadContent();
         virtual void update(gameTime* gametime);
         virtual void draw(gameTime* gameTime, spriteBatch* spriteBatch);
