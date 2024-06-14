@@ -5,7 +5,7 @@
 #include "../core/gameWindow.h"
 #include "../core/render/spriteBatch.h"
 
-class testGame : public mystic::game {    
+class TestGame : public mystic::game {    
     void loadContent();
     void update(mystic::gameTime* gametime);
     void draw(mystic::gameTime* gameTime, mystic::spriteBatch* spriteBatch);

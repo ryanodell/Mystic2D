@@ -9,8 +9,8 @@ SRC_FILES = vendor/GLAD/include/glad.cpp \
             src/core/render/spriteBatch.cpp \
             src/core/gameWindow.cpp \
             src/core/game.cpp \
-            src/sandbox/testGame.cpp \
-            src/main.cpp 
+            src/sandbox/TestGame.cpp \
+            src/Program.cpp 
 
 OBJ_FILES = $(SRC_FILES:.cpp=.o)
 

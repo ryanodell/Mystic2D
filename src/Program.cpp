@@ -2,13 +2,13 @@
 #include "pch.h"
 #include "core/game.h"
 #include <iostream>
-#include "sandbox/testGame.h"
+#include "sandbox/TestGame.h"
 
 
 
 int main() {
     std::cout << "Init" << std::endl;    
-    testGame mainGame;
+    TestGame mainGame;
     mainGame.run();
     // mystic::game mainGame;
     // mainGame.run();
