@@ -6,7 +6,7 @@ namespace Mystic {
 
     class Renderer{
     public:
-        void draw();
+        void Draw();
 
     };
 }

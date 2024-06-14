@@ -9,7 +9,7 @@
 int main() {
     std::cout << "Init" << std::endl;    
     TestGame mainGame;
-    mainGame.run();
+    mainGame.Run();
     // mystic::game mainGame;
     // mainGame.run();
     std::cout << "Shut Down" << std::endl;

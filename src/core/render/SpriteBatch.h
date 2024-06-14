@@ -6,8 +6,8 @@ namespace Mystic {
     public:
         SpriteBatch() { };
         ~SpriteBatch() { };
-        void begin();
-        void end();
+        void Begin();
+        void End();
     private:
         bool test;
     };

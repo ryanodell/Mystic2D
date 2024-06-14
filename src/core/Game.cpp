@@ -9,27 +9,27 @@ namespace Mystic {
         delete m_spriteBatch;
     }
 
-    void Game::run() {
+    void Game::Run() {
         m_running = true;
         Game::init();
         GameTime gt;
-        Game::loadContent();
-        while(!m_gameWindow->windowShouldClose()) {
-            update(&gt);
-            draw(&gt, m_spriteBatch);
-            m_gameWindow->render();
-            gt.tick();
+        Game::LoadContent();
+        while(!m_gameWindow->WindowShouldClose()) {
+            Update(&gt);
+            Draw(&gt, m_spriteBatch);
+            m_gameWindow->Render();
+            gt.Tick();
         }
     }
-    void Game::shutDown() {
+    void Game::ShutDown() {
 
     }
-    void Game::loadContent()
+    void Game::LoadContent()
     {
         //MYSTIC_TRACE("Load called");
     }
-    void Game::update(GameTime* gametime) { }
-    void Game::draw(GameTime* gameTime, SpriteBatch* spriteBatch) { }
+    void Game::Update(GameTime* gametime) { }
+    void Game::Draw(GameTime* gameTime, SpriteBatch* spriteBatch) { }
 
     void Game::init() {
         std::cout << "Init from game.cpp" << std::endl;

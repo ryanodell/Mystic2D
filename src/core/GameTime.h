@@ -4,16 +4,16 @@
 
 namespace Mystic {
     struct GameTime {
-        float totalGameTime = 0;
-        float totalElapsedTime = 0;
-        bool isRunningSlowly = false;
+        float TotalGameTime = 0;
+        float TotalElapsedTime = 0;
+        bool IsRunningSlowly = false;
         GameTime() {
             m_start = std::chrono::high_resolution_clock::now();
         }
-        void tick() {
-            totalElapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now() 
+        void Tick() {
+            TotalElapsedTime = std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::high_resolution_clock::now() 
                 - m_start).count() * 0.001f * 0.001f * 0.001f;
-            totalGameTime += totalElapsedTime;
+            TotalGameTime += TotalElapsedTime;
         }
     private:
         std::chrono::time_point<std::chrono::high_resolution_clock> m_start;

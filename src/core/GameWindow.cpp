@@ -24,7 +24,7 @@ namespace Mystic {
         });
         //MYSTIC_INFO("Successfully created Glfw window");
     }
-    bool GameWindow::windowShouldClose() {
+    bool GameWindow::WindowShouldClose() {
         bool shouldClose = glfwWindowShouldClose(m_internalWindow);
         return shouldClose;
         //return glfwWindowShouldClose(m_internalWindow);

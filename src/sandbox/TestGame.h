@@ -6,9 +6,9 @@
 #include "../core/render/spriteBatch.h"
 
 class TestGame : public Mystic::Game {    
-    void loadContent();
-    void update(Mystic::GameTime* gametime);
-    void draw(Mystic::GameTime* gameTime, Mystic::SpriteBatch* spriteBatch);
+    void LoadContent();
+    void Update(Mystic::GameTime* gametime);
+    void Draw(Mystic::GameTime* gameTime, Mystic::SpriteBatch* spriteBatch);
 };
 
 #endif

@@ -3,9 +3,9 @@
 namespace Mystic {
 
 struct BufferElement {
-    int vertexAttribPointerType;
-    int count;
-    bool normalized;
+    int VertexAttribPointerType;
+    int Count;
+    bool Normalized;
 };
 
 class BufferLayout {
@@ -17,8 +17,8 @@ private:
 
 struct VertexArray {
 public:
-    void bind();
-    void unbind();
+    void Bind();
+    void Unbind();
 private:
     int m_bufferId;
 };
