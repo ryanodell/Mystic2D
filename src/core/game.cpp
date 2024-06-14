@@ -15,8 +15,8 @@ namespace mystic {
         gameTime gt;
         game::loadContent();
         while(!m_gameWindow->windowShouldClose()) {
-            game::update(&gt);
-            game::draw(&gt, m_spriteBatch);
+            update(&gt);
+            draw(&gt, m_spriteBatch);
             m_gameWindow->render();
             gt.tick();
         }
@@ -28,15 +28,13 @@ namespace mystic {
     {
         //MYSTIC_TRACE("Load called");
     }
-    void game::update(gameTime* gametime) {
-        //MYSTIC_TRACE("Update called");
-    }
-    void game::draw(gameTime* gameTime, spriteBatch* spriteBatch) {
-        // MYSTIC_TRACE("Draw called");
-    }
+    void game::update(gameTime* gametime) { }
+    void game::draw(gameTime* gameTime, spriteBatch* spriteBatch) { }
+
     void game::init() {
+        std::cout << "Init from game.cpp" << std::endl;
         if(m_initialized) {
-            //MYSTIC_WARN("Game already initialized");
+            std::cout << "Game already initialized" << std::endl;
             return;
         }
         m_gameWindow = new gameWindow("Name", 800, 600);

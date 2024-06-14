@@ -81,7 +81,18 @@
             "type_traits": "cpp",
             "utility": "cpp",
             "fstream": "cpp",
-            "iomanip": "cpp"
+            "iomanip": "cpp",
+            "compare": "cpp",
+            "concepts": "cpp",
+            "iterator": "cpp",
+            "memory_resource": "cpp",
+            "numeric": "cpp",
+            "random": "cpp",
+            "iostream": "cpp",
+            "numbers": "cpp",
+            "semaphore": "cpp",
+            "stop_token": "cpp",
+            "cinttypes": "cpp"
         }
     }
 }
