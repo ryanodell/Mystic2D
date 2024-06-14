@@ -1,11 +1,11 @@
 #ifndef SPRITEBATCH_H
 #define SPRITEBATCH_H
 
-namespace mystic {
-    class spriteBatch {
+namespace Mystic {
+    class SpriteBatch {
     public:
-        spriteBatch() { };
-        ~spriteBatch() { };
+        SpriteBatch() { };
+        ~SpriteBatch() { };
         void begin();
         void end();
     private:

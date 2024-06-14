@@ -1,7 +1,7 @@
 #include "gameWindow.h"
 
-namespace mystic {
-    gameWindow::gameWindow(const std::string &windowName, int width, int height) {
+namespace Mystic {
+    GameWindow::GameWindow(const std::string &windowName, int width, int height) {
         glfwInit();
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -17,19 +17,19 @@ namespace mystic {
             std::cout << "Failed to load GLAD. Shut down" << std::endl;
         }
         glfwSetFramebufferSizeCallback(m_internalWindow, [](GLFWwindow* window, int width, int height) {
-            gameWindow* gw = static_cast<gameWindow*>(glfwGetWindowUserPointer(window));
+            GameWindow* gw = static_cast<GameWindow*>(glfwGetWindowUserPointer(window));
             if (gw != NULL) {
                 gw->frameBufferSizeCallback(window, width, height);
             }
         });
         //MYSTIC_INFO("Successfully created Glfw window");
     }
-    bool gameWindow::windowShouldClose() {
+    bool GameWindow::windowShouldClose() {
         bool shouldClose = glfwWindowShouldClose(m_internalWindow);
         return shouldClose;
         //return glfwWindowShouldClose(m_internalWindow);
     }
-    void gameWindow::frameBufferSizeCallback(GLFWwindow *window, int width, int height)
+    void GameWindow::frameBufferSizeCallback(GLFWwindow *window, int width, int height)
     {
         glViewport(0, 0, width, height);
         m_width = width;

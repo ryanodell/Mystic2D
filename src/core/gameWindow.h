@@ -5,11 +5,11 @@
 #include <../../vendor/GLAD/include/glad.h>
 #include <GLFW/glfw3.h>
 
-namespace mystic {
-    class gameWindow {
+namespace Mystic {
+    class GameWindow {
     public:
-        gameWindow(const std::string& windowName, int width, int height);
-        ~gameWindow() {
+        GameWindow(const std::string& windowName, int width, int height);
+        ~GameWindow() {
             if(m_internalWindow != NULL) {
                 glfwDestroyWindow(m_internalWindow);
             }

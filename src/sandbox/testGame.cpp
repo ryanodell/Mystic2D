@@ -1,14 +1,14 @@
 #include "testGame.h"
 
-void testGame::loadContent() {
+void TestGame::loadContent() {
 
 }
 
-void testGame::update(mystic::gameTime *gametime) {
+void TestGame::update(Mystic::GameTime *gametime) {
     std::cout << "update from testGame.cpp" << std::endl;
-    mystic::game::update(gametime);
+    Mystic::Game::update(gametime);
 }
 
-void testGame::draw(mystic::gameTime *gameTime, mystic::spriteBatch *spriteBatch) {
+void TestGame::draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch) {
 
 }

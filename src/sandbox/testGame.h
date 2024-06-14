@@ -5,10 +5,10 @@
 #include "../core/gameWindow.h"
 #include "../core/render/spriteBatch.h"
 
-class testGame : public mystic::game {    
+class TestGame : public Mystic::Game {    
     void loadContent();
-    void update(mystic::gameTime* gametime);
-    void draw(mystic::gameTime* gameTime, mystic::spriteBatch* spriteBatch);
+    void update(Mystic::GameTime* gametime);
+    void draw(Mystic::GameTime* gameTime, Mystic::SpriteBatch* spriteBatch);
 };
 
 #endif
