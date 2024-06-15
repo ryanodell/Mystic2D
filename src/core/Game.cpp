@@ -13,7 +13,7 @@ namespace Mystic {
         m_running = true;
         Game::init();
         GameTime gt;
-        Game::LoadContent();
+        LoadContent();
         while(!m_gameWindow->WindowShouldClose()) {
             Update(&gt);
             Draw(&gt, m_spriteBatch);

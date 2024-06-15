@@ -4,6 +4,7 @@ DEBUG_FLAGS = -g -DDEBUG
 RELEASE_FLAGS = -O2
 
 SRC_FILES = vendor/GLAD/include/glad.cpp \
+            src/core/content/Shader.cpp \
             src/core/render/Buffer.cpp \
             src/core/render/Renderer.cpp \
             src/core/render/SpriteBatch.cpp \
