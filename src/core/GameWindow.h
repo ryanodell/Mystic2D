@@ -20,6 +20,7 @@ namespace Mystic {
             glfwSwapBuffers(m_internalWindow);
             glfwPollEvents();
         }
+        GLFWwindow* GetInternalWindow() { return m_internalWindow; }
     private:
         GLFWwindow* m_internalWindow;
         std::string m_windowName;

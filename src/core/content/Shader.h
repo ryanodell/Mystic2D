@@ -6,8 +6,8 @@
 #include <string.h>
 
 namespace Mystic {
-static const char* VERTEX_DEFINITION = "#shader vertex";
-static const char* FRAGMENT_DEFINITION = "#shader fragment";
+// static const char* VERTEX_DEFINITION = "#shader vertex";
+// static const char* FRAGMENT_DEFINITION = "#shader fragment";
 static const unsigned int MAX_SHADER_CODE_LENGTH = 1024;
 static const unsigned int SHADER_LOG_LENGTH = 512;
 class Shader {

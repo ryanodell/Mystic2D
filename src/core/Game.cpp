@@ -20,6 +20,7 @@ namespace Mystic {
             m_gameWindow->Render();
             gt.Tick();
         }
+        UnloadContent();
     }
     void Game::ShutDown() {
 
@@ -30,6 +31,7 @@ namespace Mystic {
     }
     void Game::Update(GameTime* gametime) { }
     void Game::Draw(GameTime* gameTime, SpriteBatch* spriteBatch) { }
+    void Game::UnloadContent() { }
 
     void Game::init() {
         std::cout << "Init from game.cpp" << std::endl;

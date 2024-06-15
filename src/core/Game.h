@@ -16,6 +16,7 @@ class Game {
         virtual void LoadContent();
         virtual void Update(GameTime* gametime);
         virtual void Draw(GameTime* gameTime, SpriteBatch* spriteBatch);
+        virtual void UnloadContent();
     private:
         GameWindow* m_gameWindow = nullptr;
         SpriteBatch* m_spriteBatch = nullptr;
