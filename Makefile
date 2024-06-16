@@ -1,6 +1,6 @@
 CC = g++
 CFLAGS = -Wall
-DEBUG_FLAGS = -g -DDEBUG
+DEBUG_FLAGS = -g -DDEBUG -w
 RELEASE_FLAGS = -O2
 
 SRC_FILES = vendor/GLAD/include/glad.cpp \

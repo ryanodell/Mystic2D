@@ -5,6 +5,7 @@
 #include "../pch.h"
 #include "gameWindow.h"
 #include "render/spriteBatch.h"
+#include "content/ContentManager.h"
 
 namespace Mystic {
 class Game {
@@ -13,6 +14,7 @@ class Game {
         virtual ~Game();
         void Run();
         void ShutDown();
+        //ContentManager ContentManager;
         virtual void LoadContent();
         virtual void Update(GameTime* gametime);
         virtual void Draw(GameTime* gameTime, SpriteBatch* spriteBatch);

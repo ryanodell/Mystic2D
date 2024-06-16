@@ -1,5 +1,8 @@
 #include "testGame.h"
 #include "../core/content/Shader.h"
+#include "../core/content/Texture.h"
+
+using namespace Mystic;
 
 void TestGame::LoadContent() {
     float vertices[12] = {
@@ -29,6 +32,10 @@ void TestGame::LoadContent() {
 
     glBindBuffer(GL_ARRAY_BUFFER, 0); 
     glBindVertexArray(0); 
+
+    Texture* tex2 = Texture::LoadFromFile("test.png");
+    
+    //Mystic::Texture texture1 = Mystic::ContentManager::Load<Mystic::Texture>("pathToTexture1.png");
 }
 
 void TestGame::Update(Mystic::GameTime *gametime) {
