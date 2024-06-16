@@ -5,17 +5,18 @@
 using namespace Mystic;
 
 void TestGame::LoadContent() {
-    float vertices[12] = {
-         0.5f,  0.5f, 0.0f,  // top right
-         0.5f, -0.5f, 0.0f,  // bottom right
-        -0.5f, -0.5f, 0.0f,  // bottom left
-        -0.5f,  0.5f, 0.0f   // top left 
+    float vertices[32] = {
+         0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 1.0f,    1.0f, 1.0f, // top right
+         0.5f, -0.5f, 0.0f,   1.0f, 1.0f, 1.0f,    1.0f, 0.0f, // bottom right
+        -0.5f, -0.5f, 0.0f,   1.0f, 1.0f, 1.0f,    0.0f, 0.0f, // bottom left
+        -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 1.0f,    0.0f, 1.0f // top left 
     };
     unsigned int indices[6] = {  // note that we start from 0!
         0, 1, 3,  // first Triangle
         1, 2, 3   // second Triangle
     };
-    m_shader = Mystic::Shader::LoadFromFile("shaders/basic.glsl");
+    m_shader = Mystic::Shader::LoadFromFile("shaders/basic_color_texture.glsl");
+    m_texture = Mystic::Texture::LoadFromFile("images/kruggsmash.png");
     glGenVertexArrays(1, &VAO);
     glGenBuffers(1, &VBO);
     glGenBuffers(1, &EBO);    
@@ -33,7 +34,7 @@ void TestGame::LoadContent() {
     glBindBuffer(GL_ARRAY_BUFFER, 0); 
     glBindVertexArray(0); 
 
-    Texture* tex2 = Texture::LoadFromFile("test.png");
+    
     
     //Mystic::Texture texture1 = Mystic::ContentManager::Load<Mystic::Texture>("pathToTexture1.png");
 }
@@ -45,6 +46,9 @@ void TestGame::Update(Mystic::GameTime *gametime) {
 void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch) {
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, m_texture->GetId());
+    glUniform1i(glGetUniformLocation(m_shader->GetId(), "texture1"), m_texture->GetId()); 
     glUseProgram(m_shader->GetId());
     glBindVertexArray(VAO);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

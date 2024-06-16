@@ -5,6 +5,7 @@
 #include "../core/gameWindow.h"
 #include "../core/render/spriteBatch.h"
 #include "../core/content/Shader.h"
+#include "../core/content/Texture.h"
 
 #include <GLFW/glfw3.h>
 
@@ -27,6 +28,7 @@ private:
     // };
     unsigned int VBO, VAO, EBO;
     Mystic::Shader* m_shader;
+    Mystic::Texture* m_texture;
 };
 
 #endif
