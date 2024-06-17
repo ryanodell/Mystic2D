@@ -42,7 +42,7 @@ void TestGame::LoadContent() {
 
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0)); 
     GLCall(glBindVertexArray(0)); 
-    m_shader->setInt("texture1", m_texture->GetId());
+    //m_shader->setInt("texture1", m_texture->GetId());
 }
 
 void TestGame::Update(Mystic::GameTime *gametime) {

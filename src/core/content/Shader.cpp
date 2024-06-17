@@ -40,7 +40,7 @@ namespace Mystic {
         }
         return nullptr;
     }
-
+//Test
     unsigned int Shader::getUniformLocationFromCache(const std::string& uniformName) const {        
         auto it = m_uniformCache.find(uniformName);
         if(it != m_uniformCache.end()) {
