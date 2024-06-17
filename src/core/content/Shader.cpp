@@ -41,12 +41,12 @@ namespace Mystic {
         return nullptr;
     }
 
-    unsigned int Shader::getUniformLocationFromCache(const char *uniformName) {
+    unsigned int Shader::getUniformLocationFromCache(const std::string& uniformName) const {        
         auto it = m_uniformCache.find(uniformName);
         if(it != m_uniformCache.end()) {
             return it->second;
         }
-        unsigned int result = glGetUniformLocation(m_id, uniformName);
+        unsigned int result = glGetUniformLocation(m_id, uniformName.c_str());
         m_uniformCache[uniformName] = result;
         return result;
     }
