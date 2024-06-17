@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <cstring>
 #include <string>
+#include "../Debug.h"
 
 namespace Mystic {
 static const char* VERTEX_DEFINITION = "#shader vertex";
@@ -19,50 +20,50 @@ public:
         m_id = id;
     }
     ~Shader() {
-        glDeleteProgram(m_id);
+        GLCall(glDeleteProgram(m_id));
     }
     inline unsigned int GetId() const {
         return m_id;
     }
     inline void Use() const {
-        glUseProgram(m_id);
+        GLCall(glUseProgram(m_id));
     }
     static Shader* LoadFromFile(const char* fileName);
     void SetBool(const std::string &name, bool value) const {
-        glUniform1i(getUniformLocationFromCache(name), (int)value); 
+        GLCall(glUniform1i(getUniformLocationFromCache(name), (int)value)); 
     }
     void setInt(const std::string &name, int value) const { 
-        glUniform1i(getUniformLocationFromCache(name), value); 
+        GLCall(glUniform1i(getUniformLocationFromCache(name), value));
     }
     void setFloat(const std::string &name, float value) const { 
-        glUniform1f(getUniformLocationFromCache(name), value); 
+        GLCall(glUniform1f(getUniformLocationFromCache(name), value)); 
     }
     void setVec2(const std::string &name, const glm::vec2 &value) const { 
-        glUniform2fv(getUniformLocationFromCache(name), 1, &value[0]); 
+        GLCall(glUniform2fv(getUniformLocationFromCache(name), 1, &value[0])); 
     }
     void setVec2(const std::string &name, float x, float y) const { 
-        glUniform2f(getUniformLocationFromCache(name), x, y); 
+        GLCall(glUniform2f(getUniformLocationFromCache(name), x, y)); 
     }
     void setVec3(const std::string &name, const glm::vec3 &value) const { 
-        glUniform3fv(getUniformLocationFromCache(name), 1, &value[0]); 
+        GLCall(glUniform3fv(getUniformLocationFromCache(name), 1, &value[0])); 
     }
     void setVec3(const std::string &name, float x, float y, float z) const { 
-        glUniform3f(getUniformLocationFromCache(name), x, y, z); 
+        GLCall(glUniform3f(getUniformLocationFromCache(name), x, y, z)); 
     }
     void setVec4(const std::string &name, const glm::vec4 &value) const { 
-        glUniform4fv(getUniformLocationFromCache(name), 1, &value[0]); 
+        GLCall(glUniform4fv(getUniformLocationFromCache(name), 1, &value[0])); 
     }
     void setVec4(const std::string &name, float x, float y, float z, float w) { 
-        glUniform4f(getUniformLocationFromCache(name), x, y, z, w); 
+        GLCall(glUniform4f(getUniformLocationFromCache(name), x, y, z, w)); 
     }
     void setMat2(const std::string &name, const glm::mat2 &mat) const {
-        glUniformMatrix2fv(getUniformLocationFromCache(name), 1, GL_FALSE, &mat[0][0]);
+        GLCall(glUniformMatrix2fv(getUniformLocationFromCache(name), 1, GL_FALSE, &mat[0][0]));
     }
     void setMat3(const std::string &name, const glm::mat3 &mat) const {
-        glUniformMatrix3fv(getUniformLocationFromCache(name), 1, GL_FALSE, &mat[0][0]);
+        GLCall(glUniformMatrix3fv(getUniformLocationFromCache(name), 1, GL_FALSE, &mat[0][0]));
     }
     void setMat4(const std::string &name, const glm::mat4 &mat) const {
-        glUniformMatrix4fv(getUniformLocationFromCache(name), 1, GL_FALSE, &mat[0][0]);
+        GLCall(glUniformMatrix4fv(getUniformLocationFromCache(name), 1, GL_FALSE, &mat[0][0]));
     }
 private:
     unsigned int m_id;

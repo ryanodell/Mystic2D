@@ -31,7 +31,7 @@ namespace Mystic {
     }
     void GameWindow::frameBufferSizeCallback(GLFWwindow *window, int width, int height)
     {
-        glViewport(0, 0, width, height);
+        GLCall(glViewport(0, 0, width, height));
         m_width = width;
         m_height = height;
     }

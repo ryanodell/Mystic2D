@@ -4,6 +4,9 @@
 // #include <iostream>
 // #include "sandbox/TestGame.h"
 
+//TODO: Do this when compiling, not directly in code:
+#define DEBUG
+//
 #include <glad.h>
 #include <GLFW/glfw3.h>
 #define STB_IMAGE_IMPLEMENTATION
