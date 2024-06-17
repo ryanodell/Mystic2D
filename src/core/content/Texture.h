@@ -3,6 +3,7 @@
 #include "stb_image.h"
 #include <glad.h>
 #include <cstdio>
+#include "../Debug.h"
 
 namespace Mystic {
 
@@ -17,13 +18,13 @@ class Texture {
             m_height = height;
         }
         ~Texture() {
-            glDeleteTextures(1, &m_id);
+            GLCall(glDeleteTextures(1, &m_id));
         }
         inline unsigned int GetId() const {
             return m_id;
         }
         inline void Use() const {
-            glBindTexture(GL_TEXTURE_2D, m_id);
+            GLCall(glBindTexture(GL_TEXTURE_2D, m_id));
         }
         static Texture* LoadFromFile(const char* fileName);
         // void SetWidth(int width) {
