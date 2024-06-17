@@ -4,6 +4,7 @@
 #include "../pch.h"
 #include <../../vendor/GLAD/include/glad.h>
 #include <GLFW/glfw3.h>
+#include "Debug.h"
 
 namespace Mystic {
     class GameWindow {
