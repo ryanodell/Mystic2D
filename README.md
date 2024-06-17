@@ -12,3 +12,8 @@ Implement sprite batcher
 Create an input handler
 Create an event system
 Implement an ECS of sorts
+
+
+VSCode Settings for reference:
+C_Cpp.clang_format_fallbackStyle = {BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}
+

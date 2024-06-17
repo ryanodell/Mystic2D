@@ -6,7 +6,7 @@ RELEASE_FLAGS = -O2
 SRC_FILES = vendor/GLAD/include/glad.cpp \
             src/core/content/Shader.cpp \
             src/core/content/Texture.cpp \
-            src/core/render/Buffer.cpp \
+            src/core/render/IndexBuffer.cpp \
             src/core/render/Renderer.cpp \
             src/core/render/SpriteBatch.cpp \
             src/core/GameWindow.cpp \
