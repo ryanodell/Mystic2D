@@ -41,10 +41,7 @@ void TestGame::LoadContent() {
 
     glBindBuffer(GL_ARRAY_BUFFER, 0); 
     glBindVertexArray(0); 
-    glUniform1i(glGetUniformLocation(m_shader->GetId(), "texture1"), m_texture->GetId()); 
-    
-    
-    //Mystic::Texture texture1 = Mystic::ContentManager::Load<Mystic::Texture>("pathToTexture1.png");
+    m_shader->setInt("texture1", m_texture->GetId());
 }
 
 void TestGame::Update(Mystic::GameTime *gametime) {
