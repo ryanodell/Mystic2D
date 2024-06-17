@@ -1,6 +1,7 @@
 #include "testGame.h"
 #include "../core/content/Shader.h"
 #include "../core/content/Texture.h"
+#include "../core/Debug.h"
 
 using namespace Mystic;
 
@@ -18,10 +19,10 @@ void TestGame::LoadContent() {
     };
     m_shader = Mystic::Shader::LoadFromFile("shaders/basic_color_texture.glsl");
     m_texture = Mystic::Texture::LoadFromFile("images/kruggsmash.png");
-    glGenVertexArrays(1, &VAO);
-    glGenBuffers(1, &VBO);
-    glGenBuffers(1, &EBO);    
-    glBindVertexArray(VAO);
+    GLCall(glGenVertexArrays(1, &VAO));
+    GLCall(glGenBuffers(1, &VBO));
+    GLCall(glGenBuffers(1, &EBO));    
+    GLCall(glBindVertexArray(VAO));
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
