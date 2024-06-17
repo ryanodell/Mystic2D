@@ -1,6 +1,8 @@
 #ifndef TEXTURE_H
 #define TEXTURE_H
+#include "stb_image.h"
 #include <glad.h>
+#include <cstdio>
 
 namespace Mystic {
 

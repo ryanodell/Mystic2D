@@ -41,7 +41,18 @@ namespace Mystic {
         return nullptr;
     }
 
-    unsigned int Shader::loadShaderFromSource(const char *shaderSource) {
+    unsigned int Shader::getUniformLocationFromCache(const char *uniformName) {
+        auto it = m_uniformCache.find(uniformName);
+        if(it != m_uniformCache.end()) {
+            return it->second;
+        }
+        unsigned int result = glGetUniformLocation(m_id, uniformName);
+        m_uniformCache[uniformName] = result;
+        return result;
+    }
+
+    unsigned int Shader::loadShaderFromSource(const char *shaderSource)
+    {
         //size_t sourceCodeLength = strlen(shaderSource);
         char vertexShaderCode[MAX_SHADER_CODE_LENGTH];
         char fragmentShaderCode[MAX_SHADER_CODE_LENGTH];
@@ -77,7 +88,6 @@ namespace Mystic {
         glDeleteShader(fragmentShader);
         return program;
     }
-
 
     unsigned int Shader::compileShader(const char *buf, int shaderType) {
        unsigned int shaderUnit = glCreateShader(shaderType);
