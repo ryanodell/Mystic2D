@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <cstring>
 #include <string>
+#include "../Debug.h"
 
 namespace Mystic {
 static const char* VERTEX_DEFINITION = "#shader vertex";

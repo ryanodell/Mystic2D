@@ -46,7 +46,7 @@ namespace Mystic {
         if(it != m_uniformCache.end()) {
             return it->second;
         }
-        unsigned int result = glGetUniformLocation(m_id, uniformName.c_str());
+        GLCall(unsigned int result = glGetUniformLocation(m_id, uniformName.c_str()));
         m_uniformCache[uniformName] = result;
         return result;
     }
@@ -84,21 +84,21 @@ namespace Mystic {
             printf("Shader program failed to link\n");
             return -1;
         }
-        glDeleteShader(vertexShader);
-        glDeleteShader(fragmentShader);
+        GLCall(glDeleteShader(vertexShader));
+        GLCall(glDeleteShader(fragmentShader));
         return program;
     }
 
     unsigned int Shader::compileShader(const char *buf, int shaderType) {
-       unsigned int shaderUnit = glCreateShader(shaderType);
-        glShaderSource(shaderUnit, 1, &buf, NULL);
-        glCompileShader(shaderUnit);
+        GLCall(unsigned int shaderUnit = glCreateShader(shaderType));
+        GLCall(glShaderSource(shaderUnit, 1, &buf, NULL));
+        GLCall(glCompileShader(shaderUnit));
 
         int success;
         char infoLog[SHADER_LOG_LENGTH];
-        glGetShaderiv(shaderUnit, GL_COMPILE_STATUS, &success);
+        GLCall(glGetShaderiv(shaderUnit, GL_COMPILE_STATUS, &success));
         if(!success) {
-            glGetShaderInfoLog(shaderUnit, SHADER_LOG_LENGTH, NULL, infoLog);
+            GLCall(glGetShaderInfoLog(shaderUnit, SHADER_LOG_LENGTH, NULL, infoLog));
             printf("ERROR::SHADER::%s::COMPILATION_FAILED\n", GL_VERTEX_SHADER ? "VERTEX" : "FRAGMENT");
             printf("%s\n", infoLog);
             return -1;
@@ -108,14 +108,14 @@ namespace Mystic {
 
     unsigned int Shader::linkProgram(unsigned int vertexShader, unsigned int fragmentShader) {
         unsigned int shaderProgram = glCreateProgram();
-        glAttachShader(shaderProgram, vertexShader);
-        glAttachShader(shaderProgram, fragmentShader);
-        glLinkProgram(shaderProgram);
+        GLCall(glAttachShader(shaderProgram, vertexShader));
+        GLCall(glAttachShader(shaderProgram, fragmentShader));
+        GLCall(glLinkProgram(shaderProgram));
         int success;
         char infoLog[SHADER_LOG_LENGTH];
-        glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success);
+        GLCall(glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success));
         if(!success) {
-            glGetProgramInfoLog(shaderProgram, SHADER_LOG_LENGTH, NULL, infoLog);
+            GLCall(glGetProgramInfoLog(shaderProgram, SHADER_LOG_LENGTH, NULL, infoLog));
             printf("ERROR::SHADER::PROGRAM::LINKING_FAILED\n");
             printf("%s\n", infoLog);
             return -1;
