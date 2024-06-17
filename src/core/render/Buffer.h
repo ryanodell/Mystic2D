@@ -1,5 +1,7 @@
 #include <vector>
 
+#include "../Debug.h"
+
 namespace Mystic {
 
 struct BufferElement {
@@ -9,18 +11,31 @@ struct BufferElement {
 };
 
 class BufferLayout {
-public:
-
-private:
+   public:
+   private:
     std::vector<BufferElement> m_elemetns;
 };
 
+struct IndexBuffer {
+   private:
+    unsigned int m_renderId;
+    unsigned int m_count;
+
+   public:
+    IndexBuffer(const unsigned int* indices, unsigned int count);
+    ~IndexBuffer();
+    void Bind() const;
+    void Unbind() const;
+    inline unsigned int GetCount() { return m_count; }
+};
+
 struct VertexArray {
-public:
+   public:
     void Bind();
     void Unbind();
-private:
+
+   private:
     int m_bufferId;
 };
 
-}
+}  // namespace Mystic
