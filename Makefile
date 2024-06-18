@@ -8,6 +8,7 @@ SRC_FILES = vendor/GLAD/include/glad.cpp \
             src/core/content/Texture.cpp \
             src/core/render/IndexBuffer.cpp \
             src/core/render/VertexBuffer.cpp \
+            src/core/render/VertexArray.cpp \
             src/core/render/Renderer.cpp \
             src/core/render/SpriteBatch.cpp \
             src/core/GameWindow.cpp \
