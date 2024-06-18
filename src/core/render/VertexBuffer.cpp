@@ -14,10 +14,10 @@ VertexBuffer::VertexBuffer(const void* data, unsigned int size, int glDrawType) 
 VertexBuffer::~VertexBuffer() {
     GLCall(glDeleteBuffers(1, &m_renderId));
 }
-void VertexBuffer::Bind() {
+void VertexBuffer::Bind() const {
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, m_renderId));
 }
-void VertexBuffer::Unbind() {
+void VertexBuffer::Unbind() const {
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
 }
 
