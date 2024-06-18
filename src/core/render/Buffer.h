@@ -29,6 +29,18 @@ struct IndexBuffer {
     inline unsigned int GetCount() { return m_count; }
 };
 
+struct VertexBuffer {
+   private:
+    unsigned int m_renderId;
+
+   public:
+    VertexBuffer(const void* data, unsigned int size);
+    VertexBuffer(const void* data, unsigned int size, int glDrawType);
+    ~VertexBuffer();
+    void Bind();
+    void Unbind();
+};
+
 struct VertexArray {
    public:
     void Bind();
