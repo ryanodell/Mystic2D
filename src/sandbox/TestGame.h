@@ -3,32 +3,33 @@
 #include "../pch.h"
 #include "../core/game.h"
 #include "../core/gameWindow.h"
+#include "../core/render/Buffer.h"
 #include "../core/render/spriteBatch.h"
 #include "../core/content/Shader.h"
 #include "../core/content/Texture.h"
+#include "../GLM/glm.hpp"
+#include "../GLM/gtc/matrix_transform.hpp"
 
 #include <GLFW/glfw3.h>
+using namespace Mystic;
 
-class TestGame : public Mystic::Game {    
-public:
+class TestGame : public Game {
+   public:
+    TestGame();
     void LoadContent();
-    void Update(Mystic::GameTime* gametime);
-    void Draw(Mystic::GameTime* gameTime, Mystic::SpriteBatch* spriteBatch);
+    void Update(GameTime* gametime);
+    void Draw(GameTime* gameTime, SpriteBatch* spriteBatch);
     void UnloadContent();
-private:
-    // float vertices[12] = {
-    //      0.5f,  0.5f, 0.0f,  // top right
-    //      0.5f, -0.5f, 0.0f,  // bottom right
-    //     -0.5f, -0.5f, 0.0f,  // bottom left
-    //     -0.5f,  0.5f, 0.0f   // top left 
-    // };
-    // unsigned int indices[6] = {  // note that we start from 0!
-    //     0, 1, 3,  // first Triangle
-    //     1, 2, 3   // second Triangle
-    // };
+
+   private:
     unsigned int VBO, VAO, EBO;
-    Mystic::Shader* m_shader;
-    Mystic::Texture* m_texture;
+    VertexArray m_va;
+    VertexBuffer m_vb;
+    IndexBuffer m_ib;
+
+
+    Shader* m_shader;
+    Texture* m_texture;
 };
 
 #endif
