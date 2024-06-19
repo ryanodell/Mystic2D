@@ -7,6 +7,7 @@
 #include "../core/render/spriteBatch.h"
 #include "../core/content/Shader.h"
 #include "../core/content/Texture.h"
+#include "../core/render/Renderer.h"
 #include "../GLM/glm.hpp"
 #include "../GLM/gtc/matrix_transform.hpp"
 
@@ -27,7 +28,7 @@ class TestGame : public Game {
     VertexBuffer m_vb;
     IndexBuffer m_ib;
 
-
+    Renderer* m_renderer;
     Shader* m_shader;
     Texture* m_texture;
 };

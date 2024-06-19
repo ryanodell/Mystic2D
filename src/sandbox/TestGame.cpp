@@ -4,9 +4,11 @@
 #include "../core/content/Shader.h"
 #include "../core/content/Texture.h"
 
-TestGame::TestGame() : m_vb(nullptr, 0), m_ib(nullptr, 0) { }
+TestGame::TestGame() : m_vb(nullptr, 0), m_ib(nullptr, 0), m_renderer(nullptr) { }
 
 void TestGame::LoadContent() {
+    static Renderer renderInstance;
+    m_renderer = &renderInstance;
     float positions[] = {
         -50.0f, -50.0f, 0.0f, 0.0f,  // 0
         50.0f, -50.0f, 1.0f, 0.0f,   // 1
@@ -33,7 +35,8 @@ void TestGame::Update(GameTime *gametime) {
 
 void TestGame::Draw(GameTime *gameTime, SpriteBatch *spriteBatch) {
     GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
-    GLCall(glClear(GL_COLOR_BUFFER_BIT));
+    m_renderer->Clear();
+    //GLCall(glClear(GL_COLOR_BUFFER_BIT));
     GLCall(glActiveTexture(GL_TEXTURE0));
     GLCall(glBindTexture(GL_TEXTURE_2D, m_texture->GetId()));
     GLCall(glUseProgram(m_shader->GetId()));
