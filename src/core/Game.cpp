@@ -39,7 +39,7 @@ namespace Mystic {
             std::cout << "Game already initialized" << std::endl;
             return;
         }
-        m_gameWindow = new GameWindow("Name", 800, 600);
+        m_gameWindow = new GameWindow("Name", 960, 540);
         m_spriteBatch = new Mystic::SpriteBatch();
         m_initialized = true;
     }
