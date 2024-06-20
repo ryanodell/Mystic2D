@@ -7,6 +7,7 @@
 #include "../core/render/spriteBatch.h"
 #include "../core/content/Shader.h"
 #include "../core/content/Texture.h"
+#include "../core/render/Renderer.h"
 #include "../GLM/glm.hpp"
 #include "../GLM/gtc/matrix_transform.hpp"
 
@@ -22,14 +23,20 @@ class TestGame : public Game {
     void UnloadContent();
 
    private:
+    glm::vec3 m_translationA, m_translationB;
+    glm::mat4 ident;
+    glm::vec3 trvec;
+    glm::mat4 view ;
+    glm::mat4 proj;
+    
     unsigned int VBO, VAO, EBO;
     VertexArray m_va;
     VertexBuffer m_vb;
     IndexBuffer m_ib;
 
-
-    Shader* m_shader;
-    Texture* m_texture;
+    Renderer* m_renderer = nullptr;
+    Shader* m_shader = nullptr;
+    Texture* m_texture = nullptr;
 };
 
 #endif

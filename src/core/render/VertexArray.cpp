@@ -3,7 +3,13 @@
 namespace Mystic {
 
 VertexArray::VertexArray() {
-    GLCall(glGenVertexArrays(1, &m_renderId));
+    //GLCall(glGenVertexArrays(1, &m_renderId));
+}
+
+VertexArray::VertexArray(bool init) {
+    if(init == true) {
+        GLCall(glGenVertexArrays(1, &m_renderId));
+    }
 }
 
 VertexArray::~VertexArray() {
