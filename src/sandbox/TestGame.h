@@ -23,14 +23,20 @@ class TestGame : public Game {
     void UnloadContent();
 
    private:
+    glm::vec3 m_translationA, m_translationB;
+    glm::mat4 ident;
+    glm::vec3 trvec;
+    glm::mat4 view ;
+    glm::mat4 proj;
+    
     unsigned int VBO, VAO, EBO;
     VertexArray m_va;
     VertexBuffer m_vb;
     IndexBuffer m_ib;
 
-    Renderer* m_renderer;
-    Shader* m_shader;
-    Texture* m_texture;
+    Renderer* m_renderer = nullptr;
+    Shader* m_shader = nullptr;
+    Texture* m_texture = nullptr;
 };
 
 #endif

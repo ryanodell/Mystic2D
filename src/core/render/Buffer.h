@@ -56,6 +56,7 @@ struct IndexBuffer {
     unsigned int m_count;
 
    public:
+    IndexBuffer() { }
     IndexBuffer(const unsigned int* indices, unsigned int count);
     ~IndexBuffer();
     void Bind() const;
@@ -68,6 +69,7 @@ struct VertexBuffer {
     unsigned int m_renderId;
 
    public:
+    VertexBuffer() { }
     VertexBuffer(const void* data, unsigned int size);
     VertexBuffer(const void* data, unsigned int size, int glDrawType);
     ~VertexBuffer();
@@ -81,6 +83,7 @@ struct VertexArray {
 
    public:
     VertexArray();
+    VertexArray(bool init);
     ~VertexArray();
     void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
     void Bind() const;
