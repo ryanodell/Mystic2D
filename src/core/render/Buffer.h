@@ -52,29 +52,38 @@ class VertexBufferLayout
 
 struct IndexBuffer {
    private:
-    unsigned int m_renderId;
+    unsigned int m_renderId = 0;
     unsigned int m_count;
-
+    unsigned int *m_indices;
    public:
     IndexBuffer() { }
-    IndexBuffer(const unsigned int* indices, unsigned int count);
+    IndexBuffer(unsigned int* indices, unsigned int count);
     ~IndexBuffer();
     void Bind() const;
     void Unbind() const;
+    void Create();
+    void Destroy() const;
     inline unsigned int GetCount() const { return m_count; }
+    inline unsigned int GetRenderId() const { return m_renderId; }
 };
 
 struct VertexBuffer {
    private:
     unsigned int m_renderId;
+    void* m_data;
+    unsigned int m_size;
+    unsigned int m_glDrawType;
 
    public:
     VertexBuffer() { }
-    VertexBuffer(const void* data, unsigned int size);
-    VertexBuffer(const void* data, unsigned int size, int glDrawType);
+    VertexBuffer(void* data, unsigned int size);
+    VertexBuffer(void* data, unsigned int size, int glDrawType);
     ~VertexBuffer();
     void Bind() const;
     void Unbind() const;
+    void Create();
+    void Destroy() const;
+    inline unsigned int GetRenderId() const { return m_renderId; }
 };
 
 struct VertexArray {
@@ -88,7 +97,9 @@ struct VertexArray {
     void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
     void Bind() const;
     void Unbind() const;
-
+    void Create();
+    void Destroy() const;
+    inline unsigned int GetRenderId() const { return m_renderId; }
    
 };
 
