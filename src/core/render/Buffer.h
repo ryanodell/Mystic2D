@@ -52,16 +52,19 @@ class VertexBufferLayout
 
 struct IndexBuffer {
    private:
-    unsigned int m_renderId;
+    unsigned int m_renderId = 0;
     unsigned int m_count;
-
+    unsigned int *m_indices;
    public:
     IndexBuffer() { }
-    IndexBuffer(const unsigned int* indices, unsigned int count);
+    IndexBuffer(unsigned int* indices, unsigned int count);
     ~IndexBuffer();
     void Bind() const;
     void Unbind() const;
+    void Create();
+    void Destroy() const;
     inline unsigned int GetCount() const { return m_count; }
+    inline unsigned int GetRenderId() const { return m_renderId; }
 };
 
 struct VertexBuffer {
@@ -75,6 +78,9 @@ struct VertexBuffer {
     ~VertexBuffer();
     void Bind() const;
     void Unbind() const;
+    void Create() const;
+    void Destroy() const;
+    inline unsigned int GetRenderId() const { return m_renderId; }
 };
 
 struct VertexArray {
@@ -88,8 +94,16 @@ struct VertexArray {
     void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
     void Bind() const;
     void Unbind() const;
-
+    void Create() const;
+    void Destroy() const;
+    inline unsigned int GetRenderId() const { return m_renderId; }
    
+};
+
+class BufferManager {
+    static void DestoryVertexArray(VertexArray& va);
+    static void DestoryIndexBuffer(IndexBuffer& ib);
+    static void DestoryVertexBuffer(VertexBuffer& vb);
 };
 
 }  // namespace Mystic

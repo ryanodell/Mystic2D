@@ -25,7 +25,7 @@ void TestGame::LoadContent() {
     m_va = VertexArray(true);
     m_vb = VertexBuffer(positions, 4 * 4 * sizeof(float));
     m_ib = IndexBuffer(indices, 6);
-
+    m_ib.Create();
     // Projection Matrix
     proj = glm::ortho(0.0f, 960.f, 0.0f, 540.0f, -1.0f, 1.0f);
 
