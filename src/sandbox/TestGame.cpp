@@ -24,6 +24,7 @@ void TestGame::LoadContent() {
     m_texture = Texture::LoadFromFile("images/kruggsmash.png");
     m_va = VertexArray(true);
     m_vb = VertexBuffer(positions, 4 * 4 * sizeof(float));
+    m_vb.Create();
     m_ib = IndexBuffer(indices, 6);
     m_ib.Create();
     // Projection Matrix

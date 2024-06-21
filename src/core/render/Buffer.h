@@ -70,15 +70,18 @@ struct IndexBuffer {
 struct VertexBuffer {
    private:
     unsigned int m_renderId;
+    void* m_data;
+    unsigned int m_size;
+    unsigned int m_glDrawType;
 
    public:
     VertexBuffer() { }
-    VertexBuffer(const void* data, unsigned int size);
-    VertexBuffer(const void* data, unsigned int size, int glDrawType);
+    VertexBuffer(void* data, unsigned int size);
+    VertexBuffer(void* data, unsigned int size, int glDrawType);
     ~VertexBuffer();
     void Bind() const;
     void Unbind() const;
-    void Create() const;
+    void Create();
     void Destroy() const;
     inline unsigned int GetRenderId() const { return m_renderId; }
 };
@@ -94,7 +97,7 @@ struct VertexArray {
     void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
     void Bind() const;
     void Unbind() const;
-    void Create() const;
+    void Create();
     void Destroy() const;
     inline unsigned int GetRenderId() const { return m_renderId; }
    
