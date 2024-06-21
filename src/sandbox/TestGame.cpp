@@ -5,7 +5,7 @@
 #include "../core/content/Texture.h"
 
 // TestGame::TestGame() : m_vb(nullptr, 0), m_ib(nullptr, 0), m_renderer(nullptr) {}
-TestGame::TestGame() { }
+TestGame::TestGame() :m_va(false) { }
 
 void TestGame::LoadContent() {
     static Renderer renderInstance;
@@ -62,7 +62,7 @@ void TestGame::Draw(GameTime *gameTime, SpriteBatch *spriteBatch) {
         glm::mat4 mvp = proj * view * model;
         m_shader->Use();
         m_shader->setMat4("u_MVP", mvp);
-        m_renderer->Draw(m_va, m_ib, *m_shader);
+        m_renderer->Draw(&m_va, m_ib, *m_shader);
     }
 
     {
@@ -70,7 +70,7 @@ void TestGame::Draw(GameTime *gameTime, SpriteBatch *spriteBatch) {
         glm::mat4 mvp = proj * view * model;
         m_shader->Use();
         m_shader->setMat4("u_MVP", mvp);
-        m_renderer->Draw(m_va, m_ib, *m_shader);
+        m_renderer->Draw(&m_va, m_ib, *m_shader);
     }
 
     // GLCall(glClear(GL_COLOR_BUFFER_BIT));

@@ -12,6 +12,7 @@ VertexBuffer::VertexBuffer(const void* data, unsigned int size, int glDrawType) 
     GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, glDrawType));
 }
 VertexBuffer::~VertexBuffer() {
+    std::cout << "VB Destructor" << std::endl;
     GLCall(glDeleteBuffers(1, &m_renderId));
 }
 void VertexBuffer::Bind() const {
