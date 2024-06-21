@@ -103,12 +103,6 @@ struct VertexArray {
    
 };
 
-class BufferManager {
-    static void DestoryVertexArray(VertexArray& va);
-    static void DestoryIndexBuffer(IndexBuffer& ib);
-    static void DestoryVertexBuffer(VertexBuffer& vb);
-};
-
 }  // namespace Mystic
 
 #endif

@@ -23,6 +23,7 @@ void TestGame::LoadContent() {
     m_shader = Shader::LoadFromFile("shaders/basic_color_position.glsl");
     m_texture = Texture::LoadFromFile("images/kruggsmash.png");
     m_va = VertexArray(true);
+    m_va.Create();
     m_vb = VertexBuffer(positions, 4 * 4 * sizeof(float));
     m_vb.Create();
     m_ib = IndexBuffer(indices, 6);
@@ -83,9 +84,12 @@ void TestGame::Draw(GameTime *gameTime, SpriteBatch *spriteBatch) {
 }
 
 void TestGame::UnloadContent() {
-    GLCall(glDeleteVertexArrays(1, &VAO));
-    GLCall(glDeleteBuffers(1, &VBO));
-    GLCall(glDeleteBuffers(1, &EBO));
+    // GLCall(glDeleteVertexArrays(1, &VAO));
+    // GLCall(glDeleteBuffers(1, &VBO));
+    // GLCall(glDeleteBuffers(1, &EBO));
+    m_va.Destroy();
+    m_vb.Destroy();
+    m_ib.Destroy();
     GLCall(glDeleteProgram(m_shader->GetId()));
     delete m_shader;
 }

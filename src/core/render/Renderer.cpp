@@ -6,8 +6,10 @@ void Renderer::Clear() const {
 }
 void Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const {
     shader.Use();
+    glActiveTexture(GL_TEXTURE0);
     va.Bind();
-    ib.Bind();
+    //This MIGHT be needed... don't delete it
+    //ib.Bind();
     GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 }
 }  // namespace Mystic
