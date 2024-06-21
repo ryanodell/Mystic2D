@@ -10,7 +10,7 @@
 #include "../core/render/Renderer.h"
 #include "../GLM/glm.hpp"
 #include "../GLM/gtc/matrix_transform.hpp"
-
+#include <optional>
 #include <GLFW/glfw3.h>
 using namespace Mystic;
 
@@ -30,6 +30,7 @@ class TestGame : public Game {
     glm::mat4 proj;
     
     unsigned int VBO, VAO, EBO;
+    
     VertexArray m_va;
     VertexBuffer m_vb;
     IndexBuffer m_ib;

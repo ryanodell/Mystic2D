@@ -82,7 +82,7 @@ struct VertexArray {
     unsigned int m_renderId;
 
    public:
-    VertexArray();
+    //VertexArray() { };
     VertexArray(bool init);
     ~VertexArray();
     void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);

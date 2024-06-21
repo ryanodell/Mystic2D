@@ -2,9 +2,11 @@
 
 namespace Mystic {
 
-VertexArray::VertexArray() {
-    //GLCall(glGenVertexArrays(1, &m_renderId));
-}
+// VertexArray::VertexArray() {
+//     int test =5;
+//     GLCall(glGenVertexArrays(1, &m_renderId));
+//     //GLCall(glGenVertexArrays(1, &m_renderId));
+// }
 
 VertexArray::VertexArray(bool init) {
     if(init == true) {
@@ -13,6 +15,7 @@ VertexArray::VertexArray(bool init) {
 }
 
 VertexArray::~VertexArray() {
+    std::cout << "VA Destructor" << std::endl;
     GLCall(glDeleteVertexArrays(1, &m_renderId));
 }
 void VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout) {
