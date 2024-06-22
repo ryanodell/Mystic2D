@@ -31,9 +31,9 @@ class TestGame : public Game {
     
     unsigned int VBO, VAO, EBO;
     
-    VertexArray m_va;
-    VertexBuffer m_vb;
-    IndexBuffer m_ib;
+    // VertexArray m_va;
+    // VertexBuffer m_vb;
+    // IndexBuffer m_ib;
 
     Renderer* m_renderer = nullptr;
     Shader* m_shader = nullptr;
