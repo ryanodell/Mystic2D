@@ -13,6 +13,7 @@ VertexArray::VertexArray(bool init) {
     //     GLCall(glGenVertexArrays(1, &m_renderId));
     // }
 }
+VertexArray::VertexArray() { }
 
 VertexArray::~VertexArray() {
     // std::cout << "VA Destructor" << std::endl;

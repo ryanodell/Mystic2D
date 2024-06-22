@@ -16,10 +16,14 @@ void TestGame::LoadContent() {
         1, 2, 3   // second Triangle
     };
     m_shader = Mystic::Shader::LoadFromFile("shaders/basic.glsl");
-    GLCall(glGenVertexArrays(1, &VAO));
+    
+    m_va = VertexArray();
+    m_va.Create();
+    //GLCall(glGenVertexArrays(1, &VAO));
     GLCall(glGenBuffers(1, &VBO));
     GLCall(glGenBuffers(1, &EBO));
-    GLCall(glBindVertexArray(VAO));
+    m_va.Bind();
+    //GLCall(glBindVertexArray(VAO));
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, VBO));
     GLCall(glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW));
     GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO));
@@ -38,12 +42,14 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
     GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
     GLCall(glClear(GL_COLOR_BUFFER_BIT));
     GLCall(glUseProgram(m_shader->GetId()));
-    GLCall(glBindVertexArray(VAO));
+    m_va.Bind();
+    //GLCall(glBindVertexArray(VAO));
     GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
 }
 
 void TestGame::UnloadContent() {
-    GLCall(glDeleteVertexArrays(1, &VAO));
+    m_va.Destroy();
+    //GLCall(glDeleteVertexArrays(1, &VAO));    
     GLCall(glDeleteBuffers(1, &VBO));
     GLCall(glDeleteBuffers(1, &EBO));
     GLCall(glDeleteProgram(m_shader->GetId()));
