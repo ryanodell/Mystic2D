@@ -33,7 +33,8 @@ public:
         GLCall(glUniform1i(getUniformLocationFromCache(name), (int)value)); 
     }
     void setInt(const std::string &name, int value) const { 
-        GLCall(glUniform1i(getUniformLocationFromCache(name), value));
+        //GLCall(glUniform1i(getUniformLocationFromCache(name), value));
+        glUniform1i(getUniformLocationFromCache(name), value);
     }
     void setFloat(const std::string &name, float value) const { 
         GLCall(glUniform1f(getUniformLocationFromCache(name), value)); 
@@ -63,7 +64,8 @@ public:
         GLCall(glUniformMatrix3fv(getUniformLocationFromCache(name), 1, GL_FALSE, &mat[0][0]));
     }
     void setMat4(const std::string &name, const glm::mat4 &mat) const {
-        GLCall(glUniformMatrix4fv(getUniformLocationFromCache(name), 1, GL_FALSE, &mat[0][0]));
+        //GLCall(glUniformMatrix4fv(getUniformLocationFromCache(name), 1, GL_FALSE, &mat[0][0]));
+        glUniformMatrix4fv(getUniformLocationFromCache(name), 1, GL_FALSE, &mat[0][0]);
     }
 private:
     unsigned int m_id;
