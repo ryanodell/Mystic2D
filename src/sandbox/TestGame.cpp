@@ -16,16 +16,24 @@ void TestGame::LoadContent() {
         1, 2, 3   // second Triangle
     };
     m_shader = Mystic::Shader::LoadFromFile("shaders/basic.glsl");
-    
+
     m_va = VertexArray();
     m_va.Create();
     //GLCall(glGenVertexArrays(1, &VAO));
-    GLCall(glGenBuffers(1, &VBO));
+
+    m_vb = VertexBuffer(vertices, sizeof(vertices), GL_STATIC_DRAW);
+    m_vb.Create();
+    //GLCall(glGenBuffers(1, &VBO));
     GLCall(glGenBuffers(1, &EBO));
+
     m_va.Bind();
     //GLCall(glBindVertexArray(VAO));
-    GLCall(glBindBuffer(GL_ARRAY_BUFFER, VBO));
-    GLCall(glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW));
+
+    m_vb.Bind();
+    //GLCall(glBindBuffer(GL_ARRAY_BUFFER, VBO));
+    //GLCall(glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW));
+
+    
     GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO));
     GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW));
     GLCall(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0));
