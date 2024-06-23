@@ -101,7 +101,11 @@ struct VertexArray {
     VertexArray();
     VertexArray(bool init);
     ~VertexArray();
+    /// @brief DO NOT USE - 
+    /// @param vb 
+    /// @param layout 
     void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
+    void ApplyBufferLayout(const VertexBufferLayout& layout);
     void Bind() const;
     void Unbind() const;
     void Create();

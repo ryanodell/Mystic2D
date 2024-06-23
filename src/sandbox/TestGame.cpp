@@ -47,10 +47,14 @@ void TestGame::LoadContent() {
     // GLCall(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0));
     // GLCall(glEnableVertexAttribArray(0));
     
-    GLCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0));
-    GLCall(glEnableVertexAttribArray(0));
-    GLCall(glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(2 * sizeof(float))));
-    GLCall(glEnableVertexAttribArray(1));
+    VertexBufferLayout vbLayout;
+    vbLayout.AddFloat(2);
+    vbLayout.AddFloat(4);
+    m_va.ApplyBufferLayout(vbLayout);
+    // GLCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0));
+    // GLCall(glEnableVertexAttribArray(0));
+    // GLCall(glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(2 * sizeof(float))));
+    // GLCall(glEnableVertexAttribArray(1));
 
 
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
