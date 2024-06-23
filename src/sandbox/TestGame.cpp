@@ -62,9 +62,14 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
 
 void TestGame::UnloadContent() {
     m_va.Destroy();
-    //GLCall(glDeleteVertexArrays(1, &VAO));    
-    GLCall(glDeleteBuffers(1, &VBO));
-    GLCall(glDeleteBuffers(1, &EBO));
+    //GLCall(glDeleteVertexArrays(1, &VAO));
+
+    m_vb.Destroy();
+    //GLCall(glDeleteBuffers(1, &VBO));
+
+    m_ib.Destroy();
+    //GLCall(glDeleteBuffers(1, &EBO));
+    
     GLCall(glDeleteProgram(m_shader->GetId()));
     delete m_shader;
 }
