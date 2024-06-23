@@ -57,7 +57,7 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
     GLCall(glUseProgram(m_shader->GetId()));
     m_va.Bind();
     //GLCall(glBindVertexArray(VAO));
-    GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
+    GLCall(glDrawElements(GL_TRIANGLES, m_ib.GetCount(), GL_UNSIGNED_INT, 0));
 }
 
 void TestGame::UnloadContent() {
