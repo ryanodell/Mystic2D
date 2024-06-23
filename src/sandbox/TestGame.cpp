@@ -15,7 +15,7 @@ void TestGame::LoadContent() {
         0, 1, 3,  // first Triangle
         1, 2, 3   // second Triangle
     };
-    m_shader = Mystic::Shader::LoadFromFile("shaders/basic.glsl");
+    m_shader = Mystic::Shader::LoadFromFile("shaders/basic_1.glsl");
 
     m_va = VertexArray();
     m_va.Create();
@@ -69,7 +69,7 @@ void TestGame::UnloadContent() {
 
     m_ib.Destroy();
     //GLCall(glDeleteBuffers(1, &EBO));
-    
+
     GLCall(glDeleteProgram(m_shader->GetId()));
     delete m_shader;
 }
