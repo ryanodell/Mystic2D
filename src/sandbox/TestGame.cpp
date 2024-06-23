@@ -56,9 +56,10 @@ void TestGame::LoadContent() {
     // GLCall(glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(2 * sizeof(float))));
     // GLCall(glEnableVertexAttribArray(1));
 
-
-    GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
-    GLCall(glBindVertexArray(0));
+    m_vb.Unbind();
+    //GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
+    m_va.Unbind();
+    //GLCall(glBindVertexArray(0));
 }
 
 void TestGame::Update(Mystic::GameTime *gametime) {
