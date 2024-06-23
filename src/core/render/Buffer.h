@@ -83,8 +83,10 @@ struct VertexBuffer {
 
    public:
     VertexBuffer() { }
-    VertexBuffer(void* data, unsigned int size);
-    VertexBuffer(void* data, unsigned int size, int glDrawType);
+    VertexBuffer(void* data, unsigned int size) 
+        : m_data(data), m_size(size), m_glDrawType(GL_STATIC_DRAW) { }
+    VertexBuffer(void* data, unsigned int size, int glDrawType)  
+        : m_data(data), m_size(size), m_glDrawType(glDrawType) { }
     ~VertexBuffer();
     void Bind() const;
     void Unbind() const;
