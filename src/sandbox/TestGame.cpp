@@ -8,10 +8,10 @@ void TestGame::LoadContent() {
     float vertices[] = {
                         /*       Color       */
          //Position     //R   //G   //B   //A
-         0.5f,  0.5f,   0.0f, 0.5f, 1.0f, 0.25f, // top right
-         0.5f, -0.5f,   0.0f, 0.5f, 1.0f, 0.25f, // bottom right
-        -0.5f, -0.5f,   0.0f, 0.5f, 1.0f, 0.25f, // bottom left
-        -0.5f,  0.5f,   0.0f, 0.5f, 1.0f, 0.25f  // top left 
+         0.5f,  0.5f,   0.0f, 0.0f, 0.0f, 1.0f, // top right
+         0.5f, -0.5f,   1.0f, 0.0f, 0.0f, 1.0f, // bottom right
+        -0.5f, -0.5f,   1.0f, 0.0f, 0.0f, 1.0f, // bottom left
+        -0.5f,  0.5f,   1.0f, 0.0f, 0.0f, 1.0f  // top left 
     };
     unsigned int indices[6] = {  // note that we start from 0!
         0, 1, 3,  // first Triangle
@@ -50,7 +50,7 @@ void TestGame::LoadContent() {
     GLCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0));
     GLCall(glEnableVertexAttribArray(0));
     GLCall(glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(2 * sizeof(float))));
-    GLCall(glEnableVertexAttribArray(0));
+    GLCall(glEnableVertexAttribArray(1));
 
 
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
