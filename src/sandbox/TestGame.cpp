@@ -24,7 +24,9 @@ void TestGame::LoadContent() {
     m_vb = VertexBuffer(vertices, sizeof(vertices), GL_STATIC_DRAW);
     m_vb.Create();
     //GLCall(glGenBuffers(1, &VBO));
-    GLCall(glGenBuffers(1, &EBO));
+
+    m_ib = IndexBuffer(indices, 6);    
+    //GLCall(glGenBuffers(1, &EBO));
 
     m_va.Bind();
     //GLCall(glBindVertexArray(VAO));
@@ -33,9 +35,11 @@ void TestGame::LoadContent() {
     //GLCall(glBindBuffer(GL_ARRAY_BUFFER, VBO));
     //GLCall(glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW));
 
-    
-    GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO));
-    GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW));
+    m_ib.Bind();
+    m_ib.ApplyData();
+    //GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO));
+    //GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW));
+
     GLCall(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0));
     GLCall(glEnableVertexAttribArray(0));
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
