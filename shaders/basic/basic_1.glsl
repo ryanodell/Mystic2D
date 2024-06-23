@@ -4,14 +4,14 @@
 layout (location = 0) in vec3 aPosition;
 void main() 
 {
-	gl_Position = vec4(aPos.x, aPos.y, aPos.z, 1.0);
+	gl_Position = vec4(aPosition.xyz, 1.0);
 }
 
 #shader fragment
 
 #version 330 core
-out vec4 FragColor;
+layout(location = 0) out vec4 color;
 void main() 
 {
-	FragColor = vec4(1.0f, 0.5f, 0.2f, 1.0f);
+	color = vec4(1.0, 0.0, 0.0, 1.0);
 }

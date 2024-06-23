@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <cstring>
+#include "../../Constants.h"
 
 #include "../Debug.h"
 
@@ -54,15 +55,15 @@ class VertexBufferLayout
 
 struct IndexBuffer {
    private:
-    static const int SIZE = 6; // Size of the array
+    //static const int SIZE = 6; // Size of the array
     unsigned int m_renderId = 0;
     unsigned int m_count;
     // unsigned int *m_indices;
-    unsigned int m_indices[SIZE];
+    unsigned int m_indices[MAX_INDICES];
    public:
     IndexBuffer() { }
     // IndexBuffer(unsigned int* indices, unsigned int count);
-    IndexBuffer(const unsigned int initIndices[SIZE], unsigned int count);
+    IndexBuffer(const unsigned int initIndices[MAX_INDICES], unsigned int count);
     ~IndexBuffer();
     void Bind() const;
     void Unbind() const;

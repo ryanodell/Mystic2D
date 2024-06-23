@@ -15,7 +15,8 @@ void TestGame::LoadContent() {
         0, 1, 3,  // first Triangle
         1, 2, 3   // second Triangle
     };
-    m_shader = Mystic::Shader::LoadFromFile("shaders/basic.glsl");
+    // m_shader = Mystic::Shader::LoadFromFile("shaders/basic_1.glsl");
+    m_shader = Mystic::Shader::LoadFromFile("shaders/basic_2.glsl");
 
     m_va = VertexArray();
     m_va.Create();
@@ -57,14 +58,19 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
     GLCall(glUseProgram(m_shader->GetId()));
     m_va.Bind();
     //GLCall(glBindVertexArray(VAO));
-    GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
+    GLCall(glDrawElements(GL_TRIANGLES, m_ib.GetCount(), GL_UNSIGNED_INT, 0));
 }
 
 void TestGame::UnloadContent() {
     m_va.Destroy();
-    //GLCall(glDeleteVertexArrays(1, &VAO));    
-    GLCall(glDeleteBuffers(1, &VBO));
-    GLCall(glDeleteBuffers(1, &EBO));
+    //GLCall(glDeleteVertexArrays(1, &VAO));
+
+    m_vb.Destroy();
+    //GLCall(glDeleteBuffers(1, &VBO));
+
+    m_ib.Destroy();
+    //GLCall(glDeleteBuffers(1, &EBO));
+
     GLCall(glDeleteProgram(m_shader->GetId()));
     delete m_shader;
 }
