@@ -17,6 +17,7 @@ VertexBuffer::~VertexBuffer() {
 }
 void VertexBuffer::Bind() const {
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, m_renderId));
+    GLCall(glBufferData(GL_ARRAY_BUFFER, m_size, m_data, m_glDrawType));
 }
 void VertexBuffer::Unbind() const {
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
@@ -24,9 +25,9 @@ void VertexBuffer::Unbind() const {
 
 void VertexBuffer::Create() {
     GLCall(glGenBuffers(1, &m_renderId));
-    Bind();
+    //Bind();
     //GLCall(glBindBuffer(GL_ARRAY_BUFFER, m_renderId));
-    GLCall(glBufferData(GL_ARRAY_BUFFER, m_size, m_data, m_glDrawType));
+    // GLCall(glBufferData(GL_ARRAY_BUFFER, m_size, m_data, m_glDrawType));
 }
 void VertexBuffer::Destroy() const {
     GLCall(glDeleteBuffers(1, &m_renderId));

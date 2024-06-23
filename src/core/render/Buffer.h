@@ -1,6 +1,8 @@
 #ifndef BUFFER_H
 #define BUFFER_H
 #include <vector>
+#include <iostream>
+#include <cstring>
 
 #include "../Debug.h"
 
@@ -52,17 +54,21 @@ class VertexBufferLayout
 
 struct IndexBuffer {
    private:
+    static const int SIZE = 6; // Size of the array
     unsigned int m_renderId = 0;
     unsigned int m_count;
-    unsigned int *m_indices;
+    // unsigned int *m_indices;
+    unsigned int m_indices[SIZE];
    public:
     IndexBuffer() { }
-    IndexBuffer(unsigned int* indices, unsigned int count);
+    // IndexBuffer(unsigned int* indices, unsigned int count);
+    IndexBuffer(const unsigned int initIndices[SIZE], unsigned int count);
     ~IndexBuffer();
     void Bind() const;
     void Unbind() const;
     void Create();
     void Destroy() const;
+    void ApplyData() const;
     inline unsigned int GetCount() const { return m_count; }
     inline unsigned int GetRenderId() const { return m_renderId; }
 };
@@ -91,7 +97,7 @@ struct VertexArray {
     unsigned int m_renderId;
 
    public:
-    //VertexArray() { };
+    VertexArray();
     VertexArray(bool init);
     ~VertexArray();
     void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
