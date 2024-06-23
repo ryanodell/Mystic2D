@@ -5,11 +5,13 @@ TestGame::TestGame() {
 }
 
 void TestGame::LoadContent() {
-    float vertices[12] = {
-         0.5f,  0.5f, 0.0f,  // top right
-         0.5f, -0.5f, 0.0f,  // bottom right
-        -0.5f, -0.5f, 0.0f,  // bottom left
-        -0.5f,  0.5f, 0.0f   // top left 
+    float vertices[] = {
+                        /*       Color       */
+         //Position     //R   //G   //B   //A
+         0.5f,  0.5f,   0.0f, 0.5f, 1.0f, 0.25f, // top right
+         0.5f, -0.5f,   0.0f, 0.5f, 1.0f, 0.25f, // bottom right
+        -0.5f, -0.5f,   0.0f, 0.5f, 1.0f, 0.25f, // bottom left
+        -0.5f,  0.5f,   0.0f, 0.5f, 1.0f, 0.25f  // top left 
     };
     unsigned int indices[6] = {  // note that we start from 0!
         0, 1, 3,  // first Triangle
@@ -42,8 +44,15 @@ void TestGame::LoadContent() {
     //GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO));
     //GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW));
 
-    GLCall(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0));
+    // GLCall(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0));
+    // GLCall(glEnableVertexAttribArray(0));
+    
+    GLCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0));
     GLCall(glEnableVertexAttribArray(0));
+    GLCall(glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(2 * sizeof(float))));
+    GLCall(glEnableVertexAttribArray(0));
+
+
     GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
     GLCall(glBindVertexArray(0));
 }
