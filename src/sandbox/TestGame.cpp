@@ -18,51 +18,21 @@ void TestGame::LoadContent() {
     };
     // m_shader = Mystic::Shader::LoadFromFile("shaders/basic_1.glsl");
     m_shader = Mystic::Shader::LoadFromFile("shaders/basic_2.glsl");
-
     m_va = VertexArray::Create();
-    // // m_va = VertexArray();
-    // // m_va.Create();
-    //GLCall(glGenVertexArrays(1, &VAO));
-
-    // m_vb = VertexBuffer(vertices, sizeof(vertices), GL_STATIC_DRAW);
     m_vb = VertexBuffer::Create(vertices, sizeof(vertices), GL_DYNAMIC_DRAW);
-    // // m_vb = VertexBuffer(vertices, sizeof(vertices), GL_DYNAMIC_DRAW);
-    // // m_vb.Create();
-    //GLCall(glGenBuffers(1, &VBO));
-
     m_ib = IndexBuffer::Create(indices, 6);
-    // // m_ib = IndexBuffer(indices, 6);
-    // // m_ib.Create();
-    //GLCall(glGenBuffers(1, &EBO));
-
     m_va.Bind();
-    //GLCall(glBindVertexArray(VAO));
-
     m_vb.Bind();
-    //GLCall(glBindBuffer(GL_ARRAY_BUFFER, VBO));
-    //GLCall(glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW));
-
     m_ib.Bind();
     m_ib.ApplyData();
-    //GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO));
-    //GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW));
-
-    // GLCall(glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0));
-    // GLCall(glEnableVertexAttribArray(0));
-    
+        
     VertexBufferLayout vbLayout;
     vbLayout.AddFloat(2);
     vbLayout.AddFloat(4);
     m_va.ApplyBufferLayout(vbLayout);
-    // GLCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0));
-    // GLCall(glEnableVertexAttribArray(0));
-    // GLCall(glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(2 * sizeof(float))));
-    // GLCall(glEnableVertexAttribArray(1));
 
     m_vb.Unbind();
-    //GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
     m_va.Unbind();
-    //GLCall(glBindVertexArray(0));
 }
 
 static int frameCount = 0;
