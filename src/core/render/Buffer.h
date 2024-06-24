@@ -99,10 +99,9 @@ struct VertexBuffer {
 struct VertexArray {
    private:
     unsigned int m_renderId;
-
+    VertexArray(bool createOnGpu);
    public:
     VertexArray();
-    VertexArray(bool init);
     ~VertexArray();
     /// @brief DO NOT USE - 
     /// @param vb 
@@ -111,7 +110,7 @@ struct VertexArray {
     void ApplyBufferLayout(const VertexBufferLayout& layout);
     void Bind() const;
     void Unbind() const;
-    void Create();
+    static VertexArray Create();
     void Destroy() const;
     inline unsigned int GetRenderId() const { return m_renderId; }
    
