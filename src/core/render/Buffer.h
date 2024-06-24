@@ -83,9 +83,12 @@ struct VertexBuffer {
 
    public:
     VertexBuffer() { }
-    VertexBuffer(void* data, unsigned int size);
-    VertexBuffer(void* data, unsigned int size, int glDrawType);
+    VertexBuffer(void* data, unsigned int size) 
+        : m_data(data), m_size(size), m_glDrawType(GL_STATIC_DRAW) { }
+    VertexBuffer(void* data, unsigned int size, int glDrawType)  
+        : m_data(data), m_size(size), m_glDrawType(glDrawType) { }
     ~VertexBuffer();
+    void UpdateVertexData(void* data, unsigned int size);
     void Bind() const;
     void Unbind() const;
     void Create();
@@ -101,7 +104,11 @@ struct VertexArray {
     VertexArray();
     VertexArray(bool init);
     ~VertexArray();
+    /// @brief DO NOT USE - 
+    /// @param vb 
+    /// @param layout 
     void AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout);
+    void ApplyBufferLayout(const VertexBufferLayout& layout);
     void Bind() const;
     void Unbind() const;
     void Create();
