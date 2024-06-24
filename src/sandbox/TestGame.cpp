@@ -25,8 +25,9 @@ void TestGame::LoadContent() {
     //GLCall(glGenVertexArrays(1, &VAO));
 
     // m_vb = VertexBuffer(vertices, sizeof(vertices), GL_STATIC_DRAW);
-    m_vb = VertexBuffer(vertices, sizeof(vertices), GL_DYNAMIC_DRAW);
-    m_vb.Create();
+    m_vb = VertexBuffer::Create(vertices, sizeof(vertices), GL_DYNAMIC_DRAW);
+    // // m_vb = VertexBuffer(vertices, sizeof(vertices), GL_DYNAMIC_DRAW);
+    // // m_vb.Create();
     //GLCall(glGenBuffers(1, &VBO));
 
     m_ib = IndexBuffer::Create(indices, 6);
