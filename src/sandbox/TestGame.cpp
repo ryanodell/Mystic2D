@@ -25,7 +25,7 @@ void TestGame::LoadContent() {
     m_vb.Bind();
     m_ib.Bind();
     m_ib.ApplyData();
-        
+
     VertexBufferLayout vbLayout;
     vbLayout.AddFloat(2);
     vbLayout.AddFloat(4);
@@ -33,6 +33,7 @@ void TestGame::LoadContent() {
 
     m_vb.Unbind();
     m_va.Unbind();
+    m_ib.Unbind();
 }
 
 static int frameCount = 0;
