@@ -60,14 +60,14 @@ struct IndexBuffer {
     unsigned int m_count;
     // unsigned int *m_indices;
     unsigned int m_indices[MAX_INDICES];
+    IndexBuffer(const unsigned int initIndices[MAX_INDICES], unsigned int count);
    public:
     IndexBuffer() { }
     // IndexBuffer(unsigned int* indices, unsigned int count);
-    IndexBuffer(const unsigned int initIndices[MAX_INDICES], unsigned int count);
     ~IndexBuffer();
+    static IndexBuffer Create(const unsigned int initIndices[MAX_INDICES], unsigned int count);
     void Bind() const;
     void Unbind() const;
-    void Create();
     void Destroy() const;
     void ApplyData() const;
     inline unsigned int GetCount() const { return m_count; }

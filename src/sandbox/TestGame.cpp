@@ -29,8 +29,9 @@ void TestGame::LoadContent() {
     m_vb.Create();
     //GLCall(glGenBuffers(1, &VBO));
 
-    m_ib = IndexBuffer(indices, 6);
-    m_ib.Create();
+    m_ib = IndexBuffer::Create(indices, 6);
+    // // m_ib = IndexBuffer(indices, 6);
+    // // m_ib.Create();
     //GLCall(glGenBuffers(1, &EBO));
 
     m_va.Bind();
