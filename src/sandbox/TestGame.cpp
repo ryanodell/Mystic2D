@@ -8,7 +8,7 @@ void TestGame::LoadContent() {
     float vertices[] = {
                         /*       Color       */
          //Position     //R   //G   //B   //A
-         0.5f,  0.5f,   0.0f, 0.0f, 0.0f, 1.0f, // top right
+         0.5f,  0.5f,   1.0f, 0.0f, 0.0f, 1.0f, // top right
          0.5f, -0.5f,   1.0f, 0.0f, 0.0f, 1.0f, // bottom right
         -0.5f, -0.5f,   1.0f, 0.0f, 0.0f, 1.0f, // bottom left
         -0.5f,  0.5f,   1.0f, 0.0f, 0.0f, 1.0f  // top left 
@@ -24,7 +24,8 @@ void TestGame::LoadContent() {
     m_va.Create();
     //GLCall(glGenVertexArrays(1, &VAO));
 
-    m_vb = VertexBuffer(vertices, sizeof(vertices), GL_STATIC_DRAW);
+    // m_vb = VertexBuffer(vertices, sizeof(vertices), GL_STATIC_DRAW);
+    m_vb = VertexBuffer(vertices, sizeof(vertices), GL_DYNAMIC_DRAW);
     m_vb.Create();
     //GLCall(glGenBuffers(1, &VBO));
 
@@ -62,11 +63,37 @@ void TestGame::LoadContent() {
     //GLCall(glBindVertexArray(0));
 }
 
+static int frameCount = 0;
+
 void TestGame::Update(Mystic::GameTime *gametime) {
     Mystic::Game::Update(gametime);
+    frameCount++;
 }
 
 void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch) {
+    std::cout << "Frame Count: " << frameCount << std::endl;
+    if(frameCount == 500) {
+        float vertices[] = {
+                            /*       Color       */
+             //Position     //R   //G   //B   //A
+             0.5f,  0.5f,   1.0f, 1.0f, 0.0f, 1.0f, // top right
+             0.5f, -0.5f,   1.0f, 1.0f, 0.0f, 1.0f, // bottom right
+            -0.5f, -0.5f,   1.0f, 1.0f, 0.0f, 1.0f, // bottom left
+            -0.5f,  0.5f,   1.0f, 1.0f, 0.0f, 1.0f  // top left 
+        };
+        m_vb.UpdateVertexData(vertices, sizeof(vertices));
+    }
+    if(frameCount == 1000) {
+        float vertices[] = {
+                            /*       Color       */
+             //Position     //R   //G   //B   //A
+             0.5f,  0.5f,   1.0f, 0.0f, 1.0f, 1.0f, // top right
+             0.5f, -0.5f,   1.0f, 0.0f, 1.0f, 1.0f, // bottom right
+            -0.5f, -0.5f,   1.0f, 0.0f, 1.0f, 1.0f, // bottom left
+            -0.5f,  0.5f,   1.0f, 0.0f, 1.0f, 1.0f  // top left 
+        };
+        m_vb.UpdateVertexData(vertices, sizeof(vertices));
+    }
     GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
     GLCall(glClear(GL_COLOR_BUFFER_BIT));
     GLCall(glUseProgram(m_shader->GetId()));
