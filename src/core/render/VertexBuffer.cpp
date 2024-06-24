@@ -34,13 +34,6 @@ VertexBuffer VertexBuffer::Create(void* data, unsigned int size, int glDrawType)
     return VertexBuffer(data, size, glDrawType);
 }
 
-// void VertexBuffer::Create() {
-//     GLCall(glGenBuffers(1, &m_renderId));
-//     //Bind();
-//     //GLCall(glBindBuffer(GL_ARRAY_BUFFER, m_renderId));
-//     // GLCall(glBufferData(GL_ARRAY_BUFFER, m_size, m_data, m_glDrawType));
-// }
-
 void VertexBuffer::Destroy() const {
     GLCall(glDeleteBuffers(1, &m_renderId));
 }

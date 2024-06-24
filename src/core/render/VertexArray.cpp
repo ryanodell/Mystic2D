@@ -36,10 +36,6 @@ void VertexArray::ApplyBufferLayout(const VertexBufferLayout& layout) {
         GLCall(glEnableVertexAttribArray(i));
         offset += element.count * VertexBufferElement::GetSizeOfType(element.type);
     }
-    // GLCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0));
-    // GLCall(glEnableVertexAttribArray(0));
-    // GLCall(glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(2 * sizeof(float))));
-    // GLCall(glEnableVertexAttribArray(1));
 }
 void VertexArray::Bind() const {
     GLCall(glBindVertexArray(m_renderId));
@@ -50,11 +46,6 @@ void VertexArray::Unbind() const {
 VertexArray VertexArray::Create() {
     return VertexArray(true);
 }
-// void VertexArray::Create() {
-//     return VertexArray(true);
-//     //return VertexArray(true);
-//      GLCall(glGenVertexArrays(1, &m_renderId));
-// }
 void VertexArray::Destroy() const {
     GLCall(glDeleteVertexArrays(1, &m_renderId));
 }

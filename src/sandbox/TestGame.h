@@ -29,8 +29,6 @@ class TestGame : public Game {
     glm::mat4 view ;
     glm::mat4 proj;
     
-    //unsigned int VBO, VAO, EBO;
-    
     VertexArray m_va;
     VertexBuffer m_vb;
     IndexBuffer m_ib;

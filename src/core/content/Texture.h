@@ -27,12 +27,6 @@ class Texture {
             GLCall(glBindTexture(GL_TEXTURE_2D, m_id));
         }
         static Texture* LoadFromFile(const char* fileName);
-        // void SetWidth(int width) {
-        //     m_width = width;
-        // }
-        // void SetHeight(int height) {
-        //     m_height = height;
-        // }
         int GetWidth() const {
             return m_width;
         }

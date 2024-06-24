@@ -55,10 +55,8 @@ class VertexBufferLayout
 
 struct IndexBuffer {
    private:
-    //static const int SIZE = 6; // Size of the array
     unsigned int m_renderId = 0;
     unsigned int m_count;
-    // unsigned int *m_indices;
     unsigned int m_indices[MAX_INDICES];
     IndexBuffer(const unsigned int initIndices[MAX_INDICES], unsigned int count);
    public:
@@ -82,10 +80,6 @@ struct VertexBuffer {
     unsigned int m_glDrawType;
     VertexBuffer(void* data, unsigned int size);
     VertexBuffer(void* data, unsigned int size, int glDrawType);
-    // VertexBuffer(void* data, unsigned int size) 
-    //     : m_data(data), m_size(size), m_glDrawType(GL_STATIC_DRAW) { }
-    // VertexBuffer(void* data, unsigned int size, int glDrawType)  
-    //     : m_data(data), m_size(size), m_glDrawType(glDrawType) { }
    public:
     VertexBuffer() { }
     ~VertexBuffer();
@@ -94,7 +88,6 @@ struct VertexBuffer {
     void Unbind() const;
     static VertexBuffer Create(void* data, unsigned int size);
     static VertexBuffer Create(void* data, unsigned int size, int glDrawType);
-    //void Create();
     void Destroy() const;
     inline unsigned int GetRenderId() const { return m_renderId; }
 };
