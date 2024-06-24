@@ -2,23 +2,13 @@
 
 namespace Mystic {
 
-// VertexArray::VertexArray() {
-//     int test =5;
-//     GLCall(glGenVertexArrays(1, &m_renderId));
-//     //GLCall(glGenVertexArrays(1, &m_renderId));
-// }
-
-VertexArray::VertexArray(bool init) {
-    // if(init == true) {
-    //     GLCall(glGenVertexArrays(1, &m_renderId));
-    // }
+VertexArray::VertexArray() {}
+VertexArray::VertexArray(bool createOnGpu) {
+    if (createOnGpu) {
+        GLCall(glGenVertexArrays(1, &m_renderId));
+    }
 }
-VertexArray::VertexArray() { }
-
-VertexArray::~VertexArray() {
-    // std::cout << "VA Destructor" << std::endl;
-    // GLCall(glDeleteVertexArrays(1, &m_renderId));
-}
+VertexArray::~VertexArray() {}
 void VertexArray::AddBuffer(const VertexBuffer& vb, const VertexBufferLayout& layout) {
     Bind();
     vb.Bind();
@@ -40,7 +30,7 @@ void VertexArray::ApplyBufferLayout(const VertexBufferLayout& layout) {
     const std::vector<VertexBufferElement> elements = layout.GetElements();
     unsigned int offset = 0;
     for (unsigned int i = 0; i < elements.size(); i++) {
-        const VertexBufferElement element = elements[i];        
+        const VertexBufferElement element = elements[i];
         GLCall(glVertexAttribPointer(i, element.count, element.type, element.normalized,
                                      layout.GetStride(), INT2VOIDP(offset)));
         GLCall(glEnableVertexAttribArray(i));
@@ -57,9 +47,14 @@ void VertexArray::Bind() const {
 void VertexArray::Unbind() const {
     GLCall(glBindVertexArray(0));
 }
-void VertexArray::Create() {
-    GLCall(glGenVertexArrays(1, &m_renderId));
+VertexArray VertexArray::Create() {
+    return VertexArray(true);
 }
+// void VertexArray::Create() {
+//     return VertexArray(true);
+//     //return VertexArray(true);
+//      GLCall(glGenVertexArrays(1, &m_renderId));
+// }
 void VertexArray::Destroy() const {
     GLCall(glDeleteVertexArrays(1, &m_renderId));
 }

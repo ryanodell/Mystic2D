@@ -60,14 +60,14 @@ struct IndexBuffer {
     unsigned int m_count;
     // unsigned int *m_indices;
     unsigned int m_indices[MAX_INDICES];
+    IndexBuffer(const unsigned int initIndices[MAX_INDICES], unsigned int count);
    public:
     IndexBuffer() { }
     // IndexBuffer(unsigned int* indices, unsigned int count);
-    IndexBuffer(const unsigned int initIndices[MAX_INDICES], unsigned int count);
     ~IndexBuffer();
+    static IndexBuffer Create(const unsigned int initIndices[MAX_INDICES], unsigned int count);
     void Bind() const;
     void Unbind() const;
-    void Create();
     void Destroy() const;
     void ApplyData() const;
     inline unsigned int GetCount() const { return m_count; }
@@ -80,18 +80,21 @@ struct VertexBuffer {
     void* m_data;
     unsigned int m_size;
     unsigned int m_glDrawType;
-
+    VertexBuffer(void* data, unsigned int size);
+    VertexBuffer(void* data, unsigned int size, int glDrawType);
+    // VertexBuffer(void* data, unsigned int size) 
+    //     : m_data(data), m_size(size), m_glDrawType(GL_STATIC_DRAW) { }
+    // VertexBuffer(void* data, unsigned int size, int glDrawType)  
+    //     : m_data(data), m_size(size), m_glDrawType(glDrawType) { }
    public:
     VertexBuffer() { }
-    VertexBuffer(void* data, unsigned int size) 
-        : m_data(data), m_size(size), m_glDrawType(GL_STATIC_DRAW) { }
-    VertexBuffer(void* data, unsigned int size, int glDrawType)  
-        : m_data(data), m_size(size), m_glDrawType(glDrawType) { }
     ~VertexBuffer();
     void UpdateVertexData(void* data, unsigned int size);
     void Bind() const;
     void Unbind() const;
-    void Create();
+    static VertexBuffer Create(void* data, unsigned int size);
+    static VertexBuffer Create(void* data, unsigned int size, int glDrawType);
+    //void Create();
     void Destroy() const;
     inline unsigned int GetRenderId() const { return m_renderId; }
 };
@@ -99,10 +102,9 @@ struct VertexBuffer {
 struct VertexArray {
    private:
     unsigned int m_renderId;
-
+    VertexArray(bool createOnGpu);
    public:
     VertexArray();
-    VertexArray(bool init);
     ~VertexArray();
     /// @brief DO NOT USE - 
     /// @param vb 
@@ -111,7 +113,7 @@ struct VertexArray {
     void ApplyBufferLayout(const VertexBufferLayout& layout);
     void Bind() const;
     void Unbind() const;
-    void Create();
+    static VertexArray Create();
     void Destroy() const;
     inline unsigned int GetRenderId() const { return m_renderId; }
    

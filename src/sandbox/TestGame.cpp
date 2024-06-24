@@ -1,8 +1,7 @@
 #include "testGame.h"
 #include "../core/content/Shader.h"
 
-TestGame::TestGame() {
-}
+TestGame::TestGame() { }
 
 void TestGame::LoadContent() {
     float vertices[] = {
@@ -20,17 +19,20 @@ void TestGame::LoadContent() {
     // m_shader = Mystic::Shader::LoadFromFile("shaders/basic_1.glsl");
     m_shader = Mystic::Shader::LoadFromFile("shaders/basic_2.glsl");
 
-    m_va = VertexArray();
-    m_va.Create();
+    m_va = VertexArray::Create();
+    // // m_va = VertexArray();
+    // // m_va.Create();
     //GLCall(glGenVertexArrays(1, &VAO));
 
     // m_vb = VertexBuffer(vertices, sizeof(vertices), GL_STATIC_DRAW);
-    m_vb = VertexBuffer(vertices, sizeof(vertices), GL_DYNAMIC_DRAW);
-    m_vb.Create();
+    m_vb = VertexBuffer::Create(vertices, sizeof(vertices), GL_DYNAMIC_DRAW);
+    // // m_vb = VertexBuffer(vertices, sizeof(vertices), GL_DYNAMIC_DRAW);
+    // // m_vb.Create();
     //GLCall(glGenBuffers(1, &VBO));
 
-    m_ib = IndexBuffer(indices, 6);
-    m_ib.Create();
+    m_ib = IndexBuffer::Create(indices, 6);
+    // // m_ib = IndexBuffer(indices, 6);
+    // // m_ib.Create();
     //GLCall(glGenBuffers(1, &EBO));
 
     m_va.Bind();
