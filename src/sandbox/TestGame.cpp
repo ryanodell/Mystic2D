@@ -16,7 +16,7 @@ void TestGame::LoadContent() {
         0, 1, 3,  // first Triangle
         1, 2, 3   // second Triangle
     };
-    m_shader = Mystic::Shader::LoadFromFile("shaders/basic_2.glsl");
+    m_shader = Mystic::Shader::LoadFromFile("shaders/basic_3.glsl");
     m_va = VertexArray::Create();
     m_vb = VertexBuffer::Create(vertices, sizeof(vertices), GL_DYNAMIC_DRAW);
     m_ib = IndexBuffer::Create(indices, 6);
@@ -39,6 +39,7 @@ static int frameCount = 0;
 
 void TestGame::Update(Mystic::GameTime *gametime) {
     Mystic::Game::Update(gametime);
+    std::cout << "Frame Count: " << frameCount << std::endl;
     if(frameCount == 500) {
         float vertices[] = {
                             /*       Color       */
@@ -64,11 +65,14 @@ void TestGame::Update(Mystic::GameTime *gametime) {
     frameCount++;
 }
 
-void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch) {
-    std::cout << "Frame Count: " << frameCount << std::endl;
+void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch) {    
     GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
     GLCall(glClear(GL_COLOR_BUFFER_BIT));
-    GLCall(glUseProgram(m_shader->GetId()));
+    glm::mat4 transform = glm::mat4(1.0f);
+    transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
+    transform = glm::rotate(transform, gameTime->TotalElapsedTime, glm::vec3(0.0f, 0.0f, 1.0f));
+    m_shader->Use();
+    m_shader->setMat4("transform", transform);
     m_va.Bind();
     GLCall(glDrawElements(GL_TRIANGLES, m_ib.GetCount(), GL_UNSIGNED_INT, 0));
 }
@@ -77,6 +81,5 @@ void TestGame::UnloadContent() {
     m_va.Destroy();
     m_vb.Destroy();
     m_ib.Destroy();
-    GLCall(glDeleteProgram(m_shader->GetId()));
     delete m_shader;
 }
