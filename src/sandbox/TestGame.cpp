@@ -20,7 +20,7 @@ void TestGame::LoadContent() {
     };
     m_shader = Mystic::Shader::LoadFromFile("shaders/basic_3.glsl");
     m_va = VertexArray::Create();
-    m_vb = VertexBuffer::Create(vertices, sizeof(vertices), GL_DYNAMIC_DRAW);
+    m_vb = VertexBuffer::Create(vertices, sizeof(vertices), GL_STATIC_DRAW);
     m_ib = IndexBuffer::Create(indices, 6);
     m_va.Bind();
     m_vb.Bind();
@@ -42,28 +42,8 @@ static int frameCount = 0;
 void TestGame::Update(Mystic::GameTime *gametime) {
     Mystic::Game::Update(gametime);
     std::cout << "Frame Count: " << frameCount << std::endl;
-    // if (frameCount == 500) {
-    //     float vertices[] = {
-    //         /*       Color       */
-    //         // Position     //R   //G   //B   //A
-    //         0.5f, 0.5f, 1.0f, 1.0f, 0.0f, 1.0f,    // top right
-    //         0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 1.0f,   // bottom right
-    //         -0.5f, -0.5f, 1.0f, 1.0f, 0.0f, 1.0f,  // bottom left
-    //         -0.5f, 0.5f, 1.0f, 1.0f, 0.0f, 1.0f    // top left
-    //     };
-    //     m_vb.UpdateVertexData(vertices, sizeof(vertices));
-    // }
-    // if (frameCount == 1000) {
-    //     float vertices[] = {
-    //         /*       Color       */
-    //         // Position     //R   //G   //B   //A
-    //         0.5f, 0.5f, 1.0f, 0.0f, 1.0f, 1.0f,    // top right
-    //         0.5f, -0.5f, 1.0f, 0.0f, 1.0f, 1.0f,   // bottom right
-    //         -0.5f, -0.5f, 1.0f, 0.0f, 1.0f, 1.0f,  // bottom left
-    //         -0.5f, 0.5f, 1.0f, 0.0f, 1.0f, 1.0f    // top left
-    //     };
-    //     m_vb.UpdateVertexData(vertices, sizeof(vertices));
-    // }
+    translationA.x += 0.1f;
+    translationB.y += 0.1f;
     frameCount++;
 }
 
