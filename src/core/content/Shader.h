@@ -64,8 +64,8 @@ public:
         GLCall(glUniformMatrix3fv(getUniformLocationFromCache(name), 1, GL_FALSE, &mat[0][0]));
     }
     void setMat4(const std::string &name, const glm::mat4 &mat) const {
-        //GLCall(glUniformMatrix4fv(getUniformLocationFromCache(name), 1, GL_FALSE, &mat[0][0]));
-        glUniformMatrix4fv(getUniformLocationFromCache(name), 1, GL_FALSE, &mat[0][0]);
+        GLCall(glUniformMatrix4fv(getUniformLocationFromCache(name), 1, GL_FALSE, &mat[0][0]));
+        //glUniformMatrix4fv(getUniformLocationFromCache(name), 1, GL_FALSE, &mat[0][0]);
     }
 private:
     unsigned int m_id;
