@@ -39,11 +39,6 @@ static int frameCount = 0;
 
 void TestGame::Update(Mystic::GameTime *gametime) {
     Mystic::Game::Update(gametime);
-    frameCount++;
-}
-
-void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch) {
-    std::cout << "Frame Count: " << frameCount << std::endl;
     if(frameCount == 500) {
         float vertices[] = {
                             /*       Color       */
@@ -66,6 +61,11 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
         };
         m_vb.UpdateVertexData(vertices, sizeof(vertices));
     }
+    frameCount++;
+}
+
+void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch) {
+    std::cout << "Frame Count: " << frameCount << std::endl;
     GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
     GLCall(glClear(GL_COLOR_BUFFER_BIT));
     GLCall(glUseProgram(m_shader->GetId()));
