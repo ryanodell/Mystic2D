@@ -24,12 +24,13 @@ class TestGame : public Game {
     void UnloadContent();
 
    private:
-    glm::vec3 m_translationA, m_translationB;
-    glm::mat4 ident;
-    glm::vec3 trvec;
-    glm::mat4 view ;
-    glm::mat4 proj;
-    
+    glm::vec3 translationA = glm::vec3(200, 200, 0);
+    glm::vec3 translationB = glm::vec3(400, 200, 0);
+    glm::mat4 ident = glm::mat4(1.0f);
+    glm::vec3 trvec = glm::vec3(0, 0, 0);
+    glm::mat4 view = glm::translate(ident, trvec);
+    //glm::mat4 proj;
+    glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
     VertexArray m_va;
     VertexBuffer m_vb;
     IndexBuffer m_ib;
