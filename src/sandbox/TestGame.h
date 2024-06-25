@@ -10,6 +10,7 @@
 #include "../core/render/Renderer.h"
 #include "../GLM/glm.hpp"
 #include "../GLM/gtc/matrix_transform.hpp"
+#include "../GLM/gtc/type_ptr.hpp"
 #include <optional>
 #include <GLFW/glfw3.h>
 using namespace Mystic;
