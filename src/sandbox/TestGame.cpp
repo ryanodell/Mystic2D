@@ -57,7 +57,6 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
         m_shader->setMat4("transform", mvp);
         m_va.Bind();
         GLCall(glDrawElements(GL_TRIANGLES, m_ib.GetCount(), GL_UNSIGNED_INT, 0));
-        //renderer.Draw(va, ib, shader);
     }
     {
         glm::mat4 model = glm::translate(glm::mat4(1.0f), translationB);
@@ -67,13 +66,6 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
         m_va.Bind();
         GLCall(glDrawElements(GL_TRIANGLES, m_ib.GetCount(), GL_UNSIGNED_INT, 0));
     }
-    // glm::mat4 transform = glm::mat4(1.0f);
-    // transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
-    // transform = glm::rotate(transform, gameTime->TotalElapsedTime, glm::vec3(0.0f, 0.0f, 1.0f));
-    // m_shader->Use();
-    // m_shader->setMat4("transform", transform);
-    // m_va.Bind();
-    // GLCall(glDrawElements(GL_TRIANGLES, m_ib.GetCount(), GL_UNSIGNED_INT, 0));
 }
 
 void TestGame::UnloadContent() {
