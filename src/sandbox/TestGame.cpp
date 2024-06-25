@@ -68,9 +68,9 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
     std::cout << "Frame Count: " << frameCount << std::endl;
     GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
     GLCall(glClear(GL_COLOR_BUFFER_BIT));
-    glm::mat4 transform = glm::mat4(1.0f); // make sure to initialize matrix to identity matrix first
+    glm::mat4 transform = glm::mat4(1.0f);
     transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
-    transform = glm::rotate(transform, (float)glfwGetTime(), glm::vec3(0.0f, 0.0f, 1.0f));
+    transform = glm::rotate(transform, gameTime->TotalElapsedTime, glm::vec3(0.0f, 0.0f, 1.0f));
     GLCall(glUseProgram(m_shader->GetId()));
     unsigned int transformLoc = glGetUniformLocation(m_shader->GetId(), "transform");
     glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(transform));
