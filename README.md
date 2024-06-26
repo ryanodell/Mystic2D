@@ -17,3 +17,11 @@ Implement an ECS of sorts
 VSCode Settings for reference:
 C_Cpp.clang_format_fallbackStyle = {BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}
 
+
+#Notes for self on what's nex:
+    - Implement the Renderer
+    - Populate the vertex buffer and index buffer with draw calls
+    - Create a method to perform the draw call in the private method "flush"
+        - Flush method should also clear the buffers.
+    - Add checks for vertex buffer limit to flush and clear the array
+    - Set "EndBatch()" to call the flush method
