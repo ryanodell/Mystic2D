@@ -24,6 +24,7 @@ class TestGame : public Game {
     void UnloadContent();
 
    private:
+    glm::vec3 baseScreen = glm::vec3(0, 0, 0);
     glm::vec3 translationA = glm::vec3(200, 200, 0);
     glm::vec3 translationB = glm::vec3(400, 200, 0);
     glm::mat4 ident = glm::mat4(1.0f);

@@ -53,22 +53,29 @@ void TestGame::Update(Mystic::GameTime *gametime) {
 void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch) {
     m_texture->Use();    
     m_renderer->Clear();
-    {
-        glm::mat4 model = glm::translate(glm::mat4(1.0f), translationA);
-        glm::mat4 mvp = proj * view * model;
-        m_shader->Use();
-        m_shader->setMat4("transform", mvp);
-        m_va.Bind();
-        GLCall(glDrawElements(GL_TRIANGLES, m_ib.GetCount(), GL_UNSIGNED_INT, 0));
-    }
-    {
-        glm::mat4 model = glm::translate(glm::mat4(1.0f), translationB);
-        glm::mat4 mvp = proj * view * model;
-        m_shader->Use();
-        m_shader->setMat4("transform", mvp);
-        m_va.Bind();
-        GLCall(glDrawElements(GL_TRIANGLES, m_ib.GetCount(), GL_UNSIGNED_INT, 0));
-    }
+    glm::mat4 model = glm::translate(glm::mat4(1.0f), baseScreen);
+    glm::mat4 mvp = proj * view * model;
+    m_renderer->BeginBatch(model);
+    //void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect = nullptr, Color color)
+    //m_renderer->Draw(glm::vec2(25.0f, 25.0f), m_texture, m_shader, nullptr, COLOR_WHITE);
+    m_renderer->Draw(glm::vec2(25.0f, 25.0f), m_texture, m_shader, nullptr, COLOR_WHITE);
+    m_renderer->EndBatch();
+    // {
+    //     glm::mat4 model = glm::translate(glm::mat4(1.0f), translationA);
+    //     glm::mat4 mvp = proj * view * model;
+    //     m_shader->Use();
+    //     m_shader->setMat4("transform", mvp);
+    //     m_va.Bind();
+    //     GLCall(glDrawElements(GL_TRIANGLES, m_ib.GetCount(), GL_UNSIGNED_INT, 0));
+    // }
+    // {
+    //     glm::mat4 model = glm::translate(glm::mat4(1.0f), translationB);
+    //     glm::mat4 mvp = proj * view * model;
+    //     m_shader->Use();
+    //     m_shader->setMat4("transform", mvp);
+    //     m_va.Bind();
+    //     GLCall(glDrawElements(GL_TRIANGLES, m_ib.GetCount(), GL_UNSIGNED_INT, 0));
+    // }
 }
 
 void TestGame::UnloadContent() {

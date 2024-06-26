@@ -14,7 +14,9 @@ void Renderer::BeginBatch() {
 }
 void Renderer::BeginBatch(glm::mat4 transform) {
 }
-void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect, Color color) {
+// void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect = nullptr, Color color) {
+// }
+void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectangle* srcRect, Color color) {
 }
 void Renderer::EndBatch() {
 }
