@@ -7,11 +7,11 @@ TestGame::TestGame() {}
 void TestGame::LoadContent() {
     float vertices[] = {
         /*       Color       */
-        // Position     //R   //G   //B   //A
-         50.f, 50.0f,    1.0f, 0.0f, 0.0f, 1.0f,    // top right
-         50.0f, -50.f,   1.0f, 0.0f, 0.0f, 1.0f,   // bottom right
-        -50.0f, -50.0f,  1.0f, 0.0f, 0.0f, 1.0f,  // bottom left
-        -50.0f, 50.0f,   1.0f, 0.0f, 0.0f, 1.0f    // top left
+        // Position     //R   //G   //B   //A       //TexCoords
+         50.f, 50.0f,    1.0f, 1.0f, 1.0f, 1.0f,    1.0f, 1.0f,   // top right
+         50.0f, -50.f,   1.0f, 1.0f, 1.0f, 1.0f,    1.0f, 0.0f,   // bottom right
+        -50.0f, -50.0f,  1.0f, 1.0f, 1.0f, 1.0f,    0.0f, 0.0f,   // bottom left
+        -50.0f, 50.0f,   1.0f, 1.0f, 1.0f, 1.0f,    0.0f, 1.0f    // top left
     };
     unsigned int indices[6] = {
         // note that we start from 0!
@@ -19,6 +19,7 @@ void TestGame::LoadContent() {
         1, 2, 3   // second Triangle
     };
     m_shader = Mystic::Shader::LoadFromFile("shaders/basic_4.glsl");
+    m_texture = Mystic::Texture::LoadFromFile("images/kruggsmash.png");
     m_va = VertexArray::Create();
     m_vb = VertexBuffer::Create(vertices, sizeof(vertices), GL_STATIC_DRAW);
     m_ib = IndexBuffer::Create(indices, 6);
@@ -30,6 +31,7 @@ void TestGame::LoadContent() {
     VertexBufferLayout vbLayout;
     vbLayout.AddFloat(2);
     vbLayout.AddFloat(4);
+    vbLayout.AddFloat(2);
     m_va.ApplyBufferLayout(vbLayout);
 
     m_va.Unbind();
@@ -49,6 +51,7 @@ void TestGame::Update(Mystic::GameTime *gametime) {
 
 void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch) {
     GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
+    m_texture->Use();
     GLCall(glClear(GL_COLOR_BUFFER_BIT));
     {
         glm::mat4 model = glm::translate(glm::mat4(1.0f), translationA);
@@ -73,4 +76,5 @@ void TestGame::UnloadContent() {
     m_vb.Destroy();
     m_ib.Destroy();
     delete m_shader;
+    delete m_texture;
 }
