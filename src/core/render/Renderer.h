@@ -14,7 +14,7 @@ class Renderer {
     Renderer() {};
     void Clear() const;
     void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
-    void ClearColor() const;
+    void SetClearColor(Color color) const;
    private:
     float m_vertices[MAX_VERTICES];
     float m_indices[MAX_INDICES];

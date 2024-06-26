@@ -2,7 +2,7 @@
 
 #include "../core/content/Shader.h"
 
-TestGame::TestGame() {}
+TestGame::TestGame() { }
 
 void TestGame::LoadContent() {
     float vertices[] = {
@@ -37,6 +37,7 @@ void TestGame::LoadContent() {
     m_va.Unbind();
     m_vb.Unbind();
     m_ib.Unbind();
+    m_renderer->SetClearColor(COLOR_BLACK);
 }
 
 static int frameCount = 0;
@@ -50,9 +51,8 @@ void TestGame::Update(Mystic::GameTime *gametime) {
 }
 
 void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch) {
-    GLCall(glClearColor(0.2f, 0.3f, 0.3f, 1.0f));
-    m_texture->Use();
-    GLCall(glClear(GL_COLOR_BUFFER_BIT));
+    m_texture->Use();    
+    m_renderer->Clear();
     {
         glm::mat4 model = glm::translate(glm::mat4(1.0f), translationA);
         glm::mat4 mvp = proj * view * model;
