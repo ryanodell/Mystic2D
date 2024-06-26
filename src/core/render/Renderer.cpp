@@ -10,8 +10,18 @@ void Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& 
     va.Bind();
     GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 }
+void Renderer::BeginBatch() {
+}
+void Renderer::BeginBatch(glm::mat4 transform) {
+}
+void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect, Color color) {
+}
+void Renderer::EndBatch() {
+}
 void Renderer::SetClearColor(Color color) const {
     glm::vec4 clearColor = GetColorVec4(color);
     GLCall(glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a));
+}
+void Renderer::flush() {
 }
 }  // namespace Mystic

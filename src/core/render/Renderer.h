@@ -5,6 +5,8 @@
 #include "../content/Shader.h"
 #include "Buffer.h"
 #include "../Utils.h"
+#include "../Geometry.h"
+#include "../content/Texture.h"
 
 namespace Mystic {
 
@@ -14,10 +16,15 @@ class Renderer {
     Renderer() {};
     void Clear() const;
     void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
+    void BeginBatch();
+    void BeginBatch(glm::mat4 transform);
+    void Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect, Color color);
+    void EndBatch();
     void SetClearColor(Color color) const;
    private:
     float m_vertices[MAX_VERTICES];
     float m_indices[MAX_INDICES];
+    void flush();
 };
 }  // namespace Mystic
 #endif
