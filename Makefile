@@ -4,6 +4,7 @@ DEBUG_FLAGS = -g -DDEBUG -w
 RELEASE_FLAGS = -O2
 
 SRC_FILES = vendor/GLAD/include/glad.cpp \
+            src/core/Utils.cpp \
             src/core/content/Shader.cpp \
             src/core/content/Texture.cpp \
             src/core/render/IndexBuffer.cpp \

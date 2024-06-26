@@ -1,20 +1,23 @@
 #ifndef RENDERER_H
 #define RENDERER_H
-// #include <GLFW/glfw3.h>
-// #include <glad.h>
-#include "Buffer.h"
-#include "../content/Shader.h"
 #include "../../pch.h"
 #include "../Debug.h"
+#include "../content/Shader.h"
+#include "Buffer.h"
+#include "../Utils.h"
 
 namespace Mystic {
 
 /// @brief NOTE: NOT IN USE - JUST USING RENDERER AND DOING INNEFICIENT DRAWING FOR NOW
 class Renderer {
    public:
-    Renderer() { };
+    Renderer() {};
     void Clear() const;
     void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
+    void ClearColor() const;
+   private:
+    float m_vertices[MAX_VERTICES];
+    float m_indices[MAX_INDICES];
 };
 }  // namespace Mystic
 #endif

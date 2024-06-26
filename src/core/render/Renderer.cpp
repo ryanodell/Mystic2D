@@ -10,4 +10,8 @@ void Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& 
     va.Bind();
     GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 }
+void Renderer::ClearColor() const {
+    TestMethodLol();
+    //ImAMethodLol();
+}
 }  // namespace Mystic
