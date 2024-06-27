@@ -25,6 +25,7 @@ class Renderer {
    private:
     float m_vertices[MAX_VERTICES];
     float m_indices[MAX_INDICES];
+    int m_spritePointer = 0;
     void flush();
 };
 }  // namespace Mystic

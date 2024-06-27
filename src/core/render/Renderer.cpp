@@ -16,7 +16,23 @@ void Renderer::BeginBatch(glm::mat4 transform) {
 }
 // void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect = nullptr, Color color) {
 // }
+/*
+        // Position     //R   //G   //B   //A       //TexCoords
+         50.f, 50.0f,    1.0f, 1.0f, 1.0f, 1.0f,    1.0f, 1.0f,   // top right
+         50.0f, -50.f,   1.0f, 1.0f, 1.0f, 1.0f,    1.0f, 0.0f,   // bottom right
+        -50.0f, -50.0f,  1.0f, 1.0f, 1.0f, 1.0f,    0.0f, 0.0f,   // bottom left
+        -50.0f, 50.0f,   1.0f, 1.0f, 1.0f, 1.0f,    0.0f, 1.0f    // top left
+*/
 void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectangle* srcRect, Color color) {
+    int indexStartIndex = m_spritePointer * 6;
+    m_indices[indexStartIndex] = m_spritePointer * 4;
+    m_indices[indexStartIndex + 1] = m_spritePointer * 4 + 1;
+    m_indices[indexStartIndex + 2] = m_spritePointer * 4 + 3;
+    m_indices[indexStartIndex + 3] = m_spritePointer * 4 + 1;
+    m_indices[indexStartIndex + 4] = m_spritePointer * 4 + 2;
+    m_indices[indexStartIndex + 5] = m_spritePointer * 4 + 3;
+
+    m_spritePointer++;
 }
 void Renderer::EndBatch() {
 }
