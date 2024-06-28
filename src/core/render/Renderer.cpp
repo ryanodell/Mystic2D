@@ -25,6 +25,42 @@ void Renderer::BeginBatch(glm::mat4 transform) {
 */
 void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectangle* srcRect, Color color) {
     populateIndexBuffer();
+    /*
+    float normalizedTexCoords[] = {
+        // Top-left
+        texX / textureWidth,          
+        texY / textureHeight,
+
+        // Top-right
+        (texX + texWidth) / textureWidth, 
+        texY / textureHeight,           
+
+        // Bottom-right
+        (texX + texWidth) / textureWidth, 
+        (texY + texHeight) / textureHeight,
+
+        // Bottom-left
+        texX / textureWidth,
+        (texY + texHeight) / textureHeight  
+    };
+    */
+    float normalizedTexCoords[] {
+        /* TOP LEFT  */
+        srcRect->X / texture->GetWidth(),                 //[0]
+        srcRect->Y / texture->GetHeight(),                //[1]
+
+        /* TOP RIGHT */
+        (srcRect->X + srcRect->W) / texture->GetWidth(),  // [2]
+        srcRect->Y / texture->GetWidth(),                 // [3]
+
+        /* BOTTOM RIGHT */
+        (srcRect->X + srcRect->W) / texture->GetWidth(),  // [4]
+        (srcRect->Y + srcRect->H) / texture->GetHeight(), // [5]
+
+        /* BOTTOM LEFT */
+        srcRect->X / texture->GetWidth(),                 // [6]
+        (srcRect->Y + srcRect->H) / texture->GetHeight()  // [7]
+    };
     m_spritePointer++;
 }
 void Renderer::EndBatch() {
