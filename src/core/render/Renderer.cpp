@@ -8,6 +8,7 @@ void Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& 
     shader.Use();
     glActiveTexture(GL_TEXTURE0);
     va.Bind();
+    //NOTE: can't use ib.GetCount() when batcher is finished..
     GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 }
 void Renderer::BeginBatch() {
