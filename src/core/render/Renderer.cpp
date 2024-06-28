@@ -24,14 +24,7 @@ void Renderer::BeginBatch(glm::mat4 transform) {
         -50.0f, 50.0f,   1.0f, 1.0f, 1.0f, 1.0f,    0.0f, 1.0f    // top left
 */
 void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectangle* srcRect, Color color) {
-    int indexStartIndex = m_spritePointer * 6;
-    m_indices[indexStartIndex] = m_spritePointer * 4;
-    m_indices[indexStartIndex + 1] = m_spritePointer * 4 + 1;
-    m_indices[indexStartIndex + 2] = m_spritePointer * 4 + 3;
-    m_indices[indexStartIndex + 3] = m_spritePointer * 4 + 1;
-    m_indices[indexStartIndex + 4] = m_spritePointer * 4 + 2;
-    m_indices[indexStartIndex + 5] = m_spritePointer * 4 + 3;
-
+    populateIndexBuffer();
     m_spritePointer++;
 }
 void Renderer::EndBatch() {
@@ -39,6 +32,15 @@ void Renderer::EndBatch() {
 void Renderer::SetClearColor(Color color) const {
     glm::vec4 clearColor = GetColorVec4(color);
     GLCall(glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a));
+}
+void Renderer::populateIndexBuffer() {
+    int indexStartIndex = m_spritePointer * 6;
+    m_indices[indexStartIndex] = m_spritePointer * 4;
+    m_indices[indexStartIndex + 1] = m_spritePointer * 4 + 1;
+    m_indices[indexStartIndex + 2] = m_spritePointer * 4 + 3;
+    m_indices[indexStartIndex + 3] = m_spritePointer * 4 + 1;
+    m_indices[indexStartIndex + 4] = m_spritePointer * 4 + 2;
+    m_indices[indexStartIndex + 5] = m_spritePointer * 4 + 3;
 }
 void Renderer::flush() {
 }
