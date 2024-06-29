@@ -1,6 +1,26 @@
 #include "renderer.h"
 
 namespace Mystic{
+void Renderer::Init() {
+    m_va = VertexArray::Create();
+    m_vb = VertexBuffer::Create(m_vertices, sizeof(m_vertices), GL_STATIC_DRAW);
+    m_ib = IndexBuffer::Create(m_indices, 6);
+    m_va.Bind();
+    m_vb.Bind();
+    m_ib.Bind();
+    m_ib.ApplyData();
+
+    VertexBufferLayout vbLayout;
+    vbLayout.AddFloat(2);
+    vbLayout.AddFloat(4);
+    vbLayout.AddFloat(2);
+    m_va.ApplyBufferLayout(vbLayout);
+
+    m_va.Unbind();
+    m_vb.Unbind();
+    m_ib.Unbind();
+}
+
 void Renderer::Clear() const {
     GLCall(glClear(GL_COLOR_BUFFER_BIT));
 }
@@ -12,8 +32,10 @@ void Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& 
     GLCall(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
 }
 void Renderer::BeginBatch() {
+    
 }
 void Renderer::BeginBatch(glm::mat4 transform) {
+    m_mvp = transform;
 }
 // void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect = nullptr, Color color) {
 // }
@@ -25,7 +47,10 @@ void Renderer::BeginBatch(glm::mat4 transform) {
         -50.0f, 50.0f,   1.0f, 1.0f, 1.0f, 1.0f,    0.0f, 1.0f    // top left
 */
 void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectangle* srcRect, Color color) {
+    shader->Use();
+    shader->setMat4("transform", m_mvp);
     glm::vec4 spriteColor = GetColorVec4(color);
+    
     //int indexStartIndex = m_spritePointer * 6;
     incrementIndexBuffer();
 
@@ -79,18 +104,21 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectan
     m_vertices[6] = normalizedTexCoords[2];
     m_vertices[7] = normalizedTexCoords[3];
     //Bottom right
-    m_vertices[6] = normalizedTexCoords[4];
-    m_vertices[7] = normalizedTexCoords[5];
+    m_vertices[8] = normalizedTexCoords[4];
+    m_vertices[9] = normalizedTexCoords[5];
     //Bottom left
-    m_vertices[6] = normalizedTexCoords[6];
-    m_vertices[7] = normalizedTexCoords[7];
+    m_vertices[10] = normalizedTexCoords[6];
+    m_vertices[11] = normalizedTexCoords[7];
     //Top left
-    m_vertices[6] = normalizedTexCoords[0];
-    m_vertices[7] = normalizedTexCoords[1];
-
+    m_vertices[12] = normalizedTexCoords[0];
+    m_vertices[13] = normalizedTexCoords[1];
+    m_vb.UpdateVertexData(m_vertices, sizeof(m_vertices));
     m_spritePointer++;
 }
 void Renderer::EndBatch() {
+    m_spritePointer = 0;
+    m_va.Bind();
+    GLCall(glDrawElements(GL_TRIANGLES, m_ib.GetCount(), GL_UNSIGNED_INT, 0));
 }
 void Renderer::SetClearColor(Color color) const {
     glm::vec4 clearColor = GetColorVec4(color);

@@ -21,23 +21,25 @@ void TestGame::LoadContent() {
     };
     m_shader = Mystic::Shader::LoadFromFile("shaders/basic_4.glsl");
     m_texture = Mystic::Texture::LoadFromFile("images/kruggsmash.png");
-    m_va = VertexArray::Create();
-    m_vb = VertexBuffer::Create(vertices, sizeof(vertices), GL_STATIC_DRAW);
-    m_ib = IndexBuffer::Create(indices, 6);
-    m_va.Bind();
-    m_vb.Bind();
-    m_ib.Bind();
-    m_ib.ApplyData();
+    m_renderer->Init();
+    // m_va = VertexArray::Create();
+    // m_vb = VertexBuffer::Create(vertices, sizeof(vertices), GL_STATIC_DRAW);
+    // m_ib = IndexBuffer::Create(indices, 6);
+    // m_va.Bind();
+    // m_vb.Bind();
+    // m_ib.Bind();
+    // m_ib.ApplyData();
 
-    VertexBufferLayout vbLayout;
-    vbLayout.AddFloat(2);
-    vbLayout.AddFloat(4);
-    vbLayout.AddFloat(2);
-    m_va.ApplyBufferLayout(vbLayout);
+    // VertexBufferLayout vbLayout;
+    // vbLayout.AddFloat(2);
+    // vbLayout.AddFloat(4);
+    // vbLayout.AddFloat(2);
+    // m_va.ApplyBufferLayout(vbLayout);
 
-    m_va.Unbind();
-    m_vb.Unbind();
-    m_ib.Unbind();
+    // m_va.Unbind();
+    // m_vb.Unbind();
+    // m_ib.Unbind();
+    // end of m_renderer->Init();
     m_renderer->SetClearColor(COLOR_BLACK);
 }
 
@@ -57,12 +59,15 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
     glm::mat4 model = glm::translate(glm::mat4(1.0f), baseScreen);
     glm::mat4 mvp = proj * view * model;
     m_renderer->BeginBatch(model);
-    //void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect = nullptr, Color color)
-    //m_renderer->Draw(glm::vec2(25.0f, 25.0f), m_texture, m_shader, nullptr, COLOR_WHITE);
     Rectangle srcRect = Rectangle(0.0f, 0.0f, 32.0f, 32.0f);
     m_renderer->Draw(glm::vec2(25.0f, 25.0f), m_texture, m_shader, &srcRect, COLOR_WHITE);
     m_renderer->EndBatch();
-    GLCall(glDrawElements(GL_TRIANGLES, m_ib.GetCount(), GL_UNSIGNED_INT, 0));
+    //void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect = nullptr, Color color)
+    //m_renderer->Draw(glm::vec2(25.0f, 25.0f), m_texture, m_shader, nullptr, COLOR_WHITE);
+    //Rectangle srcRect = Rectangle(0.0f, 0.0f, 32.0f, 32.0f);
+    //m_renderer->Draw(glm::vec2(25.0f, 25.0f), m_texture, m_shader, &srcRect, COLOR_WHITE);
+    //m_renderer->EndBatch();
+    
     // {
     //     glm::mat4 model = glm::translate(glm::mat4(1.0f), translationA);
     //     glm::mat4 mvp = proj * view * model;

@@ -14,6 +14,7 @@ namespace Mystic {
 class Renderer {
    public:
     Renderer() {};
+    void Init();
     void Clear() const;
     void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
     void BeginBatch();
@@ -24,10 +25,14 @@ class Renderer {
     void SetClearColor(Color color) const;
    private:
     void incrementIndexBuffer();
-    float m_vertices[MAX_VERTICES];
-    float m_indices[MAX_INDICES];
+    float m_vertices[MAX_VERTICES] = { 0.0f };
+    unsigned int m_indices[MAX_INDICES] = { 0 };
+    VertexArray m_va;
+    VertexBuffer m_vb;
+    IndexBuffer m_ib;
     int m_spriteIndex;
     int m_spritePointer = 0;
+    glm::mat4 m_mvp;
     void flush();
 };
 }  // namespace Mystic
