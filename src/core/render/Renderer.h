@@ -23,7 +23,7 @@ class Renderer {
     void EndBatch();
     void SetClearColor(Color color) const;
    private:
-    void populateIndexBuffer();
+    void incrementIndexBuffer();
     float m_vertices[MAX_VERTICES];
     float m_indices[MAX_INDICES];
     int m_spritePointer = 0;

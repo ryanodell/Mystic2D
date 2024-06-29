@@ -25,7 +25,8 @@ void Renderer::BeginBatch(glm::mat4 transform) {
         -50.0f, 50.0f,   1.0f, 1.0f, 1.0f, 1.0f,    0.0f, 1.0f    // top left
 */
 void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectangle* srcRect, Color color) {
-    populateIndexBuffer();
+    glm::vec4 spriteColor = GetColorVec4(color);
+    incrementIndexBuffer();
     /*
     float normalizedTexCoords[] = {
         // Top-left
@@ -47,8 +48,8 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectan
     */
     float normalizedTexCoords[] {
         /* TOP LEFT  */
-        srcRect->X / texture->GetWidth(),                 //[0]
-        srcRect->Y / texture->GetHeight(),                //[1]
+        srcRect->X / texture->GetWidth(),                 // [0]
+        srcRect->Y / texture->GetHeight(),                // [1]
 
         /* TOP RIGHT */
         (srcRect->X + srcRect->W) / texture->GetWidth(),  // [2]
@@ -62,6 +63,29 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectan
         srcRect->X / texture->GetWidth(),                 // [6]
         (srcRect->Y + srcRect->H) / texture->GetHeight()  // [7]
     };
+    //X & Y
+    m_vertices[0] = position.x;
+    m_vertices[1] = position.y;
+    // Color
+    m_vertices[2] = spriteColor.r;
+    m_vertices[3] = spriteColor.g;
+    m_vertices[4] = spriteColor.b;
+    m_vertices[5] = spriteColor.a;
+
+    //Tex coords
+    //Top right
+    m_vertices[6] = normalizedTexCoords[2];
+    m_vertices[7] = normalizedTexCoords[3];
+    //Bottom right
+    m_vertices[6] = normalizedTexCoords[4];
+    m_vertices[7] = normalizedTexCoords[5];
+    //Bottom left
+    m_vertices[6] = normalizedTexCoords[6];
+    m_vertices[7] = normalizedTexCoords[7];
+    //Top left
+    m_vertices[6] = normalizedTexCoords[0];
+    m_vertices[7] = normalizedTexCoords[1];
+
     m_spritePointer++;
 }
 void Renderer::EndBatch() {
@@ -70,7 +94,7 @@ void Renderer::SetClearColor(Color color) const {
     glm::vec4 clearColor = GetColorVec4(color);
     GLCall(glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a));
 }
-void Renderer::populateIndexBuffer() {
+void Renderer::incrementIndexBuffer() {
     int indexStartIndex = m_spritePointer * 6;
     m_indices[indexStartIndex] = m_spritePointer * 4;
     m_indices[indexStartIndex + 1] = m_spritePointer * 4 + 1;
