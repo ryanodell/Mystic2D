@@ -26,7 +26,9 @@ void Renderer::BeginBatch(glm::mat4 transform) {
 */
 void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectangle* srcRect, Color color) {
     glm::vec4 spriteColor = GetColorVec4(color);
+    //int indexStartIndex = m_spritePointer * 6;
     incrementIndexBuffer();
+
     /*
     float normalizedTexCoords[] = {
         // Top-left

@@ -26,6 +26,7 @@ class Renderer {
     void incrementIndexBuffer();
     float m_vertices[MAX_VERTICES];
     float m_indices[MAX_INDICES];
+    int m_spriteIndex;
     int m_spritePointer = 0;
     void flush();
 };

@@ -5,6 +5,7 @@
 TestGame::TestGame() { }
 
 void TestGame::LoadContent() {
+    m_renderer = new Renderer();
     float vertices[] = {
         /*       Color       */
         // Position     //R   //G   //B   //A       //TexCoords
@@ -58,8 +59,10 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
     m_renderer->BeginBatch(model);
     //void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect = nullptr, Color color)
     //m_renderer->Draw(glm::vec2(25.0f, 25.0f), m_texture, m_shader, nullptr, COLOR_WHITE);
-    m_renderer->Draw(glm::vec2(25.0f, 25.0f), m_texture, m_shader, nullptr, COLOR_WHITE);
+    Rectangle srcRect = Rectangle(0.0f, 0.0f, 32.0f, 32.0f);
+    m_renderer->Draw(glm::vec2(25.0f, 25.0f), m_texture, m_shader, &srcRect, COLOR_WHITE);
     m_renderer->EndBatch();
+    GLCall(glDrawElements(GL_TRIANGLES, m_ib.GetCount(), GL_UNSIGNED_INT, 0));
     // {
     //     glm::mat4 model = glm::translate(glm::mat4(1.0f), translationA);
     //     glm::mat4 mvp = proj * view * model;
@@ -84,4 +87,5 @@ void TestGame::UnloadContent() {
     m_ib.Destroy();
     delete m_shader;
     delete m_texture;
+    delete m_renderer;
 }
