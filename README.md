@@ -19,6 +19,7 @@ C_Cpp.clang_format_fallbackStyle = {BasedOnStyle: Google, IndentWidth: 4, Column
 
 
 #Findings: Index buffer is not being set/applied inside the renderer
+            I Get it... only seeting first "X" of the vertex buffer.. but there are far more than x...
 
 #Notes for self on what's nex:
     - Implement the Renderer

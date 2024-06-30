@@ -54,19 +54,15 @@ void TestGame::Update(Mystic::GameTime *gametime) {
 }
 
 void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch) {
-    m_texture->Use();    
+    m_texture->Use();
     m_renderer->Clear();
-    glm::mat4 model = glm::translate(glm::mat4(1.0f), baseScreen);
+    // glm::mat4 model = glm::translate(glm::mat4(1.0f), baseScreen);
+     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(200.0f, 200.0f, 0.0f));
     glm::mat4 mvp = proj * view * model;
     m_renderer->BeginBatch(model);
     Rectangle srcRect = Rectangle(0.0f, 0.0f, 32.0f, 32.0f);
-    m_renderer->Draw(glm::vec2(25.0f, 25.0f), m_texture, m_shader, &srcRect, COLOR_WHITE);
-    m_renderer->EndBatch();
-    //void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect = nullptr, Color color)
-    //m_renderer->Draw(glm::vec2(25.0f, 25.0f), m_texture, m_shader, nullptr, COLOR_WHITE);
-    //Rectangle srcRect = Rectangle(0.0f, 0.0f, 32.0f, 32.0f);
-    //m_renderer->Draw(glm::vec2(25.0f, 25.0f), m_texture, m_shader, &srcRect, COLOR_WHITE);
-    //m_renderer->EndBatch();
+    m_renderer->Draw(glm::vec2(0.0f, 0.0f), m_texture, m_shader, nullptr, COLOR_WHITE);
+    m_renderer->EndBatch(m_shader);
     
     // {
     //     glm::mat4 model = glm::translate(glm::mat4(1.0f), translationA);

@@ -21,7 +21,7 @@ class Renderer {
     void BeginBatch(glm::mat4 transform);
     //void Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect = nullptr, Color color);
     void Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectangle* srcRect = nullptr, Color color = COLOR_WHITE);
-    void EndBatch();
+    void EndBatch(Shader* shader);
     void SetClearColor(Color color) const;
    private:
     void incrementIndexBuffer();
