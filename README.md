@@ -18,6 +18,8 @@ VSCode Settings for reference:
 C_Cpp.clang_format_fallbackStyle = {BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}
 
 
+#Findings: Index buffer is not being set/applied inside the renderer
+
 #Notes for self on what's nex:
     - Implement the Renderer
     - Populate the vertex buffer and index buffer with draw calls
