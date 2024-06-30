@@ -90,7 +90,7 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectan
         m_vertices[19] = spriteColor.g;
         m_vertices[20] = spriteColor.b;
         m_vertices[21] = spriteColor.a;
-        m_vertices[22] = 1.0f;
+        m_vertices[22] = 0.0f;
         m_vertices[23] = 0.0f;
     }
     //Top left:
