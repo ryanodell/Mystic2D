@@ -5,10 +5,10 @@ void Renderer::Init() {
     m_va = VertexArray::Create();
     m_vb = VertexBuffer::Create(m_vertices, sizeof(m_vertices), GL_STATIC_DRAW);
     // We can just set the values of these so they're ready
-    for (int i = 0; i < 1; i++) {
+    for (int i = 0; i < 2; i++) {
         incrementIndexBuffer();
     }
-    m_ib = IndexBuffer::Create(m_indices, 6);
+    m_ib = IndexBuffer::Create(m_indices, 12);
     // Rese it back to 0 because of the above:
     m_spritePointer = 0;
     m_va.Bind();
@@ -91,53 +91,100 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectan
         texCoord[7] = 1.0f;
     }
 
+        // Calculate the offset for the current sprite's vertices
+    unsigned int offset = m_spritePointer * (8 * 4); // Assuming each sprite uses 8 floats
+
     // Top right
-    m_vertices[0] = position.x + tmpWidth;
-    m_vertices[1] = position.y;
-    m_vertices[2] = spriteColor.r;
-    m_vertices[3] = spriteColor.g;
-    m_vertices[4] = spriteColor.b;
-    m_vertices[5] = spriteColor.a;
-    m_vertices[6] = texCoord[0];  // Normalized texture coordinates
-    m_vertices[7] = texCoord[1];  // Normalized texture coordinates
+    m_vertices[offset + 0] = position.x + tmpWidth;
+    m_vertices[offset + 1] = position.y;
+    m_vertices[offset + 2] = spriteColor.r;
+    m_vertices[offset + 3] = spriteColor.g;
+    m_vertices[offset + 4] = spriteColor.b;
+    m_vertices[offset + 5] = spriteColor.a;
+    m_vertices[offset + 6] = texCoord[0];  // Normalized texture coordinates
+    m_vertices[offset + 7] = texCoord[1];  // Normalized texture coordinates
 
     // Bottom right
-    m_vertices[8] = position.x + tmpWidth;
-    m_vertices[9] = position.y + tmpHeight;
-    m_vertices[10] = spriteColor.r;
-    m_vertices[11] = spriteColor.g;
-    m_vertices[12] = spriteColor.b;
-    m_vertices[13] = spriteColor.a;
-    m_vertices[14] = texCoord[2];  // Normalized texture coordinates
-    m_vertices[15] = texCoord[3];  // Normalized texture coordinates
+    m_vertices[offset + 8] = position.x + tmpWidth;
+    m_vertices[offset + 9] = position.y + tmpHeight;
+    m_vertices[offset + 10] = spriteColor.r;
+    m_vertices[offset + 11] = spriteColor.g;
+    m_vertices[offset + 12] = spriteColor.b;
+    m_vertices[offset + 13] = spriteColor.a;
+    m_vertices[offset + 14] = texCoord[2];  // Normalized texture coordinates
+    m_vertices[offset + 15] = texCoord[3];  // Normalized texture coordinates
 
     // Bottom left
-    m_vertices[16] = position.x;
-    m_vertices[17] = position.y + tmpHeight;
-    m_vertices[18] = spriteColor.r;
-    m_vertices[19] = spriteColor.g;
-    m_vertices[20] = spriteColor.b;
-    m_vertices[21] = spriteColor.a;
-    m_vertices[22] = texCoord[4];  // Normalized texture coordinates
-    m_vertices[23] = texCoord[5];  // Normalized texture coordinates
+    m_vertices[offset + 16] = position.x;
+    m_vertices[offset + 17] = position.y + tmpHeight;
+    m_vertices[offset + 18] = spriteColor.r;
+    m_vertices[offset + 19] = spriteColor.g;
+    m_vertices[offset + 20] = spriteColor.b;
+    m_vertices[offset + 21] = spriteColor.a;
+    m_vertices[offset + 22] = texCoord[4];  // Normalized texture coordinates
+    m_vertices[offset + 23] = texCoord[5];  // Normalized texture coordinates
 
     // Top left
-    m_vertices[24] = position.x;
-    m_vertices[25] = position.y;
-    m_vertices[26] = spriteColor.r;
-    m_vertices[27] = spriteColor.g;
-    m_vertices[28] = spriteColor.b;
-    m_vertices[29] = spriteColor.a;
-    m_vertices[30] = texCoord[6];  // Normalized texture coordinates
-    m_vertices[31] = texCoord[7];  // Normalized texture coordinates
+    m_vertices[offset + 24] = position.x;
+    m_vertices[offset + 25] = position.y;
+    m_vertices[offset + 26] = spriteColor.r;
+    m_vertices[offset + 27] = spriteColor.g;
+    m_vertices[offset + 28] = spriteColor.b;
+    m_vertices[offset + 29] = spriteColor.a;
+    m_vertices[offset + 30] = texCoord[6];  // Normalized texture coordinates
+    m_vertices[offset + 31] = texCoord[7];  // Normalized texture coordinates
+    // Top right
+    // m_vertices[0] = position.x + tmpWidth;
+    // m_vertices[1] = position.y;
+    // m_vertices[2] = spriteColor.r;
+    // m_vertices[3] = spriteColor.g;
+    // m_vertices[4] = spriteColor.b;
+    // m_vertices[5] = spriteColor.a;
+    // m_vertices[6] = texCoord[0];  // Normalized texture coordinates
+    // m_vertices[7] = texCoord[1];  // Normalized texture coordinates
 
-    m_vb.UpdateVertexData(m_vertices, sizeof(m_vertices));
+    // // Bottom right
+    // m_vertices[8] = position.x + tmpWidth;
+    // m_vertices[9] = position.y + tmpHeight;
+    // m_vertices[10] = spriteColor.r;
+    // m_vertices[11] = spriteColor.g;
+    // m_vertices[12] = spriteColor.b;
+    // m_vertices[13] = spriteColor.a;
+    // m_vertices[14] = texCoord[2];  // Normalized texture coordinates
+    // m_vertices[15] = texCoord[3];  // Normalized texture coordinates
+
+    // // Bottom left
+    // m_vertices[16] = position.x;
+    // m_vertices[17] = position.y + tmpHeight;
+    // m_vertices[18] = spriteColor.r;
+    // m_vertices[19] = spriteColor.g;
+    // m_vertices[20] = spriteColor.b;
+    // m_vertices[21] = spriteColor.a;
+    // m_vertices[22] = texCoord[4];  // Normalized texture coordinates
+    // m_vertices[23] = texCoord[5];  // Normalized texture coordinates
+
+    // // Top left
+    // m_vertices[24] = position.x;
+    // m_vertices[25] = position.y;
+    // m_vertices[26] = spriteColor.r;
+    // m_vertices[27] = spriteColor.g;
+    // m_vertices[28] = spriteColor.b;
+    // m_vertices[29] = spriteColor.a;
+    // m_vertices[30] = texCoord[6];  // Normalized texture coordinates
+    // m_vertices[31] = texCoord[7];  // Normalized texture coordinates
+
+    m_spritePointer++;
+    // m_vb.UpdateVertexData(m_vertices, sizeof(m_vertices));
 }
 void Renderer::EndBatch(Shader* shader) {
+    m_vb.UpdateVertexData(m_vertices, sizeof(m_vertices));
     shader->Use();
     shader->setMat4("transform", m_mvp);
     m_va.Bind();
-    GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
+    // GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
+    // GLCall(glDrawElements(GL_TRIANGLES, m_spritePointer * 6, GL_UNSIGNED_INT, 0));
+    GLCall(glDrawElements(GL_TRIANGLES, 12, GL_UNSIGNED_INT, 0));
+    m_spritePointer = 0;
     // GLCall(glDrawElements(GL_TRIANGLES, m_ib.GetCount(), GL_UNSIGNED_INT, 0));
 }
 void Renderer::SetClearColor(Color color) const {
