@@ -212,7 +212,6 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectan
 void Renderer::EndBatch(Shader* shader) {
     shader->Use();
     shader->setMat4("transform", m_mvp);
-    m_spritePointer = 0;
     m_va.Bind();
     GLCall(glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0));
     // GLCall(glDrawElements(GL_TRIANGLES, m_ib.GetCount(), GL_UNSIGNED_INT, 0));

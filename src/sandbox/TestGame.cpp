@@ -48,8 +48,6 @@ static int frameCount = 0;
 void TestGame::Update(Mystic::GameTime *gametime) {
     Mystic::Game::Update(gametime);
     std::cout << "Frame Count: " << frameCount << std::endl;
-    translationA.x += 0.1f;
-    translationB.y += 0.1f;
     frameCount++;
 }
 
