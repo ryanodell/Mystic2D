@@ -59,7 +59,7 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
     // glm::mat4 model = glm::translate(glm::mat4(1.0f), baseScreen);
      glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(200.0f, 200.0f, 0.0f));
     glm::mat4 mvp = proj * view * model;
-    m_renderer->BeginBatch(model);
+    m_renderer->BeginBatch(mvp);
     Rectangle srcRect = Rectangle(0.0f, 0.0f, 32.0f, 32.0f);
     m_renderer->Draw(glm::vec2(0.0f, 0.0f), m_texture, m_shader, nullptr, COLOR_WHITE);
     m_renderer->EndBatch(m_shader);

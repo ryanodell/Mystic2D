@@ -5,7 +5,7 @@ void Renderer::Init() {
     m_va = VertexArray::Create();
     m_vb = VertexBuffer::Create(m_vertices, sizeof(m_vertices), GL_STATIC_DRAW);
     // We can just set the values of these so they're ready
-    for (int i = 0; i < MAX_OBJECTS; i++) {
+    for (int i = 0; i < 1; i++) {
         incrementIndexBuffer();
     }
     m_ib = IndexBuffer::Create(m_indices, 6);
@@ -63,7 +63,7 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectan
     //Top right:
     {
         m_vertices[0] = position.x + tmpWidth;
-        m_vertices[1] = position.y;
+        m_vertices[1] = position.y + tmpWidth;
         m_vertices[2] = spriteColor.r;
         m_vertices[3] = spriteColor.g;
         m_vertices[4] = spriteColor.b;
@@ -74,7 +74,7 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectan
     //Bottom right:
     {
         m_vertices[8] = position.x + tmpWidth;
-        m_vertices[9] = position.y + tmpHeight;
+        m_vertices[9] = position.y - tmpHeight;
         m_vertices[10] = spriteColor.r;
         m_vertices[11] = spriteColor.g;
         m_vertices[12] = spriteColor.b;
@@ -84,8 +84,8 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectan
     }
     //Bottom left:
     {
-        m_vertices[16] = position.x;
-        m_vertices[17] = position.y + tmpHeight;
+        m_vertices[16] = position.x - tmpWidth;
+        m_vertices[17] = position.y - tmpHeight;
         m_vertices[18] = spriteColor.r;
         m_vertices[19] = spriteColor.g;
         m_vertices[20] = spriteColor.b;
@@ -95,8 +95,8 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectan
     }
     //Top left:
     {
-        m_vertices[24] = position.x;
-        m_vertices[25] = position.y;
+        m_vertices[24] = position.x - tmpWidth;
+        m_vertices[25] = position.y + tmpWidth;
         m_vertices[26] = spriteColor.r;
         m_vertices[27] = spriteColor.g;
         m_vertices[28] = spriteColor.b;
