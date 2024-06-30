@@ -53,42 +53,30 @@ void Renderer::BeginBatch(glm::mat4 transform) {
 */
 void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectangle* srcRect, Color color) {
     float texCoord[8];
-    float tmpWidth = 50;
-    float tmpHeight = 50;
+    float tmpWidth = (srcRect != nullptr) ? srcRect->W : texture->GetWidth();
+    float tmpHeight = (srcRect != nullptr) ? srcRect->H : texture->GetHeight();
     glm::vec4 spriteColor = GetColorVec4(color);
     if (srcRect != nullptr) {
         float normalizedTexCoords[]{
-            /* TOP LEFT  */
-            srcRect->X / texture->GetWidth(),                  // [0]
-            (srcRect->Y + srcRect->H) / texture->GetHeight(),  // [1]
-
-            /* TOP RIGHT */
-            (srcRect->X + srcRect->W) / texture->GetWidth(),   // [2]
-            (srcRect->Y + srcRect->H) / texture->GetHeight(),  // [3]
-
-            /* BOTTOM RIGHT */
-            (srcRect->X + srcRect->W) / texture->GetWidth(),  // [4]
-            srcRect->Y / texture->GetHeight(),                // [5]
-
-            /* BOTTOM LEFT */
-            srcRect->X / texture->GetWidth(),  // [6]
-            srcRect->Y / texture->GetHeight()  // [7]
+            srcRect->X / texture->GetWidth(),                  // [0] Top Left X
+            (srcRect->Y + srcRect->H) / texture->GetHeight(),  // [1] Top Left Y
+            (srcRect->X + srcRect->W) / texture->GetWidth(),   // [2] Top Right X
+            (srcRect->Y + srcRect->H) / texture->GetHeight(),  // [3] Top Right Y
+            (srcRect->X + srcRect->W) / texture->GetWidth(),   // [4] Bottom Right X
+            srcRect->Y / texture->GetHeight(),                 // [5] Bottom Right Y
+            srcRect->X / texture->GetWidth(),                  // [6] Bottom Left X
+            srcRect->Y / texture->GetHeight()                  // [7] Bottom Left Y
         };
-        // Top Right
+        // Set the texCoords
         texCoord[0] = normalizedTexCoords[2];
         texCoord[1] = normalizedTexCoords[3];
-        // Bottom right
         texCoord[2] = normalizedTexCoords[4];
         texCoord[3] = normalizedTexCoords[5];
-        // Bottom left
         texCoord[4] = normalizedTexCoords[6];
         texCoord[5] = normalizedTexCoords[7];
-        // Top left
         texCoord[6] = normalizedTexCoords[0];
         texCoord[7] = normalizedTexCoords[1];
-    }
-
-    else {
+    } else {
         // Top right
         texCoord[0] = 1.0f;
         texCoord[1] = 1.0f;
@@ -102,112 +90,48 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectan
         texCoord[6] = 0.0f;
         texCoord[7] = 1.0f;
     }
-    // Disgusting rework
-    // Top right:
-    {
-        m_vertices[0] = position.x + tmpWidth;
-        m_vertices[1] = position.y + tmpWidth;
-        m_vertices[2] = spriteColor.r;
-        m_vertices[3] = spriteColor.g;
-        m_vertices[4] = spriteColor.b;
-        m_vertices[5] = spriteColor.a;
-        m_vertices[6] = texCoord[0];  //;1.0f;
-        m_vertices[7] = texCoord[1];  //;1.0f;
-    }
-    // Bottom right:
-    {
-        m_vertices[8] = position.x + tmpWidth;
-        m_vertices[9] = position.y - tmpHeight;
-        m_vertices[10] = spriteColor.r;
-        m_vertices[11] = spriteColor.g;
-        m_vertices[12] = spriteColor.b;
-        m_vertices[13] = spriteColor.a;
-        m_vertices[14] = texCoord[2];  // 1.0f;
-        m_vertices[15] = texCoord[3];  // 0.0f;
-    }
-    // Bottom left:
-    {
-        m_vertices[16] = position.x - tmpWidth;
-        m_vertices[17] = position.y - tmpHeight;
-        m_vertices[18] = spriteColor.r;
-        m_vertices[19] = spriteColor.g;
-        m_vertices[20] = spriteColor.b;
-        m_vertices[21] = spriteColor.a;
-        m_vertices[22] = texCoord[4];  // 0.0f;
-        m_vertices[23] = texCoord[5];  // 0.0f;
-    }
-    // Top left:
-    {
-        m_vertices[24] = position.x - tmpWidth;
-        m_vertices[25] = position.y + tmpWidth;
-        m_vertices[26] = spriteColor.r;
-        m_vertices[27] = spriteColor.g;
-        m_vertices[28] = spriteColor.b;
-        m_vertices[29] = spriteColor.a;
-        m_vertices[30] = texCoord[6];  // 0.0f;
-        m_vertices[31] = texCoord[7];  // 1.0f;
-    }
+
+    // Top right
+    m_vertices[0] = position.x + tmpWidth;
+    m_vertices[1] = position.y;
+    m_vertices[2] = spriteColor.r;
+    m_vertices[3] = spriteColor.g;
+    m_vertices[4] = spriteColor.b;
+    m_vertices[5] = spriteColor.a;
+    m_vertices[6] = texCoord[0];  // Normalized texture coordinates
+    m_vertices[7] = texCoord[1];  // Normalized texture coordinates
+
+    // Bottom right
+    m_vertices[8] = position.x + tmpWidth;
+    m_vertices[9] = position.y + tmpHeight;
+    m_vertices[10] = spriteColor.r;
+    m_vertices[11] = spriteColor.g;
+    m_vertices[12] = spriteColor.b;
+    m_vertices[13] = spriteColor.a;
+    m_vertices[14] = texCoord[2];  // Normalized texture coordinates
+    m_vertices[15] = texCoord[3];  // Normalized texture coordinates
+
+    // Bottom left
+    m_vertices[16] = position.x;
+    m_vertices[17] = position.y + tmpHeight;
+    m_vertices[18] = spriteColor.r;
+    m_vertices[19] = spriteColor.g;
+    m_vertices[20] = spriteColor.b;
+    m_vertices[21] = spriteColor.a;
+    m_vertices[22] = texCoord[4];  // Normalized texture coordinates
+    m_vertices[23] = texCoord[5];  // Normalized texture coordinates
+
+    // Top left
+    m_vertices[24] = position.x;
+    m_vertices[25] = position.y;
+    m_vertices[26] = spriteColor.r;
+    m_vertices[27] = spriteColor.g;
+    m_vertices[28] = spriteColor.b;
+    m_vertices[29] = spriteColor.a;
+    m_vertices[30] = texCoord[6];  // Normalized texture coordinates
+    m_vertices[31] = texCoord[7];  // Normalized texture coordinates
 
     m_vb.UpdateVertexData(m_vertices, sizeof(m_vertices));
-
-    // Original:
-    //  X & Y
-    //  m_vertices[0] = position.x;
-    //  m_vertices[1] = position.y;
-    //  // Color
-    //  m_vertices[2] = spriteColor.r;
-    //  m_vertices[3] = spriteColor.g;
-    //  m_vertices[4] = spriteColor.b;
-    //  m_vertices[5] = spriteColor.a;
-
-    // if (srcRect == nullptr) {
-    //     // Tex coords
-    //     // Top right
-    //     m_vertices[6] = 1.0f;
-    //     m_vertices[7] = 1.0f;
-    //     // Bottom right
-    //     m_vertices[8] = 1.0f;
-    //     m_vertices[9] = 0.0f;
-    //     // Bottom left
-    //     m_vertices[10] = 0.0f;
-    //     m_vertices[11] = 0.0f;
-    //     // Top left
-    //     m_vertices[12] = 0.0f;
-    //     m_vertices[13] = 1.0f;
-    // } else {
-    //     float normalizedTexCoords[] {
-    //         /* TOP LEFT  */
-    //         srcRect->X / texture->GetWidth(),   // [0]
-    //         srcRect->Y / texture->GetHeight(),  // [1]
-
-    //         /* TOP RIGHT */
-    //         (srcRect->X + srcRect->W) / texture->GetWidth(),  // [2]
-    //         srcRect->Y / texture->GetWidth(),                 // [3]
-
-    //         /* BOTTOM RIGHT */
-    //         (srcRect->X + srcRect->W) / texture->GetWidth(),   // [4]
-    //         (srcRect->Y + srcRect->H) / texture->GetHeight(),  // [5]
-
-    //         /* BOTTOM LEFT */
-    //         srcRect->X / texture->GetWidth(),                 // [6]
-    //         (srcRect->Y + srcRect->H) / texture->GetHeight()  // [7]
-    //     };
-    //     // Tex coords
-    //     // Top right
-    //     m_vertices[6] = normalizedTexCoords[2];
-    //     m_vertices[7] = normalizedTexCoords[3];
-    //     // Bottom right
-    //     m_vertices[8] = normalizedTexCoords[4];
-    //     m_vertices[9] = normalizedTexCoords[5];
-    //     // Bottom left
-    //     m_vertices[10] = normalizedTexCoords[6];
-    //     m_vertices[11] = normalizedTexCoords[7];
-    //     // Top left
-    //     m_vertices[12] = normalizedTexCoords[0];
-    //     m_vertices[13] = normalizedTexCoords[1];
-    // }
-    // m_vb.UpdateVertexData(m_vertices, sizeof(m_vertices));
-    // m_spritePointer++;
 }
 void Renderer::EndBatch(Shader* shader) {
     shader->Use();
