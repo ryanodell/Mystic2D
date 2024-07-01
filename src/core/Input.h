@@ -8,38 +8,9 @@
 namespace Mystic {
 class InputManager {
    public:
-    // InputManager(GLFWwindow* window) : window(window) {
-    //     glfwSetWindowUserPointer(window, this);
-    //     glfwSetKeyCallback(window, keyCallback);
-    // }
     InputManager(GLFWwindow* window);
-
-    // void Update() {
-    //     // Reset keyPressed states each frame
-    //     for (auto& [key, pressed] : m_keyPressed) {
-    //         if (pressed) {
-    //             pressed = false;  // Reset after handling
-    //         }
-    //     }
-    // }
     void Update();
-
-    // bool IsKeyPressed(int key) const {
-    //     auto it = m_keyPressed.find(key);
-    //     if (it != m_keyPressed.end()) {
-    //         return it->second;
-    //     }
-    //     return false;
-    // }
     bool IsKeyPressed(int key) const;
-
-    // bool IsKeyHeld(int key) const {
-    //     auto it = m_keyHeld.find(key);
-    //     if (it != m_keyHeld.end()) {
-    //         return it->second;
-    //     }
-    //     return false;
-    // }
     bool IsKeyHeld(int key) const;
 
    private:
@@ -59,6 +30,6 @@ class InputManager {
     }
 };
 
-}  // namespace Mystic
+}
 
 #endif
