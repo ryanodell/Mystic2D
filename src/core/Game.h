@@ -4,6 +4,7 @@
 #include <chrono>
 #include "../pch.h"
 #include "gameWindow.h"
+#include "../core/Input.h"
 #include "render/spriteBatch.h"
 #include "content/ContentManager.h"
 
@@ -19,6 +20,7 @@ class Game {
         virtual void Update(GameTime* gametime);
         virtual void Draw(GameTime* gameTime, SpriteBatch* spriteBatch);
         virtual void UnloadContent();
+        InputManager inputManager;
     private:
         GameWindow* m_gameWindow = nullptr;
         SpriteBatch* m_spriteBatch = nullptr;

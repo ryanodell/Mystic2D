@@ -15,6 +15,7 @@ namespace Mystic {
         GameTime gt;
         LoadContent();
         while(!m_gameWindow->WindowShouldClose()) {
+            inputManager.Update();
             Update(&gt);
             Draw(&gt, m_spriteBatch);
             m_gameWindow->Render();
@@ -41,6 +42,7 @@ namespace Mystic {
         }
         m_gameWindow = new GameWindow("Name", 960, 540);
         m_spriteBatch = new Mystic::SpriteBatch();
+        inputManager = InputManager(m_gameWindow->GetInternalWindow());
         m_initialized = true;
     }
 }

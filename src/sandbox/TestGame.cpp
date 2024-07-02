@@ -2,7 +2,7 @@
 
 #include "../core/content/Shader.h"
 
-TestGame::TestGame() { }
+TestGame::TestGame() {}
 
 void TestGame::LoadContent() {
     m_renderer = new Renderer();
@@ -16,14 +16,20 @@ static int frameCount = 0;
 
 void TestGame::Update(Mystic::GameTime *gametime) {
     Mystic::Game::Update(gametime);
-    std::cout << "Frame Count: " << frameCount << std::endl;
+    if (inputManager.IsKeyPressed(GLFW_KEY_SPACE)) {
+        std::cout << "Space key pressed" << std::endl;
+    }
+
+    if (inputManager.IsKeyPressed(GLFW_KEY_W)) {
+        std::cout << "W key held down" << std::endl;
+    }
     frameCount++;
 }
 
 void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch) {
     m_texture->Use();
     m_renderer->Clear();
-    glm::mat4 model = glm::translate(glm::mat4(1.0f), baseScreen);    
+    glm::mat4 model = glm::translate(glm::mat4(1.0f), baseScreen);
     glm::mat4 mvp = proj * view * model;
     m_renderer->BeginBatch(mvp);
     Rectangle srcRect1 = Rectangle(32.0f, 32.0f, 32.0f, 32.0f);

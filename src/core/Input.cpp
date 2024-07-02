@@ -16,18 +16,18 @@ void InputManager::Update() {
 }
 
 bool InputManager::IsKeyPressed(int key) const {
-    auto it = m_keyPressed.find(key);
-    if (it != m_keyPressed.end()) {
-        return it->second;
-    }
+    // auto it = m_keyPressed.find(key);
+    // if (it != m_keyPressed.end()) {
+    //     return it->second;
+    // }
     return false;
 }
 
 bool InputManager::IsKeyHeld(int key) const {
-        auto it = m_keyHeld.find(key);
-        if (it != m_keyHeld.end()) {
-            return it->second;
-        }
-        return false;
-    }
+    // auto it = m_keyHeld.find(key);
+    // if (it != m_keyHeld.end()) {
+    //     return it->second;
+    // }
+    return false;
 }
+}  // namespace Mystic

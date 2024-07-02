@@ -21,12 +21,14 @@ class InputManager {
 
     static void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods) {
         InputManager* inputManager = static_cast<InputManager*>(glfwGetWindowUserPointer(window));
-        if (action == GLFW_PRESS) {
-            inputManager->m_keyPressed[key] = true;
-            inputManager->m_keyHeld[key] = true;
-        } else if (action == GLFW_RELEASE) {
-            inputManager->m_keyPressed[key] = false;
-            inputManager->m_keyHeld[key] = false;
+        if (inputManager && key >= 0 && key <= GLFW_KEY_LAST) { // Key validation
+            if (action == GLFW_PRESS) {
+                inputManager->m_keyPressed[key] = true;
+                inputManager->m_keyHeld[key] = true;
+            } else if (action == GLFW_RELEASE) {
+                inputManager->m_keyPressed[key] = false;
+                inputManager->m_keyHeld[key] = false;
+            }
         }
     }
 };
