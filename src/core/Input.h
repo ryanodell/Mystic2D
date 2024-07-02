@@ -8,6 +8,7 @@
 namespace Mystic {
 class InputManager {
    public:
+    InputManager() { }
     InputManager(GLFWwindow* window);
     void Update();
     bool IsKeyPressed(int key) const;

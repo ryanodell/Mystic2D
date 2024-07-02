@@ -28,9 +28,12 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
     m_renderer->BeginBatch(mvp);
     Rectangle srcRect1 = Rectangle(32.0f, 32.0f, 32.0f, 32.0f);
     Rectangle srcRect2 = Rectangle(64.0f, 32.0f, 32.0f, 32.0f);
+    Rectangle srcRect3 = Rectangle(96.0f, 32.0f, 32.0f, 32.0f);
     m_renderer->Draw(glm::vec2(32.0f, 32.0f), m_texture, m_shader, &srcRect1, COLOR_WHITE);
     m_renderer->Draw(glm::vec2(0.0f, 0.0f), m_texture, m_shader, &srcRect1, COLOR_RED);
     m_renderer->Draw(glm::vec2(32.0f, 0.0f), m_texture, m_shader, &srcRect2, COLOR_GREEN);
+    m_renderer->Draw(glm::vec2(64.0f, 32.0f), m_texture, m_shader, &srcRect2, COLOR_BLUE);
+    m_renderer->Draw(glm::vec2(64.0f, 64.0f), m_texture, m_shader, &srcRect3, COLOR_BLUE);
     m_renderer->EndBatch(m_shader);
 }
 
