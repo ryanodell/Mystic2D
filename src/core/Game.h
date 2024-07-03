@@ -20,7 +20,7 @@ class Game {
         virtual void Update(GameTime* gametime);
         virtual void Draw(GameTime* gameTime, SpriteBatch* spriteBatch);
         virtual void UnloadContent();
-        InputManager inputManager;
+        Input input;
     private:
         GameWindow* m_gameWindow = nullptr;
         SpriteBatch* m_spriteBatch = nullptr;

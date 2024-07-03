@@ -41,7 +41,7 @@ namespace Mystic {
         }
         m_gameWindow = new GameWindow("Name", 960, 540);
         m_spriteBatch = new Mystic::SpriteBatch();
-        inputManager = InputManager(m_gameWindow->GetInternalWindow());
+        input = Input(m_gameWindow->GetInternalWindow());
         m_initialized = true;
     }
 }

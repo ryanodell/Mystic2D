@@ -16,16 +16,16 @@ static int frameCount = 0;
 
 void TestGame::Update(Mystic::GameTime *gametime) {
     Mystic::Game::Update(gametime);
-    if (inputManager.IsKeyPressed(GLFW_KEY_D)) {
+    if (input.IsKeyPressed(GLFW_KEY_D)) {
         playerPosition = glm::vec2(playerPosition.x + 1.0f, playerPosition.y);
     }
-    if (inputManager.IsKeyPressed(GLFW_KEY_A)) {
+    if (input.IsKeyPressed(GLFW_KEY_A)) {
         playerPosition = glm::vec2(playerPosition.x - 1.0f, playerPosition.y);
     }
-    if (inputManager.IsKeyPressed(GLFW_KEY_W)) {
+    if (input.IsKeyPressed(GLFW_KEY_W)) {
         playerPosition = glm::vec2(playerPosition.x, playerPosition.y - 1.0f);
     }
-    if (inputManager.IsKeyPressed(GLFW_KEY_S)) {
+    if (input.IsKeyPressed(GLFW_KEY_S)) {
         playerPosition = glm::vec2(playerPosition.x, playerPosition.y + 1.0f);
     }
     frameCount++;

@@ -6,10 +6,10 @@
 #include <unordered_map>
 
 namespace Mystic {
-class InputManager {
+class Input {
    public:
-    InputManager() { }
-    InputManager(GLFWwindow* window);
+    Input() { }
+    Input(GLFWwindow* window);
     bool IsKeyPressed(int key) const;
 
    private:
