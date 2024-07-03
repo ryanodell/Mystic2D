@@ -15,7 +15,6 @@ namespace Mystic {
         GameTime gt;
         LoadContent();
         while(!m_gameWindow->WindowShouldClose()) {
-            inputManager.Update();
             Update(&gt);
             Draw(&gt, m_spriteBatch);
             m_gameWindow->Render();
