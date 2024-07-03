@@ -26,6 +26,7 @@ class TestGame : public Game {
 
    private:
     // glm::vec3 baseScreen = glm::vec3(200, 200, 0);
+    glm::vec2 playerPosition = glm::vec2(0.0f, 0.0f);
     glm::vec3 baseScreen = glm::vec3(0, 0, 0);
     glm::mat4 ident = glm::mat4(1.0f);
     glm::vec3 trvec = glm::vec3(0, 0, 0);

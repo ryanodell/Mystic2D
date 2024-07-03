@@ -16,12 +16,17 @@ static int frameCount = 0;
 
 void TestGame::Update(Mystic::GameTime *gametime) {
     Mystic::Game::Update(gametime);
-    if (inputManager.IsKeyPressed(GLFW_KEY_SPACE)) {
-        std::cout << "Space key pressed" << std::endl;
+    if (inputManager.IsKeyPressed(GLFW_KEY_D)) {
+        playerPosition = glm::vec2(playerPosition.x + 1.0f, playerPosition.y);
     }
-
+    if (inputManager.IsKeyPressed(GLFW_KEY_A)) {
+        playerPosition = glm::vec2(playerPosition.x - 1.0f, playerPosition.y);
+    }
     if (inputManager.IsKeyPressed(GLFW_KEY_W)) {
-        std::cout << "W key held down" << std::endl;
+        playerPosition = glm::vec2(playerPosition.x, playerPosition.y - 1.0f);
+    }
+    if (inputManager.IsKeyPressed(GLFW_KEY_S)) {
+        playerPosition = glm::vec2(playerPosition.x, playerPosition.y + 1.0f);
     }
     frameCount++;
 }
@@ -39,7 +44,8 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
     m_renderer->Draw(glm::vec2(0.0f, 0.0f), m_texture, m_shader, &srcRect1, COLOR_RED);
     m_renderer->Draw(glm::vec2(32.0f, 0.0f), m_texture, m_shader, &srcRect2, COLOR_GREEN);
     m_renderer->Draw(glm::vec2(64.0f, 32.0f), m_texture, m_shader, &srcRect2, COLOR_BLUE);
-    m_renderer->Draw(glm::vec2(64.0f, 64.0f), m_texture, m_shader, &srcRect3, COLOR_BLUE);
+    // m_renderer->Draw(glm::vec2(64.0f, 64.0f), m_texture, m_shader, &srcRect3, COLOR_BLUE);
+    m_renderer->Draw(playerPosition, m_texture, m_shader, &srcRect3, COLOR_BLUE);
     m_renderer->EndBatch(m_shader);
 }
 
