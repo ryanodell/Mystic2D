@@ -17,14 +17,13 @@ Implement an ECS of sorts
 VSCode Settings for reference:
 C_Cpp.clang_format_fallbackStyle = {BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}
 
-
-#Findings: Index buffer is not being set/applied inside the renderer
-            I Get it... only seeting first "X" of the vertex buffer.. but there are far more than x...
-
 #Notes for self on what's nex:
-    - Implement the Renderer
-    - Populate the vertex buffer and index buffer with draw calls
+    - Implement the Renderer - DONE
+    - Populate the vertex buffer and index buffer with draw calls - DONE
     - Create a method to perform the draw call in the private method "flush"
         - Flush method should also clear the buffers.
     - Add checks for vertex buffer limit to flush and clear the array
-    - Set "EndBatch()" to call the flush method
+    - Set "EndBatch()" to call the flush method - DONE
+    - Implement text rendering
+    - Implement a geniune camera
+    
