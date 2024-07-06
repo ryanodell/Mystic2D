@@ -1,7 +1,7 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
-constexpr unsigned int MAX_OBJECTS = 100;
+constexpr unsigned int MAX_OBJECTS = 150;
 constexpr unsigned int VERT_SIZE = 8;
 constexpr unsigned int IND_SIZE = 6;
 
