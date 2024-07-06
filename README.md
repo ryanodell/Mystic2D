@@ -26,4 +26,6 @@ C_Cpp.clang_format_fallbackStyle = {BasedOnStyle: Google, IndentWidth: 4, Column
     - Set "EndBatch()" to call the flush method - DONE
     - Implement text rendering
     - Implement a geniune camera
-    
+
+#Hey! Listen! :
+    increasing MAX_OBJECTS = 150 allows exceeding 43/44 objects. This is where we need to flush and clear
