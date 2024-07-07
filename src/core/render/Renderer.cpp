@@ -4,9 +4,7 @@ namespace Mystic {
 void Renderer::Init() {
     m_va = VertexArray::Create();
     m_vb = VertexBuffer::Create(m_vertices, sizeof(m_vertices), GL_DYNAMIC_DRAW);
-    for (int i = 0; i < MAX_OBJECTS; i++) {
-        incrementIndexBuffer();
-    }
+    populateIndexBuffer();
     m_ib = IndexBuffer::Create(m_indices, MAX_INDICES);
     // Rese it back to 0. TODO: Clean this up
     m_spritePointer = 0;
@@ -31,9 +29,9 @@ void Renderer::Clear() const {
 }
 
 /// @brief DO NOT USE
-/// @param va 
-/// @param ib 
-/// @param shader 
+/// @param va
+/// @param ib
+/// @param shader
 void Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const {
     shader.Use();
     glActiveTexture(GL_TEXTURE0);
@@ -85,7 +83,7 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectan
         texCoord[6] = 0.0f;
         texCoord[7] = 1.0f;
     }
-    unsigned int offset = m_spritePointer * (8 * 4); // Assuming each sprite uses 8 floats & 4 enties
+    unsigned int offset = m_spritePointer * (8 * 4);  // Assuming each sprite uses 8 floats & 4 enties
     // Top right
     m_vertices[offset + 0] = position.x + tmpWidth;
     m_vertices[offset + 1] = position.y;
@@ -139,15 +137,17 @@ void Renderer::SetClearColor(Color color) const {
     glm::vec4 clearColor = GetColorVec4(color);
     GLCall(glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a));
 }
-void Renderer::incrementIndexBuffer() {
-    int indexStartIndex = m_spritePointer * 6;
-    m_indices[indexStartIndex] = m_spritePointer * 4;
-    m_indices[indexStartIndex + 1] = m_spritePointer * 4 + 1;
-    m_indices[indexStartIndex + 2] = m_spritePointer * 4 + 3;
-    m_indices[indexStartIndex + 3] = m_spritePointer * 4 + 1;
-    m_indices[indexStartIndex + 4] = m_spritePointer * 4 + 2;
-    m_indices[indexStartIndex + 5] = m_spritePointer * 4 + 3;
-    m_spritePointer++;
+
+void Renderer::populateIndexBuffer() {
+    for (int i = 0; i < MAX_OBJECTS; i++) {
+        int indexStartIndex = i * 6;
+        m_indices[indexStartIndex] = i * 4;
+        m_indices[indexStartIndex + 1] = i * 4 + 1;
+        m_indices[indexStartIndex + 2] = i * 4 + 3;
+        m_indices[indexStartIndex + 3] = i * 4 + 1;
+        m_indices[indexStartIndex + 4] = i * 4 + 2;
+        m_indices[indexStartIndex + 5] = i * 4 + 3;
+    }
 }
 void Renderer::flush() {
 }

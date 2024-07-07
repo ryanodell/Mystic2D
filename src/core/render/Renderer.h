@@ -24,7 +24,6 @@ class Renderer {
     void EndBatch(Shader* shader);
     void SetClearColor(Color color) const;
    private:
-    void incrementIndexBuffer();
     float m_vertices[MAX_VERTICES] = { 0.0f };
     unsigned int m_indices[MAX_INDICES] = { 0 };
     VertexArray m_va;
@@ -33,6 +32,7 @@ class Renderer {
     int m_spriteIndex;
     int m_spritePointer = 0;
     glm::mat4 m_mvp;
+    void populateIndexBuffer();
     void flush();
 };
 }  // namespace Mystic
