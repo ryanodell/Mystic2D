@@ -14,7 +14,20 @@
 #include "../GLM/gtc/type_ptr.hpp"
 #include <optional>
 #include <GLFW/glfw3.h>
+#include <random>
+
 using namespace Mystic;
+
+struct TempSpriteData {
+    TempSpriteData() { }
+    ~TempSpriteData() {}
+    glm::vec2 Position;
+    Texture* Texture;
+    Rectangle SrcRect;
+    Color SpriteColor;
+    TempSpriteData(glm::vec2 position, Mystic::Texture* texture, Rectangle rect, Color color) 
+        : Position(position), Texture(texture), SrcRect(rect), SpriteColor(color) { }
+};
 
 class TestGame : public Game {
    public:
@@ -38,9 +51,17 @@ class TestGame : public Game {
     VertexBuffer m_vb;
     IndexBuffer m_ib;
 
+    std::random_device rd;  // Seed generator
+    std::mt19937 rng;       // Mersenne Twister random number generator
+    std::uniform_int_distribution<int> dist;  // Distribution
+    int generate() {
+        return dist(rng);
+    }
+
     Renderer* m_renderer = nullptr;
     Shader* m_shader = nullptr;
     Texture* m_texture = nullptr;
+    TempSpriteData m_spriteData[25 * 25];
 };
 
 #endif

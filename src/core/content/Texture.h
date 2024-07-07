@@ -9,6 +9,7 @@ namespace Mystic {
 
 class Texture {
     public:
+        Texture() { }
         Texture(unsigned int id) {
             m_id = id;
         }

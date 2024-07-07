@@ -124,10 +124,6 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect, Co
     m_vertices[offset + 29] = spriteColor.a;
     m_vertices[offset + 30] = texCoord[6];
     m_vertices[offset + 31] = texCoord[7];
-    // if(m_spritePointer >= 117) {
-    //     int numOfElements = sizeof(m_vertices) / sizeof(m_vertices[0]);
-    //     int breakPoint = 5;
-    // }
     m_spritePointer++;
     if(m_spritePointer > MAX_OBJECTS) {
         flush();
