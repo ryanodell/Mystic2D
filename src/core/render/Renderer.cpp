@@ -3,7 +3,7 @@
 namespace Mystic {
 void Renderer::Init() {
     m_va = VertexArray::Create();
-    m_vb = VertexBuffer::Create(m_vertices, sizeof(m_vertices), GL_STATIC_DRAW);
+    m_vb = VertexBuffer::Create(m_vertices, sizeof(m_vertices), GL_DYNAMIC_DRAW);
     for (int i = 0; i < MAX_OBJECTS; i++) {
         incrementIndexBuffer();
     }
