@@ -28,4 +28,4 @@ C_Cpp.clang_format_fallbackStyle = {BasedOnStyle: Google, IndentWidth: 4, Column
     - Implement a geniune camera
 
 #Hey! Listen! :
-    increasing MAX_OBJECTS = 150 allows exceeding 43/44 objects. This is where we need to flush and clear
+    119 is the magic number of sprites drawn that breaks it...

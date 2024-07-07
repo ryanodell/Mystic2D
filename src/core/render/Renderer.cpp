@@ -39,10 +39,11 @@ void Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& 
 }
 void Renderer::BeginBatch() {
 }
-void Renderer::BeginBatch(glm::mat4 transform) {
+void Renderer::BeginBatch(Shader* shader, glm::mat4 transform) {
+    m_shader = shader;
     m_mvp = transform;
 }
-void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectangle* srcRect, Color color) {
+void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect, Color color) {
     float texCoord[8];
     float tmpWidth = (srcRect != nullptr) ? srcRect->W : texture->GetWidth();
     float tmpHeight = (srcRect != nullptr) ? srcRect->H : texture->GetHeight();
@@ -81,7 +82,8 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectan
         texCoord[6] = 0.0f;
         texCoord[7] = 1.0f;
     }
-    unsigned int offset = m_spritePointer * (8 * 4);  // Assuming each sprite uses 8 floats & 4 enties
+    // unsigned int offset = m_spritePointer * (8 * 4);  // Assuming each sprite uses 8 floats & 4 enties
+    unsigned int offset = m_spritePointer * VERT_QUAD_SIZE;  // Assuming each sprite uses 8 floats & 4 enties
     // Top right
     m_vertices[offset + 0] = position.x + tmpWidth;
     m_vertices[offset + 1] = position.y;
@@ -121,15 +123,25 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectan
     m_vertices[offset + 29] = spriteColor.a;
     m_vertices[offset + 30] = texCoord[6];
     m_vertices[offset + 31] = texCoord[7];
+    // if(m_spritePointer >= 117) {
+    //     int numOfElements = sizeof(m_vertices) / sizeof(m_vertices[0]);
+    //     int breakPoint = 5;
+    // }
     m_spritePointer++;
+    if(m_spritePointer > MAX_OBJECTS) {
+        flush();
+    }
 }
-void Renderer::EndBatch(Shader* shader) {
-    m_vb.UpdateVertexData(m_vertices, sizeof(m_vertices));
-    shader->Use();
-    shader->setMat4("transform", m_mvp);
-    m_va.Bind();
-    GLCall(glDrawElements(GL_TRIANGLES, m_spritePointer * IND_QUAD_SIZE, GL_UNSIGNED_INT, 0));
-    m_spritePointer = 0;
+void Renderer::EndBatch() {
+    flush();
+    //m_spritePointer--;
+    // m_vb.UpdateVertexData(m_vertices, sizeof(m_vertices));
+    // shader->Use();
+    // shader->setMat4("transform", m_mvp);
+    // m_va.Bind();
+    // // GLCall(glDrawElements(GL_TRIANGLES, m_spritePointer * IND_QUAD_SIZE, GL_UNSIGNED_INT, 0));
+    // GLCall(glDrawElements(GL_TRIANGLES, MAX_INDICES, GL_UNSIGNED_INT, 0));
+    // m_spritePointer = 0;
 }
 void Renderer::SetClearColor(Color color) const {
     glm::vec4 clearColor = GetColorVec4(color);
@@ -148,5 +160,16 @@ void Renderer::populateIndexBuffer() {
     }
 }
 void Renderer::flush() {
+        //m_spritePointer--;
+    m_vb.UpdateVertexData(m_vertices, sizeof(m_vertices));
+    m_shader->Use();
+    m_shader->setMat4("transform", m_mvp);
+    m_va.Bind();
+    // GLCall(glDrawElements(GL_TRIANGLES, m_spritePointer * IND_QUAD_SIZE, GL_UNSIGNED_INT, 0));
+    GLCall(glDrawElements(GL_TRIANGLES, MAX_INDICES, GL_UNSIGNED_INT, 0));
+    
+    std::fill(std::begin(m_vertices), std::end(m_vertices), 0.0f);
+
+    m_spritePointer = 0;
 }
 }  // namespace Mystic

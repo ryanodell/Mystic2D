@@ -7,6 +7,7 @@
 #include "../Utils.h"
 #include "../Geometry.h"
 #include "../content/Texture.h"
+#include <algorithm>
 
 namespace Mystic {
 
@@ -18,10 +19,10 @@ class Renderer {
     void Clear() const;
     void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
     void BeginBatch();
-    void BeginBatch(glm::mat4 transform);
+    void BeginBatch(Shader* shader, glm::mat4 transform);
     //void Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect = nullptr, Color color);
-    void Draw(glm::vec2 position, Texture* texture, Shader* shader, Rectangle* srcRect = nullptr, Color color = COLOR_WHITE);
-    void EndBatch(Shader* shader);
+    void Draw(glm::vec2 position, Texture* texture,  Rectangle* srcRect = nullptr, Color color = COLOR_WHITE);
+    void EndBatch();
     void SetClearColor(Color color) const;
    private:
     float m_vertices[MAX_VERTICES] = { 0.0f };
@@ -29,6 +30,7 @@ class Renderer {
     VertexArray m_va;
     VertexBuffer m_vb;
     IndexBuffer m_ib;
+    Shader* m_shader = nullptr;
     int m_spriteIndex;
     int m_spritePointer = 0;
     glm::mat4 m_mvp;

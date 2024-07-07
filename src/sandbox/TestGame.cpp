@@ -36,7 +36,7 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
     m_renderer->Clear();
     glm::mat4 model = glm::translate(glm::mat4(1.0f), baseScreen);
     glm::mat4 mvp = proj * view * model;
-    m_renderer->BeginBatch(mvp);
+    m_renderer->BeginBatch(m_shader, mvp);
     Rectangle srcRect1 = Rectangle(32.0f, 32.0f, 32.0f, 32.0f);
     Rectangle srcRect2 = Rectangle(64.0f, 32.0f, 32.0f, 32.0f);
     Rectangle srcRect3 = Rectangle(96.0f, 32.0f, 32.0f, 32.0f);
@@ -44,13 +44,14 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
     // m_renderer->Draw(glm::vec2(0.0f, 0.0f), m_texture, m_shader, &srcRect1, COLOR_RED);
     // m_renderer->Draw(glm::vec2(32.0f, 0.0f), m_texture, m_shader, &srcRect2, COLOR_GREEN);
     // m_renderer->Draw(glm::vec2(64.0f, 32.0f), m_texture, m_shader, &srcRect2, COLOR_BLUE);
-    for(int i = 0; i <= 100; i++) {
+    for(int i = 0; i < 205; i++) {
         //std:: cout << i << std::endl;
-        m_renderer->Draw(glm::vec2(64.0f, 32.0f), m_texture, m_shader, &srcRect2, COLOR_BLUE);
+        m_renderer->Draw(glm::vec2(64.0f, 32.0f), m_texture, &srcRect2, COLOR_BLUE);
     }
+    //m_renderer->Draw(glm::vec2(64.0f, 32.0f), m_texture, m_shader, &srcRect2, COLOR_BLUE);
     // m_renderer->Draw(glm::vec2(64.0f, 64.0f), m_texture, m_shader, &srcRect3, COLOR_BLUE);
     //m_renderer->Draw(playerPosition, m_texture, m_shader, &srcRect3, COLOR_BLUE);
-    m_renderer->EndBatch(m_shader);
+    m_renderer->EndBatch();
 }
 
 void TestGame::UnloadContent() {
