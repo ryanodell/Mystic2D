@@ -1,7 +1,7 @@
 # Mystic2D
 Yet another attempt to make a 2D engine using OpenGL - I have a bad case of restart-itus
 
-# Features to implement:
+# TODO:
     - Implement a geniune camera
     - Implement text rendering
     - Implement an ECS of sorts
@@ -26,6 +26,7 @@ private:
     Renderer* m_renderer = nullptr;
     Shader* m_shader = nullptr;
     Texture* m_texture = nullptr;
+    glm::vec2 m_playerPosition = glm::vec2(0.0f, 0.0f);
 }
 
 // In load content, load your shaders, textures, etc. For example:
@@ -35,6 +36,25 @@ void MyGame::LoadContent() {
     m_texture = Mystic::Texture::LoadFromFile("images/kruggsmash.png");
     m_renderer->Init();
     m_renderer->SetClearColor(COLOR_BLACK);
+}
+
+// Do your updates within the update gameloop
+// For example, handling user input
+// NOTE: Shoulda always call the base class' Update method before doing anything else
+void MyGame::Update(Mystic::GameTime *gametime) {
+    Mystic::Game::Update(gametime);
+    if (input.IsKeyPressed(GLFW_KEY_D)) {
+        m_playerPosition = glm::vec2(m_playerPosition.x + 1.0f, m_playerPosition.y);
+    }
+    if (input.IsKeyPressed(GLFW_KEY_A)) {
+        m_playerPosition = glm::vec2(m_playerPosition.x - 1.0f, m_playerPosition.y);
+    }
+    if (input.IsKeyPressed(GLFW_KEY_W)) {
+        m_playerPosition = glm::vec2(m_playerPosition.x, m_playerPosition.y - 1.0f);
+    }
+    if (input.IsKeyPressed(GLFW_KEY_S)) {
+        m_playerPosition = glm::vec2(m_playerPosition.x, m_playerPosition.y + 1.0f);
+    }
 }
 
 // Example of using the renderer's sprite batching functionality
@@ -57,7 +77,7 @@ void MyGame::UnloadContent() {
 
 
 // In the main class, create instance of your class and call "Run()"
-// Eventually, none of the glfw code will need to be called in main. This is temporary
+// Eventually, none of the glfw code will need to be called in main. This is temporary due to a bug
 int main() {
     std::cout << "Init" << std::endl;
     glfwInit();
@@ -72,5 +92,5 @@ int main() {
 
 ```
 
-# VSCode Settings for reference:
+# VSCode Settings for auto-formatting:
 C_Cpp.clang_format_fallbackStyle = {BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}
