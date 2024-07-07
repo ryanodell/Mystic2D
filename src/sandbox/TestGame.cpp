@@ -24,16 +24,20 @@ void TestGame::LoadContent() {
         for(int x = 0; x < 25; x++) {
             int randomNumber = generate();
             Rectangle recToUse;
+            Color colorToUse = COLOR_WHITE;
             if(randomNumber == 0) {
                 recToUse = srcRect1;
+                colorToUse = COLOR_RED;
             }
             if(randomNumber == 1) {
                 recToUse = srcRect2;
+                colorToUse = COLOR_GREEN;
             }
             if(randomNumber == 2) {
                 recToUse = srcRect3;
+                colorToUse = COLOR_BLUE;
             }
-            m_spriteData[tileIndex] = TempSpriteData({x * tileSize, y * tileSize }, m_texture, recToUse, COLOR_WHITE);
+            m_spriteData[tileIndex] = TempSpriteData({x * tileSize, y * tileSize }, m_texture, recToUse, colorToUse);
             tileIndex++;
         }
     }
