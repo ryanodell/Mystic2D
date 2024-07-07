@@ -24,6 +24,9 @@ class Renderer {
     void Draw(glm::vec2 position, Texture* texture,  Rectangle* srcRect = nullptr, Color color = COLOR_WHITE);
     void EndBatch();
     void SetClearColor(Color color) const;
+    inline int GetFlushCount() const {
+        return m_flushCount;
+    }
    private:
     float m_vertices[MAX_VERTICES] = { 0.0f };
     unsigned int m_indices[MAX_INDICES] = { 0 };
@@ -33,6 +36,7 @@ class Renderer {
     Shader* m_shader = nullptr;
     int m_spriteIndex;
     int m_spritePointer = 0;
+    int m_flushCount = 0;
     glm::mat4 m_mvp;
     void populateIndexBuffer();
     void flush();

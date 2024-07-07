@@ -42,6 +42,7 @@ void Renderer::BeginBatch() {
 void Renderer::BeginBatch(Shader* shader, glm::mat4 transform) {
     m_shader = shader;
     m_mvp = transform;
+    m_flushCount = 0;
 }
 void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect, Color color) {
     float texCoord[8];
@@ -171,5 +172,6 @@ void Renderer::flush() {
     std::fill(std::begin(m_vertices), std::end(m_vertices), 0.0f);
 
     m_spritePointer = 0;
+    m_flushCount++;
 }
 }  // namespace Mystic

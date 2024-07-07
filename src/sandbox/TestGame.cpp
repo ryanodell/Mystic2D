@@ -44,7 +44,7 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
     // m_renderer->Draw(glm::vec2(0.0f, 0.0f), m_texture, m_shader, &srcRect1, COLOR_RED);
     // m_renderer->Draw(glm::vec2(32.0f, 0.0f), m_texture, m_shader, &srcRect2, COLOR_GREEN);
     // m_renderer->Draw(glm::vec2(64.0f, 32.0f), m_texture, m_shader, &srcRect2, COLOR_BLUE);
-    for(int i = 0; i < 205; i++) {
+    for(int i = 0; i < 412; i++) {
         //std:: cout << i << std::endl;
         m_renderer->Draw(glm::vec2(64.0f, 32.0f), m_texture, &srcRect2, COLOR_BLUE);
     }
@@ -52,6 +52,7 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch
     // m_renderer->Draw(glm::vec2(64.0f, 64.0f), m_texture, m_shader, &srcRect3, COLOR_BLUE);
     //m_renderer->Draw(playerPosition, m_texture, m_shader, &srcRect3, COLOR_BLUE);
     m_renderer->EndBatch();
+    //std::cout << "Flush Count " << m_renderer->GetFlushCount() << std::endl;
 }
 
 void TestGame::UnloadContent() {
