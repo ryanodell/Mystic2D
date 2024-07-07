@@ -17,7 +17,7 @@ namespace Mystic {
         while(!m_gameWindow->WindowShouldClose()) {
             Update(&gt);
             Draw(&gt, m_spriteBatch);
-            m_gameWindow->Render();
+            m_gameWindow->SwapBuffers();
             gt.Tick();
         }
         UnloadContent();

@@ -6,8 +6,6 @@ void Renderer::Init() {
     m_vb = VertexBuffer::Create(m_vertices, sizeof(m_vertices), GL_DYNAMIC_DRAW);
     populateIndexBuffer();
     m_ib = IndexBuffer::Create(m_indices, MAX_INDICES);
-    // Rese it back to 0. TODO: Clean this up
-    m_spritePointer = 0;
     m_va.Bind();
     m_vb.Bind();
     m_ib.Bind();

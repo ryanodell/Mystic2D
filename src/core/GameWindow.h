@@ -17,7 +17,7 @@ namespace Mystic {
             glfwTerminate();
         }
         bool WindowShouldClose();
-        void Render() { 
+        void SwapBuffers() { 
             glfwSwapBuffers(m_internalWindow);
             glfwPollEvents();
         }
