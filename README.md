@@ -1,7 +1,17 @@
 # Mystic2D
-Yet another attempt to make a 2D engine using OpenGL - I have a bad case of restart-itus
+Yet another attempt to make a 2D game framework/engine using OpenGL, heavily insprited by C#'s Monogame Framework
 
-# TODO:
+# Features:
+    - Abstracted away OpenGL's API for rendering 2D graphics
+    - Manages windowing and user input
+    - Structures for managing resources like shaders and textures
+    - Functional game loop, rendering loop, loading & unloading assets
+    - A sprite batch approach to rendering
+    - Program crashes in debug mode when OpenGL encounters an error
+    - Uses GLM for vector & matrix math
+    - Gametime structure for calculating elapsed time between frames
+
+# Features Being Added:
     - Implement a geniune camera
     - Implement text rendering
     - Implement an ECS of sorts
