@@ -132,7 +132,7 @@ void Renderer::EndBatch(Shader* shader) {
     shader->Use();
     shader->setMat4("transform", m_mvp);
     m_va.Bind();
-    GLCall(glDrawElements(GL_TRIANGLES, m_spritePointer * IND_SIZE, GL_UNSIGNED_INT, 0));
+    GLCall(glDrawElements(GL_TRIANGLES, m_spritePointer * IND_QUAD_SIZE, GL_UNSIGNED_INT, 0));
     m_spritePointer = 0;
 }
 void Renderer::SetClearColor(Color color) const {
