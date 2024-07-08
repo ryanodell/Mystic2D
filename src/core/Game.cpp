@@ -6,7 +6,6 @@ namespace Mystic {
 
     Game::~Game() {
         delete m_gameWindow;
-        delete m_spriteBatch;
     }
 
     void Game::Run() {
@@ -16,7 +15,7 @@ namespace Mystic {
         LoadContent();
         while(!m_gameWindow->WindowShouldClose()) {
             Update(&gt);
-            Draw(&gt, m_spriteBatch);
+            Draw(&gt);
             m_gameWindow->SwapBuffers();
             gt.Tick();
         }
@@ -30,7 +29,7 @@ namespace Mystic {
         //MYSTIC_TRACE("Load called");
     }
     void Game::Update(GameTime* gametime) { }
-    void Game::Draw(GameTime* gameTime, SpriteBatch* spriteBatch) { }
+    void Game::Draw(GameTime* gameTime) { }
     void Game::UnloadContent() { }
 
     void Game::init() {
@@ -40,7 +39,6 @@ namespace Mystic {
             return;
         }
         m_gameWindow = new GameWindow("Name", 960, 540);
-        m_spriteBatch = new Mystic::SpriteBatch();
         input = Input(m_gameWindow->GetInternalWindow());
         m_initialized = true;
     }

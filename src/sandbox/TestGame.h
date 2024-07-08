@@ -4,7 +4,6 @@
 #include "../core/game.h"
 #include "../core/gameWindow.h"
 #include "../core/render/Buffer.h"
-#include "../core/render/spriteBatch.h"
 #include "../core/content/Shader.h"
 #include "../core/content/Texture.h"
 //#include "../core/Input.h"
@@ -34,7 +33,7 @@ class TestGame : public Game {
     TestGame();
     void LoadContent();
     void Update(GameTime* gametime);
-    void Draw(GameTime* gameTime, SpriteBatch* spriteBatch);
+    void Draw(GameTime* gameTime);
     void UnloadContent();
 
    private:
