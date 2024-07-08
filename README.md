@@ -33,7 +33,7 @@ public:
     TestGame();
     void LoadContent();
     void Update(GameTime* gametime);
-    void Draw(GameTime* gameTime);
+    void Draw(GameTime* gameTime, Renderer* renderer);
     void UnloadContent();
 private:
     Renderer* m_renderer = nullptr;
@@ -44,11 +44,8 @@ private:
 
 // In load content, load your shaders, textures, etc. For example:
 void MyGame::LoadContent() {
-    m_renderer = new Renderer();
     m_shader = Mystic::Shader::LoadFromFile("shaders/basic_4.glsl");
     m_texture = Mystic::Texture::LoadFromFile("images/kruggsmash.png");
-    m_renderer->Init();
-    m_renderer->SetClearColor(COLOR_BLACK);
 }
 
 // Do your updates within the update gameloop
@@ -74,18 +71,17 @@ void MyGame::Update(Mystic::GameTime *gametime) {
 // Use Renderer's BeginBatch, provide shader and any matrix transforms
 // Call draw method to provide a position, texture, source rect (optional), and a color
 // EndBatch to flush and draw the vertex data withing the renderer
-void MyGame::Draw(Mystic::GameTime *gameTime) {
+void MyGame::Draw(Mystic::GameTime *gameTime, Renderer* renderer) {
     Rectangle exampleRect = Rectangle(32.0f, 32.0f, 32.0f, 32.0f);
-    m_renderer->BeginBatch(m_shader, mvp);
-    m_renderer->Draw(glm::vec2(32.0f, 64.0f), m_texture, &exampleRect, COLOR_WHITE);
-    m_renderer->EndBatch();
+    renderer->BeginBatch(m_shader, mvp);
+    renderer->Draw(glm::vec2(32.0f, 64.0f), m_texture, &exampleRect, COLOR_WHITE);
+    renderer->EndBatch();
 }
 
 // Finally, unload to clear up resources
 void MyGame::UnloadContent() {
     delete m_shader;
     delete m_texture;
-    delete m_renderer;
 }
 
 
