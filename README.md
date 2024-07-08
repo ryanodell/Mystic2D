@@ -21,6 +21,10 @@ Yet another attempt to make a 2D game framework/engine using OpenGL, heavily ins
     - Create a "common" header file
     - Implement lightweight logger
 
+# TODO/Tech Debt:
+    - Remove Sprite Batch instance from draw and replace with renderer
+    - Too tired to list out the rest
+
 # Usage
 ```c++
 // Create a class that inherits from "Game" and override these methods
