@@ -21,9 +21,7 @@ Yet another attempt to make a 2D game framework/engine using OpenGL, heavily ins
     - Create a "common" header file
     - Implement lightweight logger
     - Provide a default shader when none is supplied
-
-# TODO
-    - Create TODO list
+    - Random number generator
 
 # Usage
 ```c++
