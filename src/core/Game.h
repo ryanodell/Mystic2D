@@ -6,6 +6,7 @@
 #include "gameWindow.h"
 #include "../core/Input.h"
 #include "content/ContentManager.h"
+#include "render/Renderer.h"
 
 namespace Mystic {
 class Game {
@@ -17,11 +18,12 @@ class Game {
         //ContentManager ContentManager;
         virtual void LoadContent();
         virtual void Update(GameTime* gametime);
-        virtual void Draw(GameTime* gameTime);
+        virtual void Draw(GameTime* gameTime, Renderer* renderer);
         virtual void UnloadContent();
         Input input;
     private:
         GameWindow* m_gameWindow = nullptr;
+        Renderer* m_renderer = nullptr;
         int m_width, m_height;
         bool m_initialized = false;
         bool m_running = false;

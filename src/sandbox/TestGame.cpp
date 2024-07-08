@@ -7,11 +7,8 @@ TestGame::TestGame() : rng(rd()), dist(0, 2) {
 }
 
 void TestGame::LoadContent() {
-    m_renderer = new Renderer();
     m_shader = Mystic::Shader::LoadFromFile("shaders/basic_4.glsl");
     m_texture = Mystic::Texture::LoadFromFile("images/kruggsmash.png");
-    m_renderer->Init();
-    m_renderer->SetClearColor(COLOR_BLACK);
 
     std::mt19937 gen(rd());
     std::uniform_real_distribution<> dis(1.0, 10.0); // range [1.0, 10.0]
@@ -63,17 +60,17 @@ void TestGame::Update(Mystic::GameTime *gametime) {
 }
 
 
-void TestGame::Draw(Mystic::GameTime *gameTime) {
+void TestGame::Draw(Mystic::GameTime *gameTime, Renderer* renderer) {
     m_texture->Use();
-    m_renderer->Clear();
+    renderer->Clear();
     glm::mat4 model = glm::translate(glm::mat4(1.0f), baseScreen);
     glm::mat4 mvp = proj * view * model;
-    m_renderer->BeginBatch(m_shader, mvp);
+    renderer->BeginBatch(m_shader, mvp);
     for(int i = 0; i < 25 * 25; i++) {
         TempSpriteData current = m_spriteData[i];
-        m_renderer->Draw(current.Position, current.Texture, &current.SrcRect, current.SpriteColor);
+        renderer->Draw(current.Position, current.Texture, &current.SrcRect, current.SpriteColor);
     }
-    m_renderer->EndBatch();
+    renderer->EndBatch();
 }
 
 void TestGame::UnloadContent() {
@@ -82,5 +79,4 @@ void TestGame::UnloadContent() {
     m_ib.Destroy();
     delete m_shader;
     delete m_texture;
-    delete m_renderer;
 }
