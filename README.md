@@ -86,13 +86,8 @@ void MyGame::UnloadContent() {
 
 
 // In the main class, create instance of your class and call "Run()"
-// Eventually, none of the glfw code will need to be called in main. This is temporary due to a bug
 int main() {
     std::cout << "Init" << std::endl;
-    glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     MyGame mainGame;
     mainGame.Run();
     std::cout << "Shut Down" << std::endl;

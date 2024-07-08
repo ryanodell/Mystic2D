@@ -39,6 +39,10 @@ namespace Mystic {
             std::cout << "Game already initialized" << std::endl;
             return;
         }
+        glfwInit();
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         m_gameWindow = new GameWindow("Name", 960, 540);
         input = Input(m_gameWindow->GetInternalWindow());
         m_renderer = new Renderer();
