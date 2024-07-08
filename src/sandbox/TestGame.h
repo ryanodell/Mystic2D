@@ -33,7 +33,7 @@ class TestGame : public Game {
     TestGame();
     void LoadContent();
     void Update(GameTime* gametime);
-    void Draw(GameTime* gameTime);
+    void Draw(GameTime* gameTime, Renderer* renderer);
     void UnloadContent();
 
    private:
@@ -57,7 +57,7 @@ class TestGame : public Game {
         return dist(rng);
     }
 
-    Renderer* m_renderer = nullptr;
+    // Renderer* m_renderer = nullptr;
     Shader* m_shader = nullptr;
     Texture* m_texture = nullptr;
     TempSpriteData m_spriteData[25 * 25];
