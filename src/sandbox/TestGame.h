@@ -45,9 +45,6 @@ class TestGame : public Game {
     //glm::mat4 proj;
     // glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
     glm::mat4 proj = glm::ortho(0.0f, 960.0f, 540.0f, 0.0f, -1.0f, 1.0f);
-    VertexArray m_va;
-    VertexBuffer m_vb;
-    IndexBuffer m_ib;
 
     std::random_device rd;  // Seed generator
     std::mt19937 rng;       // Mersenne Twister random number generator

@@ -74,9 +74,6 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Renderer* renderer) {
 }
 
 void TestGame::UnloadContent() {
-    m_va.Destroy();
-    m_vb.Destroy();
-    m_ib.Destroy();
     delete m_shader;
     delete m_texture;
 }
