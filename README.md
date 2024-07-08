@@ -21,9 +21,8 @@ Yet another attempt to make a 2D game framework/engine using OpenGL, heavily ins
     - Create a "common" header file
     - Implement lightweight logger
 
-# TODO/Tech Debt:
-    - Remove Sprite Batch instance from draw and replace with renderer
-    - Too tired to list out the rest
+# TODO
+    - Create TODO list
 
 # Usage
 ```c++
@@ -34,7 +33,7 @@ public:
     TestGame();
     void LoadContent();
     void Update(GameTime* gametime);
-    void Draw(GameTime* gameTime, SpriteBatch* spriteBatch);
+    void Draw(GameTime* gameTime);
     void UnloadContent();
 private:
     Renderer* m_renderer = nullptr;
@@ -75,7 +74,7 @@ void MyGame::Update(Mystic::GameTime *gametime) {
 // Use Renderer's BeginBatch, provide shader and any matrix transforms
 // Call draw method to provide a position, texture, source rect (optional), and a color
 // EndBatch to flush and draw the vertex data withing the renderer
-void MyGame::Draw(Mystic::GameTime *gameTime, Mystic::SpriteBatch *spriteBatch) {
+void MyGame::Draw(Mystic::GameTime *gameTime) {
     Rectangle exampleRect = Rectangle(32.0f, 32.0f, 32.0f, 32.0f);
     m_renderer->BeginBatch(m_shader, mvp);
     m_renderer->Draw(glm::vec2(32.0f, 64.0f), m_texture, &exampleRect, COLOR_WHITE);
