@@ -7,11 +7,8 @@ TestGame::TestGame() : rng(rd()), dist(0, 2) {
 }
 
 void TestGame::LoadContent() {
-    // m_renderer = new Renderer();
     m_shader = Mystic::Shader::LoadFromFile("shaders/basic_4.glsl");
     m_texture = Mystic::Texture::LoadFromFile("images/kruggsmash.png");
-    // m_renderer->Init();
-    // m_renderer->SetClearColor(COLOR_BLACK);
 
     std::mt19937 gen(rd());
     std::uniform_real_distribution<> dis(1.0, 10.0); // range [1.0, 10.0]
