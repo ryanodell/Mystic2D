@@ -20,6 +20,7 @@ Yet another attempt to make a 2D game framework/engine using OpenGL, heavily ins
     - Create REAL precompiled headers - pch is NOT a precompiled header, it was a failed idea...
     - Create a "common" header file
     - Implement lightweight logger
+    - Provide a default shader when none is supplied
 
 # TODO
     - Create TODO list
@@ -36,7 +37,6 @@ public:
     void Draw(GameTime* gameTime, Renderer* renderer);
     void UnloadContent();
 private:
-    Renderer* m_renderer = nullptr;
     Shader* m_shader = nullptr;
     Texture* m_texture = nullptr;
     glm::vec2 m_playerPosition = glm::vec2(0.0f, 0.0f);
