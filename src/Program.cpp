@@ -7,9 +7,11 @@
 #include "core/game.h"
 #include <iostream>
 #include "sandbox/TestGame.h"
+#include "core/Log.h"
 
 
 int main() {
+    //Mystic::Log::Init();
     std::cout << "Init" << std::endl;
     TestGame mainGame;
     mainGame.Run();
