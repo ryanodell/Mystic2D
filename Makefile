@@ -5,6 +5,7 @@ RELEASE_FLAGS = -O2
 DEPFLAGS = -MMD -MP
 
 SRC_FILES = vendor/GLAD/include/glad.cpp \
+            src/core/Log.cpp \
             src/core/Utils.cpp \
             src/core/Input.cpp \
             src/core/content/Shader.cpp \
