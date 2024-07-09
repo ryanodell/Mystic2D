@@ -11,7 +11,7 @@
 
 
 int main() {
-    //Mystic::Log::Init();
+    Mystic::Log::Init();
     std::cout << "Init" << std::endl;
     TestGame mainGame;
     mainGame.Run();

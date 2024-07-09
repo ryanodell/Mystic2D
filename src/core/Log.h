@@ -1,3 +1,6 @@
+#ifndef LOG_H
+#define LOG_H
+
 #include <fstream>
 #include <iostream>
 #include <memory>
@@ -44,6 +47,7 @@ class Log {
     static std::shared_ptr<Logger> m_clientLogger;
 };
 
+
 /* for reference:
 #define MYSTIC_CORE_TRACE(...)    ::Log::GetCoreLogger()->trace(__VA_ARGS__)
 #define MYSTIC_CORE_INFO(...)     ::Log::GetCoreLogger()->info(__VA_ARGS__)
@@ -59,3 +63,5 @@ class Log {
 */
 
 }  // namespace Mystic
+
+#endif
