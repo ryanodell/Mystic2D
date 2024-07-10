@@ -10,6 +10,7 @@ Yet another attempt to make a 2D game framework/engine using OpenGL, heavily ins
     - Program crashes in debug mode when OpenGL encounters an error
     - Uses GLM for vector & matrix math
     - Gametime structure for calculating elapsed time between frames
+    - Optional basic logging system
 
 # Features Being Added:
     - Implement a geniune camera
@@ -19,7 +20,6 @@ Yet another attempt to make a 2D game framework/engine using OpenGL, heavily ins
     - Start outfitting "core" as a static library
     - Create REAL precompiled headers - pch is NOT a precompiled header, it was a failed idea...
     - Create a "common" header file
-    - Implement lightweight logger
     - Provide a default shader when none is supplied
     - Random number generator
 
@@ -83,12 +83,13 @@ void MyGame::UnloadContent() {
 }
 
 
-// In the main class, create instance of your class and call "Run()"
+// In Program.cpp, create instance of your owng Game class and call "Run()"
 int main() {
-    std::cout << "Init" << std::endl;
+    Mystic::Log::Init(LogLevel::TRACE, "log.txt");
+    MYSTIC_INFO("Init");
     MyGame mainGame;
     mainGame.Run();
-    std::cout << "Shut Down" << std::endl;
+    MYSTIC_INFO("Shut Down");
     return 0;
 }
 

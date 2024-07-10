@@ -15,7 +15,7 @@ int main() {
     MYSTIC_INFO("Init");
     TestGame mainGame;
     mainGame.Run();
-     MYSTIC_INFO("Shut Down");
+    MYSTIC_INFO("Shut Down");
     return 0;
 }
 
