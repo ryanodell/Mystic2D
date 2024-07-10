@@ -11,8 +11,16 @@
 
 
 int main() {
-    Mystic::Log::Init();
-    //std::cout << "Init" << std::endl;
+    Mystic::Log::Init(LogLevel::TRACE, "log.txt");
+    MYSTIC_INFO("Init");
+    TestGame mainGame;
+    mainGame.Run();
+     MYSTIC_INFO("Shut Down");
+    return 0;
+}
+
+/*
+Logger usage:
     MYSTIC_CORE_TRACE("This is a core trace message");
     MYSTIC_CORE_INFO("This is a core info message");
     MYSTIC_CORE_WARN("This is a core warning message");
@@ -24,8 +32,4 @@ int main() {
     MYSTIC_WARN("This is a client warning message");
     MYSTIC_ERROR("This is a client error message");
     MYSTIC_CRITICAL("This is a client critical message");
-    TestGame mainGame;
-    mainGame.Run();
-    std::cout << "Shut Down" << std::endl;
-    return 0;
-}
+*/

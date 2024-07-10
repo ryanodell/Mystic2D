@@ -46,6 +46,14 @@ class Log {
         m_coreLogger = std::make_shared<Logger>(LogLevel::TRACE, "CORE");
         m_clientLogger = std::make_shared<Logger>(LogLevel::TRACE, "CLIENT");
     }
+    static void Init(LogLevel logLevel) {
+        m_coreLogger = std::make_shared<Logger>(logLevel, "CORE");
+        m_clientLogger = std::make_shared<Logger>(logLevel, "CLIENT");
+    }
+    static void Init(LogLevel logLevel, const std::string& logFile) {
+        m_coreLogger = std::make_shared<Logger>(logLevel, "CORE", logFile);
+        m_clientLogger = std::make_shared<Logger>(logLevel, "CLIENT", logFile);
+    }
     inline static std::shared_ptr<Logger>& GetCoreLogger() { return m_coreLogger; }
     inline static std::shared_ptr<Logger>& GetClientLogger() { return m_clientLogger; }
 
