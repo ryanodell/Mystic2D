@@ -25,9 +25,16 @@ class Logger {
             m_file.close();
         }
     }
+    void Trace(const std::string& message);
+    void Info(const std::string& message);
+    void Warn(const std::string& message);
+    void Error(const std::string& message);
+    void Critical(const std::string& message);
 
    private:
-    LogLevel m_level;
+    void log(LogLevel logLevel, const std::string& message);
+    std::string getLogLevelString(LogLevel level);
+    LogLevel m_logLevel;
     std::string m_name;
     std::ofstream m_file;
     std::mutex m_mutex;
@@ -47,20 +54,18 @@ class Log {
     static std::shared_ptr<Logger> m_clientLogger;
 };
 
+#define MYSTIC_CORE_TRACE(...)    ::Mystic::Log::GetCoreLogger()->Trace(__VA_ARGS__)
+#define MYSTIC_CORE_INFO(...)     ::Mystic::Log::GetCoreLogger()->Info(__VA_ARGS__)
+#define MYSTIC_CORE_WARN(...)     ::Mystic::Log::GetCoreLogger()->Warn(__VA_ARGS__)
+#define MYSTIC_CORE_ERROR(...)    ::Mystic::Log::GetCoreLogger()->Error(__VA_ARGS__)
+#define MYSTIC_CORE_CRITICAL(...) ::Mystic::Log::GetCoreLogger()->Critical(__VA_ARGS__)
 
-/* for reference:
-#define MYSTIC_CORE_TRACE(...)    ::Log::GetCoreLogger()->trace(__VA_ARGS__)
-#define MYSTIC_CORE_INFO(...)     ::Log::GetCoreLogger()->info(__VA_ARGS__)
-#define MYSTIC_CORE_WARN(...)     ::Log::GetCoreLogger()->warn(__VA_ARGS__)
-#define MYSTIC_CORE_ERROR(...)    ::Log::GetCoreLogger()->error(__VA_ARGS__)
-#define MYSTIC_CORE_CRITICAL(...) ::Log::GetCoreLogger()->critical(__VA_ARGS__)
+#define MYSTIC_TRACE(...)         ::Mystic::Log::GetClientLogger()->Trace(__VA_ARGS__)
+#define MYSTIC_INFO(...)          ::Mystic::Log::GetClientLogger()->Info(__VA_ARGS__)
+#define MYSTIC_WARN(...)          ::Mystic::Log::GetClientLogger()->Warn(__VA_ARGS__)
+#define MYSTIC_ERROR(...)         ::Mystic::Log::GetClientLogger()->Error(__VA_ARGS__)
+#define MYSTIC_CRITICAL(...)      ::Mystic::Log::GetClientLogger()->Critical(__VA_ARGS__)
 
-#define MYSTIC_TRACE(...)         ::Log::GetClientLogger()->trace(__VA_ARGS__)
-#define MYSTIC_INFO(...)          ::Log::GetClientLogger()->info(__VA_ARGS__)
-#define MYSTIC_WARN(...)          ::Log::GetClientLogger()->warn(__VA_ARGS__)
-#define MYSTIC_ERROR(...)         ::Log::GetClientLogger()->error(__VA_ARGS__)
-#define MYSTIC_CRITICAL(...)      ::Log::GetClientLogger()->critical(__VA_ARGS__)
-*/
 
 }  // namespace Mystic
 
