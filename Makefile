@@ -1,5 +1,5 @@
 CC = g++
-CFLAGS = -Wall
+CFLAGS = -Wall -std=c++20
 DEBUG_FLAGS = -g -DDEBUG -w
 RELEASE_FLAGS = -O2
 DEPFLAGS = -MMD -MP
