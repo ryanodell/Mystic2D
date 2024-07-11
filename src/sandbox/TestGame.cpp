@@ -2,7 +2,8 @@
 
 #include "../core/content/Shader.h"
 
-TestGame::TestGame() : rng(rd()), dist(0, 2) {
+TestGame::TestGame() : rng(rd()), dist(0, 2), 
+    m_camera(-m_aspectRatio * m_zoom, m_aspectRatio * m_zoom, -m_zoom, m_zoom) {
 
 }
 
@@ -65,7 +66,9 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Renderer* renderer) {
     renderer->Clear();
     glm::mat4 model = glm::translate(glm::mat4(1.0f), baseScreen);
     glm::mat4 mvp = proj * view * model;
+    glm::mat4 testCamMat = m_camera.GetViewProjectionMatrix();
     renderer->BeginBatch(m_shader, mvp);
+    //renderer->BeginBatch(m_shader, testCamMat);
     for(int i = 0; i < 25 * 25; i++) {
         TempSpriteData current = m_spriteData[i];
         renderer->Draw(current.Position, current.Texture, &current.SrcRect, current.SpriteColor);

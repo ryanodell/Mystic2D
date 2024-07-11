@@ -7,6 +7,7 @@
 #include "../core/content/Shader.h"
 #include "../core/content/Texture.h"
 #include "../core/render/Renderer.h"
+#include "../core/OrthographicCamera.h"
 #include "../GLM/glm.hpp"
 #include "../GLM/gtc/matrix_transform.hpp"
 #include "../GLM/gtc/type_ptr.hpp"
@@ -36,6 +37,11 @@ class TestGame : public Game {
     void UnloadContent();
 
    private:
+    //These 2 floats will be managed by game for now. Will eventually move to controller or part of the camera    
+    float m_aspectRatio = 16.0f / 9.0f;
+    float m_zoom = 1.0f;
+    OrthographicCamera m_camera;
+
     // glm::vec3 baseScreen = glm::vec3(200, 200, 0);
     glm::vec2 playerPosition = glm::vec2(0.0f, 0.0f);
     glm::vec3 baseScreen = glm::vec3(0, 0, 0);
