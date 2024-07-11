@@ -6,7 +6,8 @@ namespace Mystic {
         
         FILE *file = fopen(fileName, "rb");
         if (file == NULL) {
-            fprintf(stderr, "Could not load shader file: %s\n", fileName);
+            MYSTIC_CORE_ERROR("Could not load shader file");
+            //fprintf(stderr, "Could not load shader file: %s\n", fileName);
             return nullptr;
         }
 
@@ -19,7 +20,8 @@ namespace Mystic {
             size_t bytesRead = fread(content, 1, fileSize, file);
 
             if (ferror(file)) {
-                fprintf(stderr, "Error reading file\n");
+                MYSTIC_CORE_ERROR("Error Reading Shader file");
+                // fprintf(stderr, "Error reading file\n");
                 free(content);
                 return nullptr;
             }
@@ -27,7 +29,8 @@ namespace Mystic {
             content[bytesRead] = '\0';
 
             if (bytesRead < fileSize) {
-                fprintf(stderr, "There was an error reading contents of the file\n");
+                // fprintf(stderr, "There was an error reading contents of the file\n");
+                MYSTIC_CORE_ERROR("There was an error reading contents of the file");
                 free(content);
                 return nullptr;
             } else {
@@ -60,7 +63,7 @@ namespace Mystic {
         const char *vertexStart = strstr(shaderSource, VERTEX_DEFINITION);
         const char *fragmentStart = strstr(shaderSource, FRAGMENT_DEFINITION);
         if(vertexStart == NULL || fragmentStart == NULL) {
-            printf("vertex and or fragment shader(s) not properly defined.\n");
+            MYSTIC_CORE_ERROR("Vertex and or Fragment shader(s) not properly defined.");
             return -1;
         } 
 
@@ -76,12 +79,12 @@ namespace Mystic {
         unsigned int fragmentShader = compileShader(fragmentShaderCode, GL_FRAGMENT_SHADER);
 
         if(vertexShader < 0 || fragmentShader < 0) {
-            printf("Shader(s) failed to compile\n");
+            MYSTIC_CORE_ERROR("Shader(s) failed to compile");
             return -1;
         }
         unsigned int program = linkProgram(vertexShader, fragmentShader);
         if(program < 0) {
-            printf("Shader program failed to link\n");
+            MYSTIC_CORE_ERROR("Shader program failed to link");
             return -1;
         }
         GLCall(glDeleteShader(vertexShader));
@@ -99,8 +102,12 @@ namespace Mystic {
         GLCall(glGetShaderiv(shaderUnit, GL_COMPILE_STATUS, &success));
         if(!success) {
             GLCall(glGetShaderInfoLog(shaderUnit, SHADER_LOG_LENGTH, NULL, infoLog));
-            printf("ERROR::SHADER::%s::COMPILATION_FAILED\n", GL_VERTEX_SHADER ? "VERTEX" : "FRAGMENT");
-            printf("%s\n", infoLog);
+            //TODO, ARGS DO NOT WORK YET
+            MYSTIC_CORE_ERROR("Shader failed to compile");
+            //printf("ERROR::SHADER::%s::COMPILATION_FAILED\n", GL_VERTEX_SHADER ? "VERTEX" : "FRAGMENT");
+
+            MYSTIC_CORE_ERROR(infoLog);
+            //printf("%s\n", infoLog);
             return -1;
         }
         return shaderUnit;
@@ -116,8 +123,10 @@ namespace Mystic {
         GLCall(glGetProgramiv(shaderProgram, GL_LINK_STATUS, &success));
         if(!success) {
             GLCall(glGetProgramInfoLog(shaderProgram, SHADER_LOG_LENGTH, NULL, infoLog));
-            printf("ERROR::SHADER::PROGRAM::LINKING_FAILED\n");
-            printf("%s\n", infoLog);
+            MYSTIC_CORE_ERROR("Failed to link program");
+            MYSTIC_CORE_ERROR(infoLog);
+            // printf("ERROR::SHADER::PROGRAM::LINKING_FAILED\n");
+            // printf("%s\n", infoLog);
             return -1;
         }
         return shaderProgram;

@@ -8,6 +8,7 @@
 #include <cstring>
 #include <string>
 #include "../Debug.h"
+#include "../Log.h"
 
 namespace Mystic {
 static const char* VERTEX_DEFINITION = "#shader vertex";
