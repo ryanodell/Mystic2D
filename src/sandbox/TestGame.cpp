@@ -69,6 +69,13 @@ void TestGame::Update(Mystic::GameTime *gametime) {
         glm::vec3 target = glm::vec3(current.x, current.y + 1.0f, current.z);
         m_camera.SetPosition(target);
     }
+    if (input.IsKeyPressed(GLFW_KEY_SPACE)) {
+        if(m_camera.GetZoom() == 1.0f) {
+            m_camera.SetZoom(2.0f);
+        } else {
+            m_camera.SetZoom(1.0f);
+        }
+    }
     frameCount++;
 }
 

@@ -17,6 +17,9 @@ class OrthographicCamera {
         recalculateViewMatrix();
     }
 
+    void SetZoom(float zoom);
+    const float GetZoom() const { return m_zoom; }
+
     const float GetRotation() const { return m_rotation; }
 
     const glm::mat4& GetProjectionMatrix() const { return m_projectionMatrix; }
