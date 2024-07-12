@@ -3,7 +3,7 @@
 #include "../core/content/Shader.h"
 
 TestGame::TestGame() : rng(rd()), dist(0, 2), 
-    m_camera(-m_aspectRatio * m_zoom, m_aspectRatio * m_zoom, -m_zoom, m_zoom) {
+    m_camera(0.0f, 960.0f, 540.0f, 0.0f) {
 
 }
 
@@ -46,16 +46,28 @@ static int frameCount = 0;
 void TestGame::Update(Mystic::GameTime *gametime) {
     Mystic::Game::Update(gametime);
     if (input.IsKeyPressed(GLFW_KEY_D)) {
-        playerPosition = glm::vec2(playerPosition.x + 1.0f, playerPosition.y);
+        //playerPosition = glm::vec2(playerPosition.x + 1.0f, playerPosition.y);
+        glm::vec3 current = m_camera.GetPosition();
+        glm::vec3 target = glm::vec3(current.x + 1.0f, current.y, current.z);
+        m_camera.SetPosition(target);
     }
     if (input.IsKeyPressed(GLFW_KEY_A)) {
-        playerPosition = glm::vec2(playerPosition.x - 1.0f, playerPosition.y);
+        //playerPosition = glm::vec2(playerPosition.x - 1.0f, playerPosition.y);
+        glm::vec3 current = m_camera.GetPosition();
+        glm::vec3 target = glm::vec3(current.x - 1.0f, current.y, current.z);
+        m_camera.SetPosition(target);
     }
     if (input.IsKeyPressed(GLFW_KEY_W)) {
-        playerPosition = glm::vec2(playerPosition.x, playerPosition.y - 1.0f);
+        //playerPosition = glm::vec2(playerPosition.x, playerPosition.y - 1.0f);
+        glm::vec3 current = m_camera.GetPosition();
+        glm::vec3 target = glm::vec3(current.x, current.y - 1.0f, current.z);
+        m_camera.SetPosition(target);
     }
     if (input.IsKeyPressed(GLFW_KEY_S)) {
-        playerPosition = glm::vec2(playerPosition.x, playerPosition.y + 1.0f);
+        //playerPosition = glm::vec2(playerPosition.x, playerPosition.y + 1.0f);
+        glm::vec3 current = m_camera.GetPosition();
+        glm::vec3 target = glm::vec3(current.x, current.y + 1.0f, current.z);
+        m_camera.SetPosition(target);
     }
     frameCount++;
 }
@@ -67,8 +79,8 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Renderer* renderer) {
     glm::mat4 model = glm::translate(glm::mat4(1.0f), baseScreen);
     glm::mat4 mvp = proj * view * model;
     glm::mat4 testCamMat = m_camera.GetViewProjectionMatrix();
-    renderer->BeginBatch(m_shader, mvp);
-    //renderer->BeginBatch(m_shader, testCamMat);
+    //renderer->BeginBatch(m_shader, mvp);
+    renderer->BeginBatch(m_shader, testCamMat);
     for(int i = 0; i < 25 * 25; i++) {
         TempSpriteData current = m_spriteData[i];
         renderer->Draw(current.Position, current.Texture, &current.SrcRect, current.SpriteColor);
