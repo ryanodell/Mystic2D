@@ -8,7 +8,7 @@ class OrthographicCamera {
    public:
     OrthographicCamera() {}
     ~OrthographicCamera() {}
-    OrthographicCamera(float left, float right, float bottom, float top);
+    OrthographicCamera(float left, float right, float bottom, float top, float zoom = 1.0f);
     void UpdateProjection(float left, float right, float bottom, float top);
 
     const glm::vec3 GetPosition() const { return m_position; }
@@ -25,6 +25,7 @@ class OrthographicCamera {
 
    private:
     void recalculateViewMatrix();
+    void applyZoomToProjection();
 
     glm::mat4 m_projectionMatrix;
     glm::mat4 m_viewMatrix;
@@ -35,6 +36,8 @@ class OrthographicCamera {
 
     //Not using this, just putting it here in case I change my mind
     float m_rotation = 0.0f;
+    float m_zoom = 1.0f;
+    float m_left, m_right, m_bottom, m_top;
 };
 
 }  // namespace Mystic

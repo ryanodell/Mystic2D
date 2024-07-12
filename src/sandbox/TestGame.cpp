@@ -3,7 +3,7 @@
 #include "../core/content/Shader.h"
 
 TestGame::TestGame() : rng(rd()), dist(0, 2), 
-    m_camera(0.0f, 960.0f, 540.0f, 0.0f) {
+    m_camera(0.0f, 960.0f, 540.0f, 0.0f, 2.0f) {
 
 }
 
