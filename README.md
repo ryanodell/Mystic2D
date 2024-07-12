@@ -11,9 +11,9 @@ Yet another attempt to make a 2D game framework/engine using OpenGL, heavily ins
     - Uses GLM for vector & matrix math
     - Gametime structure for calculating elapsed time between frames
     - Optional basic logging system
+    - Simple orthographic camera
 
 # Features Being Added:
-    - Implement a geniune camera
     - Implement text rendering
     - Implement an ECS of sorts
     - Create an event system
