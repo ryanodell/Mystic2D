@@ -17,6 +17,8 @@ namespace Mystic {
                 gw->frameBufferSizeCallback(window, width, height);
             }
         });
+        //Enable vsync... I think
+        glfwSwapInterval(1);
     }
     bool GameWindow::WindowShouldClose() {
         bool shouldClose = glfwWindowShouldClose(m_internalWindow);
