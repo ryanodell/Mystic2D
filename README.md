@@ -12,6 +12,7 @@ Yet another attempt to make a 2D game framework/engine using OpenGL, heavily ins
     - Gametime structure for calculating elapsed time between frames
     - Optional basic logging system
     - Simple orthographic camera
+    - Random number generator
 
 # Features Being Added:
     - Implement text rendering
@@ -21,7 +22,6 @@ Yet another attempt to make a 2D game framework/engine using OpenGL, heavily ins
     - Create REAL precompiled headers - pch is NOT a precompiled header, it was a failed idea...
     - Create a "common" header file
     - Provide a default shader when none is supplied
-    - Random number generator
 
 # Usage
 ```c++
@@ -97,3 +97,7 @@ int main() {
 
 # VSCode Settings for auto-formatting:
 C_Cpp.clang_format_fallbackStyle = {BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}
+
+# Personal TODO
+    - Remove unused variables
+    - Create global for setting initial screen size
