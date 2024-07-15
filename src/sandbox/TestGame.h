@@ -41,23 +41,14 @@ class TestGame : public Game {
     float m_aspectRatio = 16.0f / 9.0f;
     float m_zoom = 1.0f;
     OrthographicCamera m_camera;
-
-    // glm::vec3 baseScreen = glm::vec3(200, 200, 0);
+    
     glm::vec2 playerPosition = glm::vec2(0.0f, 0.0f);
     glm::vec3 baseScreen = glm::vec3(0, 0, 0);
     glm::mat4 ident = glm::mat4(1.0f);
     glm::vec3 trvec = glm::vec3(0, 0, 0);
     glm::mat4 view = glm::translate(ident, trvec);
-    //glm::mat4 proj;
-    // glm::mat4 proj = glm::ortho(0.0f, 960.0f, 0.0f, 540.0f, -1.0f, 1.0f);
     glm::mat4 proj = glm::ortho(0.0f, 960.0f, 540.0f, 0.0f, -1.0f, 1.0f);
-
-    std::random_device rd;  // Seed generator
-    std::mt19937 rng;       // Mersenne Twister random number generator
-    std::uniform_int_distribution<int> dist;  // Distribution
-    int generate() {
-        return dist(rng);
-    }
+    Random rnd;
     Shader* m_shader = nullptr;
     Texture* m_texture = nullptr;
     TempSpriteData m_spriteData[25 * 25];
