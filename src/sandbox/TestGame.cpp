@@ -10,9 +10,7 @@ TestGame::TestGame() : rng(rd()), dist(0, 2),
 void TestGame::LoadContent() {
     m_shader = Mystic::Shader::LoadFromFile("shaders/basic_4.glsl");
     m_texture = Mystic::Texture::LoadFromFile("images/kruggsmash.png");
-
-    std::mt19937 gen(rd());
-    std::uniform_real_distribution<> dis(1.0, 10.0); // range [1.0, 10.0]
+    
     Rectangle srcRect1 = Rectangle(32.0f, 32.0f, 32.0f, 32.0f);
     Rectangle srcRect2 = Rectangle(64.0f, 32.0f, 32.0f, 32.0f);
     Rectangle srcRect3 = Rectangle(96.0f, 32.0f, 32.0f, 32.0f);
