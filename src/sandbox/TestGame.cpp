@@ -83,12 +83,12 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Renderer *renderer) {
     glm::mat4 mvp = proj * view * model;
     glm::mat4 testCamMat = m_camera.GetViewProjectionMatrix();
     // renderer->BeginBatch(m_shader, mvp);
-    // renderer->BeginBatch(m_shader, testCamMat);
-    // for (int i = 0; i < 25 * 25; i++) {
-    //     TempSpriteData current = m_spriteData[i];
-    //     renderer->Draw(current.Position, current.Texture, &current.SrcRect, current.SpriteColor);
-    // }
-    // renderer->EndBatch();
+    renderer->BeginBatch(m_shader, testCamMat);
+    for (int i = 0; i < 25 * 25; i++) {
+        TempSpriteData current = m_spriteData[i];
+        renderer->Draw(current.Position, current.Texture, &current.SrcRect, current.SpriteColor);
+    }
+    renderer->EndBatch();
     
     GLTtext *text1 = gltCreateText();
     gltSetText(text1, "Hello World!");
