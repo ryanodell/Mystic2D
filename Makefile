@@ -26,7 +26,8 @@ DEP_FILES = $(OBJ_FILES:.o=.d)
 INCLUDE_PATHS = -Ivendor/GLFW/include \
                 -Ivendor/GLAD/include \
                 -Ivendor/GLM \
-                -Ivendor/STB_IMAGE
+                -Ivendor/STB_IMAGE \
+                -Ivendor/GLTEXT
 
 LIBRARY_PATHS = -Lvendor/GLFW/lib
 

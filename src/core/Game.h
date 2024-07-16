@@ -7,6 +7,8 @@
 #include "../core/Input.h"
 #include "content/ContentManager.h"
 #include "render/Renderer.h"
+#define GLT_IMPLEMENTATION
+#include "gltext.h"
 
 namespace Mystic {
 class Game {
