@@ -27,11 +27,12 @@ INCLUDE_PATHS = -Ivendor/GLFW/include \
                 -Ivendor/GLAD/include \
                 -Ivendor/GLM \
                 -Ivendor/STB_IMAGE \
-                -Ivendor/GLTEXT
+                -Ivendor/GLTEXT \
+                -Ivendor/FREETYPE
 
 LIBRARY_PATHS = -Lvendor/GLFW/lib
 
-LINKER_FLAGS = -lglfw3 -lgdi32 -lopengl32
+LINKER_FLAGS = -lglfw3 -lgdi32 -lopengl32 -llibfreetype
 
 OBJ_NAME = bin/main
 
