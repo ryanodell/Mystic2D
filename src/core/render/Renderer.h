@@ -10,6 +10,7 @@
 #include <algorithm>
 #include "../../vendor/FREETYPE/ft2build.h"
 #include FT_FREETYPE_H  
+#include <map>
 
 namespace Mystic {
 
@@ -44,6 +45,9 @@ class Renderer {
     void flush();
     FT_Library ft;
     FT_Face face;
+    std::map<char, Character> m_characters;
+
+    void populateCharacters();
 };
 }  // namespace Mystic
 #endif

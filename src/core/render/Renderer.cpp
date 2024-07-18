@@ -27,10 +27,11 @@ void Renderer::Init() {
         MYSTIC_ERROR("Failed to load font");
     }
     FT_Set_Pixel_Sizes(face, 0, 48);
-    //Temporary, test loading a character:
-    if(FT_Load_Char(face, 'X', FT_LOAD_RENDER)) {
-        MYSTIC_ERROR("Failed to load character 'X' from font face");
-    }
+    populateCharacters();
+    // Temporary, test loading a character:
+    //  if(FT_Load_Char(face, 'X', FT_LOAD_RENDER)) {
+    //      MYSTIC_ERROR("Failed to load character 'X' from font face");
+    //  }
 }
 
 void Renderer::Clear() const {
@@ -180,5 +181,15 @@ void Renderer::flush() {
 
     m_spritePointer = 0;
     m_flushCount++;
+}
+void Renderer::populateCharacters() {
+    // disable byte alignment restriction
+    glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+    // c++, heh..
+    for (unsigned char c = 0; c < 128; c++) {
+        if (FT_Load_Char(face, c, FT_LOAD_RENDER)) {
+            MYSTIC_WARN("Failed to load " + std::string(1, static_cast<char>(c)) + " char");
+        }
+    }
 }
 }  // namespace Mystic
