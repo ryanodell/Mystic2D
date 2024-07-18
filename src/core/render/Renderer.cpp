@@ -20,6 +20,17 @@ void Renderer::Init() {
     m_va.Unbind();
     m_vb.Unbind();
     m_ib.Unbind();
+    if (FT_Init_FreeType(&ft)) {
+        MYSTIC_ERROR("Could not init FreeType Library");
+    }
+    if (FT_New_Face(ft, "fonts/Antonio-Bold.ttf", 0, &face)) {
+        MYSTIC_ERROR("Failed to load font");
+    }
+    FT_Set_Pixel_Sizes(face, 0, 48);
+    //Temporary, test loading a character:
+    if(FT_Load_Char(face, 'X', FT_LOAD_RENDER)) {
+        MYSTIC_ERROR("Failed to load character 'X' from font face");
+    }
 }
 
 void Renderer::Clear() const {
@@ -125,20 +136,20 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect, Co
     m_vertices[offset + 30] = texCoord[6];
     m_vertices[offset + 31] = texCoord[7];
     m_spritePointer++;
-    if(m_spritePointer > MAX_OBJECTS) {
+    if (m_spritePointer > MAX_OBJECTS) {
         flush();
     }
 }
 void Renderer::EndBatch() {
     flush();
-    //m_spritePointer--;
-    // m_vb.UpdateVertexData(m_vertices, sizeof(m_vertices));
-    // shader->Use();
-    // shader->setMat4("transform", m_mvp);
-    // m_va.Bind();
-    // // GLCall(glDrawElements(GL_TRIANGLES, m_spritePointer * IND_QUAD_SIZE, GL_UNSIGNED_INT, 0));
-    // GLCall(glDrawElements(GL_TRIANGLES, MAX_INDICES, GL_UNSIGNED_INT, 0));
-    // m_spritePointer = 0;
+    // m_spritePointer--;
+    //  m_vb.UpdateVertexData(m_vertices, sizeof(m_vertices));
+    //  shader->Use();
+    //  shader->setMat4("transform", m_mvp);
+    //  m_va.Bind();
+    //  // GLCall(glDrawElements(GL_TRIANGLES, m_spritePointer * IND_QUAD_SIZE, GL_UNSIGNED_INT, 0));
+    //  GLCall(glDrawElements(GL_TRIANGLES, MAX_INDICES, GL_UNSIGNED_INT, 0));
+    //  m_spritePointer = 0;
 }
 void Renderer::SetClearColor(Color color) const {
     glm::vec4 clearColor = GetColorVec4(color);
@@ -157,14 +168,14 @@ void Renderer::populateIndexBuffer() {
     }
 }
 void Renderer::flush() {
-        //m_spritePointer--;
+    // m_spritePointer--;
     m_vb.UpdateVertexData(m_vertices, sizeof(m_vertices));
     m_shader->Use();
     m_shader->setMat4("transform", m_mvp);
     m_va.Bind();
     // GLCall(glDrawElements(GL_TRIANGLES, m_spritePointer * IND_QUAD_SIZE, GL_UNSIGNED_INT, 0));
     GLCall(glDrawElements(GL_TRIANGLES, MAX_INDICES, GL_UNSIGNED_INT, 0));
-    
+
     std::fill(std::begin(m_vertices), std::end(m_vertices), 0.0f);
 
     m_spritePointer = 0;

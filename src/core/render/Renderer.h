@@ -8,6 +8,8 @@
 #include "../Geometry.h"
 #include "../content/Texture.h"
 #include <algorithm>
+#include "../../vendor/FREETYPE/ft2build.h"
+#include FT_FREETYPE_H  
 
 namespace Mystic {
 
@@ -40,6 +42,8 @@ class Renderer {
     glm::mat4 m_mvp;
     void populateIndexBuffer();
     void flush();
+    FT_Library ft;
+    FT_Face face;
 };
 }  // namespace Mystic
 #endif
