@@ -3,10 +3,17 @@
 #include <random>
 
 #include "../Constants.h"
-#include "../GLM/glm.hpp"
+#include "../../GLM/glm.hpp"
 
 namespace Mystic {
 glm::vec4 GetColorVec4(Color color);
+
+struct Character {
+    unsigned int TextureId;
+    glm::ivec2 Size;
+    glm::ivec2 Bearing;
+    unsigned int Advance;
+};
 
 class Random {
    public:
