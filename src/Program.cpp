@@ -7,11 +7,19 @@
 #include <iostream>
 #include "sandbox/TestGame.h"
 #include "core/Log.h"
+#include "../vendor/FREETYPE/ft2build.h"
+#include FT_FREETYPE_H  
 
 
-int main() {
+
+int main() {    
     Mystic::Log::Init(LogLevel::TRACE, "log.txt");
     MYSTIC_INFO("Init");
+    FT_Library ft;
+    if (FT_Init_FreeType(&ft)) {
+        MYSTIC_ERROR("Could not init FreeType Library");
+        return -1;
+    }
     TestGame mainGame;
     mainGame.Run();
     MYSTIC_INFO("Shut Down");

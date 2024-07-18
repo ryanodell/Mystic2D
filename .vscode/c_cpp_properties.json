@@ -9,7 +9,7 @@
                 "vendor/GLAD/include",
                 "vendor/GLM",
                 "vendor/STB_IMAGE",
-                "vendor/SPDLOG/include"
+                "vendor/FREETYPE"
             ],
             "defines": [
                 "_DEBUG",
