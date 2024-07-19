@@ -28,10 +28,8 @@ void Renderer::Init() {
     }
     FT_Set_Pixel_Sizes(face, 0, 48);
     populateCharacters();
-    // Temporary, test loading a character:
-    //  if(FT_Load_Char(face, 'X', FT_LOAD_RENDER)) {
-    //      MYSTIC_ERROR("Failed to load character 'X' from font face");
-    //  }
+    FT_Done_Face(face);
+    FT_Done_FreeType(ft);
 }
 
 void Renderer::Clear() const {
@@ -56,6 +54,11 @@ void Renderer::BeginBatch(Shader* shader, glm::mat4 transform) {
     m_mvp = transform;
     m_flushCount = 0;
 }
+
+void Renderer::DrawText(glm::vec2 position, std::string text, float scale, Color color) {
+    
+}
+
 void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect, Color color) {
     float texCoord[8];
     float tmpWidth = (srcRect != nullptr) ? srcRect->W : texture->GetWidth();

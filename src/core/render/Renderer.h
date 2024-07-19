@@ -25,6 +25,7 @@ class Renderer {
     void BeginBatch(Shader* shader, glm::mat4 transform);
     //void Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect = nullptr, Color color);
     void Draw(glm::vec2 position, Texture* texture,  Rectangle* srcRect = nullptr, Color color = COLOR_WHITE);
+    void DrawText(glm::vec2 position, std::string text, float scale, Color color = COLOR_WHITE);
     void EndBatch();
     void SetClearColor(Color color) const;
     inline int GetFlushCount() const {
