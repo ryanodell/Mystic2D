@@ -55,10 +55,6 @@ void Renderer::BeginBatch(Shader* shader, glm::mat4 transform) {
     m_flushCount = 0;
 }
 
-void Renderer::DrawText(glm::vec2 position, std::string text, float scale, Color color) {
-    
-}
-
 void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect, Color color) {
     float texCoord[8];
     float tmpWidth = (srcRect != nullptr) ? srcRect->W : texture->GetWidth();
@@ -141,6 +137,7 @@ void Renderer::Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect, Co
     m_vertices[offset + 31] = texCoord[7];
     m_spritePointer++;
     if (m_spritePointer > MAX_OBJECTS) {
+        //MYSTIC_CORE_TRACE("Offset: " + std::to_string(offset));
         flush();
     }
 }
