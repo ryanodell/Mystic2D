@@ -7,6 +7,7 @@
 #include "../core/content/Shader.h"
 #include "../core/content/Texture.h"
 #include "../core/render/Renderer.h"
+#include "../core/render/TextRenderer.h"
 #include "../core/OrthographicCamera.h"
 #include "../GLM/glm.hpp"
 #include "../GLM/gtc/matrix_transform.hpp"
@@ -52,6 +53,7 @@ class TestGame : public Game {
     Shader* m_shader = nullptr;
     Texture* m_texture = nullptr;
     TempSpriteData m_spriteData[25 * 25];
+    TextRenderer* m_textRenderer;
 };
 
 #endif
