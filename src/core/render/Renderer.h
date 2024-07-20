@@ -8,9 +8,9 @@
 #include "../Geometry.h"
 #include "../content/Texture.h"
 #include <algorithm>
-#include "../../vendor/FREETYPE/ft2build.h"
-#include FT_FREETYPE_H  
-#include <map>
+// #include "../../vendor/FREETYPE/ft2build.h"
+// #include FT_FREETYPE_H  
+// #include <map>
 
 namespace Mystic {
 
@@ -25,7 +25,6 @@ class Renderer {
     void BeginBatch(Shader* shader, glm::mat4 transform);
     //void Draw(glm::vec2 position, Texture* texture, Rectangle* srcRect = nullptr, Color color);
     void Draw(glm::vec2 position, Texture* texture,  Rectangle* srcRect = nullptr, Color color = COLOR_WHITE);
-    void DrawText(glm::vec2 position, std::string text, float scale, Color color = COLOR_WHITE);
     void EndBatch();
     void SetClearColor(Color color) const;
     inline int GetFlushCount() const {
@@ -44,11 +43,6 @@ class Renderer {
     glm::mat4 m_mvp;
     void populateIndexBuffer();
     void flush();
-    FT_Library ft;
-    FT_Face face;
-    std::map<char, Character> m_characters;
-
-    void populateCharacters();
 };
 }  // namespace Mystic
 #endif

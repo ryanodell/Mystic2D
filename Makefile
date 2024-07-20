@@ -15,6 +15,7 @@ SRC_FILES = vendor/GLAD/include/glad.cpp \
             src/core/render/VertexBuffer.cpp \
             src/core/render/VertexArray.cpp \
             src/core/render/Renderer.cpp \
+            src/core/render/TextRenderer.cpp \
             src/core/GameWindow.cpp \
             src/core/Game.cpp \
             src/sandbox/TestGame.cpp \
