@@ -10,7 +10,7 @@ void TextRenderer::Init() {
     if (FT_Init_FreeType(&ft)) {
         MYSTIC_ERROR("Could not init FreeType Library");
     }
-    if (FT_New_Face(ft, "fonts/Antonio-Bold.ttf", 0, &face)) {
+    if (FT_New_Face(ft, "fonts/SDS_8x8.ttf", 0, &face)) {
         MYSTIC_ERROR("Failed to load font");
     }
     FT_Set_Pixel_Sizes(face, 0, 48);

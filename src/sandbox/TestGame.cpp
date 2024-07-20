@@ -92,7 +92,9 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Renderer *renderer) {
     }
     renderer->EndBatch();
 
-    m_textRenderer->Draw(glm::vec2(0.0f, 0.0f), "Test", 5.0f, COLOR_RED);
+    m_textRenderer->Draw(glm::vec2(25.0f, 25.0f), "Red", 2.5f, COLOR_RED);
+
+    m_textRenderer->Draw(glm::vec2(100.0f, 125.0f), "Green", 2.5f, COLOR_GREEN);
 //    GLTtext *text1 = gltCreateText();
  //   gltSetText(text1, "Hello World!");
     // gltBeginDraw();
