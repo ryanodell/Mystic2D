@@ -4,9 +4,11 @@
 
 TestGame::TestGame() : rnd(0, 2),
                        m_camera(0.0f, 960.0f, 540.0f, 0.0f, 2.0f) {
+                        m_textRenderer = new TextRenderer();
 }
 
 void TestGame::LoadContent() {
+    m_textRenderer->Init();
     m_shader = Mystic::Shader::LoadFromFile("shaders/basic_4.glsl");
     m_texture = Mystic::Texture::LoadFromFile("images/kruggsmash.png");
 

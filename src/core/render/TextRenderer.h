@@ -20,17 +20,16 @@ class TextRenderer {
     TextRenderer() {}
     ~TextRenderer() {}
     void Init();
-    void BeginBatch();
     void Draw(glm::vec2 position, const std::string& text, Color color);
-    void EndBatch();
 
    private:
-    VertexArray m_va;
-    VertexBuffer m_vb;
-    IndexBuffer m_ib;
+    unsigned int m_va;
+    unsigned int m_vb;
+    unsigned int m_ib;
     FT_Library ft;
     FT_Face face;
     std::map<char, Character> m_characters;
+    Shader* m_shader = nullptr;
 
    private:
     void populateCharacters();

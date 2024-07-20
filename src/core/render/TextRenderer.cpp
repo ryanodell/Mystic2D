@@ -3,6 +3,7 @@
 namespace Mystic {
 
 void TextRenderer::Init() {
+    m_shader = 
     if (FT_Init_FreeType(&ft)) {
         MYSTIC_ERROR("Could not init FreeType Library");
     }
@@ -13,15 +14,19 @@ void TextRenderer::Init() {
     populateCharacters();
     FT_Done_Face(face);
     FT_Done_FreeType(ft);
-}
 
-void TextRenderer::BeginBatch() {
+    glGenVertexArrays(1, &m_va);
+    glGenBuffers(1, &m_vb);
+    glBindVertexArray(m_va);
+    glBindBuffer(GL_ARRAY_BUFFER, m_vb);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
 }
 
 void TextRenderer::Draw(glm::vec2 position, const std::string& text, Color color) {
-}
-
-void TextRenderer::EndBatch() {
 }
 
 void TextRenderer::populateCharacters() {
@@ -57,6 +62,8 @@ void TextRenderer::populateCharacters() {
             face->glyph->advance.x};
         m_characters.insert(std::pair<char, Character>(c, character));
     }
+    glBindVertexArray(0);
+    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 }  // namespace Mystic
