@@ -47,13 +47,19 @@ void Game::init() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    glfwWindowHint(GLFW_RED_BITS, mode->redBits);
-    glfwWindowHint(GLFW_GREEN_BITS, mode->greenBits);
-    glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  
+    //glEnable(GL_CULL_FACE);
+    //glEnable(GL_BLEND);
+    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glfwWindowHint(GLFW_ALPHA_BITS, 8);
-    glfwWindowHint(GLFW_DEPTH_BITS, 24);
-    glfwWindowHint(GLFW_STENCIL_BITS, 8);
+    // glfwWindowHint(GLFW_RED_BITS, mode->redBits);
+    // glfwWindowHint(GLFW_GREEN_BITS, mode->greenBits);
+    // glfwWindowHint(GLFW_BLUE_BITS, mode->blueBits);
+
+    // glfwWindowHint(GLFW_ALPHA_BITS, 8);
+    // glfwWindowHint(GLFW_DEPTH_BITS, 24);
+    // glfwWindowHint(GLFW_STENCIL_BITS, 8);
     if (!gltInit()) {
         MYSTIC_CORE_ERROR("Failed to initialize glText");
         glfwTerminate();

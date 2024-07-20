@@ -20,7 +20,7 @@ class TextRenderer {
     TextRenderer() {}
     ~TextRenderer() {}
     void Init();
-    void Draw(glm::vec2 position, const std::string& text, Color color);
+    void Draw(glm::vec2 position, const std::string& text, float scale, Color color);
 
    private:
     unsigned int m_va;

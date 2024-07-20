@@ -91,16 +91,17 @@ void TestGame::Draw(Mystic::GameTime *gameTime, Renderer *renderer) {
         renderer->Draw(current.Position, current.Texture, &current.SrcRect, current.SpriteColor);
     }
     renderer->EndBatch();
-    
-    GLTtext *text1 = gltCreateText();
-    gltSetText(text1, "Hello World!");
-    gltBeginDraw();
 
-    gltColor(1.0f, 1.0f, 1.0f, 1.0f);
-    gltDrawText(text1, (GLfloat*)&m_camera.GetViewProjectionMatrix());
-    //gltDrawText2D(text1, 0.0f, 0.0f, 1.0f);  // x=0.0, y=0.0, scale=1.0
+    m_textRenderer->Draw(glm::vec2(0.0f, 0.0f), "Test", 5.0f, COLOR_RED);
+//    GLTtext *text1 = gltCreateText();
+ //   gltSetText(text1, "Hello World!");
+    // gltBeginDraw();
 
-    gltEndDraw();
+    // gltColor(1.0f, 1.0f, 1.0f, 1.0f);
+    // gltDrawText(text1, (GLfloat*)&m_camera.GetViewProjectionMatrix());
+    // //gltDrawText2D(text1, 0.0f, 0.0f, 1.0f);  // x=0.0, y=0.0, scale=1.0
+
+    // gltEndDraw();
 }
 
 void TestGame::UnloadContent() {
