@@ -13,15 +13,14 @@ Yet another attempt to make a 2D game framework/engine using OpenGL, heavily ins
     - Optional basic logging system
     - Simple orthographic camera
     - Random number generator
+    - Text rendering
 
 # Features Being Added:
-    - Implement text rendering
-    - Implement an ECS of sorts
-    - Create an event system
-    - Start outfitting "core" as a static library
-    - Create REAL precompiled headers - pch is NOT a precompiled header, it was a failed idea...
-    - Create a "common" header file
-    - Provide a default shader when none is supplied
+    - Implement a lightweight ECS
+    - Event System
+    - Convert "core" to a static library    
+    - Default shader when none is supplied
+    - Audio
 
 # Usage
 ```c++
@@ -101,3 +100,5 @@ C_Cpp.clang_format_fallbackStyle = {BasedOnStyle: Google, IndentWidth: 4, Column
 # Personal TODO
     - Remove unused variables
     - Create global for setting initial screen size
+    - Create REAL precompiled headers - pch is NOT a precompiled header, it was a failed idea...
+    - Create a "common" header file
