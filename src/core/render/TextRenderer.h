@@ -20,6 +20,7 @@ class TextRenderer {
     TextRenderer() {}
     ~TextRenderer() {}
     void Init();
+    void Init(const std::string& fontFilePath, const std::string& shaderFilePath);
     void Draw(glm::vec2 position, const std::string& text, float scale, Color color);
 
    private:

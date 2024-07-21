@@ -2,15 +2,15 @@
 
 namespace Mystic {
 
-void TextRenderer::Init() {
-    m_shader = Mystic::Shader::LoadFromFile("shaders/text_1.glsl");
+void TextRenderer::Init(const std::string& fontFilePath, const std::string& shaderFilePath) {
+    m_shader = Mystic::Shader::LoadFromFile(shaderFilePath.c_str());
     glm::mat4 projection = glm::ortho(0.0f, static_cast<float>(900.0f), 0.0f, static_cast<float>(600.0f));
     m_shader->Use();
     glUniformMatrix4fv(glGetUniformLocation(m_shader->GetId(), "projection"), 1, GL_FALSE, glm::value_ptr(projection));
     if (FT_Init_FreeType(&ft)) {
         MYSTIC_ERROR("Could not init FreeType Library");
     }
-    if (FT_New_Face(ft, "fonts/SDS_8x8.ttf", 0, &face)) {
+    if (FT_New_Face(ft, fontFilePath.c_str(), 0, &face)) {
         MYSTIC_ERROR("Failed to load font");
     }
     FT_Set_Pixel_Sizes(face, 0, 48);
@@ -27,6 +27,10 @@ void TextRenderer::Init() {
     glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+}
+
+void TextRenderer::Init() {
+    Init("fonts/SDS_8x8.ttf", "shaders/text_1.glsl");
 }
 
 void TextRenderer::Draw(glm::vec2 position, const std::string& text, float scale, Color color) {
